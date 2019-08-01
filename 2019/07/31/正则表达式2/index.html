@@ -18,10 +18,15 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content>
+    <meta name="keywords" content="正则表达式">
 
 
-    <meta name="description" content>
+    <meta name="description" content="正则表达式位置匹配攻略正则表达式是匹配模式，要么匹配字符，要么匹配位置。
+什么是位置？位置是相邻字符之间的位置。
+在ES5中，共有6个锚字符：
+1^ $ \b \B (?=P) (?!P)
+
+^...">
 
 
 
@@ -156,6 +161,8 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
+                    <a class="tag-link" href="/tags/正则表达式/">正则表达式</a>
+                
             </span>
         </span>
     
@@ -174,7 +181,118 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h2 id="正则表达式位置匹配攻略"><a href="#正则表达式位置匹配攻略" class="headerlink" title="正则表达式位置匹配攻略"></a>正则表达式位置匹配攻略</h2><p><strong>正则表达式是匹配模式，要么匹配字符，要么匹配位置。</strong></p>
+<h3 id="什么是位置？"><a href="#什么是位置？" class="headerlink" title="什么是位置？"></a>什么是位置？</h3><p>位置是相邻字符之间的位置。</p>
+<p>在ES5中，共有6个锚字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^ $ \b \B (?=P) (?!P)</span><br></pre></td></tr></table></figure>
+
+<h3 id="和¥"><a href="#和¥" class="headerlink" title="^和¥"></a>^和¥</h3><p>^ (脱字符)匹配开头，在多行匹配中匹配行开头。<br>$ (美元符号)匹配结尾，在多行匹配中匹配行结尾。</p>
+<p>比如我们把字符串的开头和结尾用”#”替换（位置可以替换成字符）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = &quot;hello&quot;.replace(/^|$/g, &apos;#&apos;);</span><br><span class="line">console.log(result); //#hello#</span><br></pre></td></tr></table></figure>
+
+<p>多行匹配模式时，二者是行的概念，这个需要我们注意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var result = &quot;I\nlove\njavascript&quot;.replace(/^|$/gm,&apos;#&apos;);</span><br><span class="line">console.log(result);</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">#I#</span><br><span class="line">#love#</span><br><span class="line">#javascript#</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<h4 id="b和-B"><a href="#b和-B" class="headerlink" title="\b和\B"></a>\b和\B</h4><p>\b是单词边界，具体就是\w和\W之间的位置，也包括\w和^之间的位置，也包括\w和$之间的位置。<br>比如一个文件名是”[JS]Lesson.mp4”中的\b,如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = &quot;[JS]Lesson_01.mp4&quot;.replace(/\b/g,&apos;#&apos;);</span><br><span class="line">console.log(result); //// =&gt; &quot;[#JS#] #Lesson_01#.#mp4#&quot;</span><br></pre></td></tr></table></figure>
+
+<p>为什么是这样呢？这需要仔细看看。<br>首先，我们知道，\w是字符组[0-9a-zA-Z]的简写形式，即\w是字母数字或者下划线的中任何一个字符。<br>而\W是排除字符组[^0-9a-zA-Z_]的简写形式，即\w是\w以外的任何一个字符。</p>
+<p>此时我们可以看看“[#JS#]#Lesson_01#.#mp4#”中的每一个“#”，是怎么来的。</p>
+<ul>
+<li>第一个”#”，两边是”[“与”J”，是\W和\w之间的位置。</li>
+<li>第二个”#”，两边是”S”与”]”，也就是\w和\W之间的位置。</li>
+<li>第三个”#”，两边是空格与”L”，也就是\W和\w之间的位置。</li>
+<li>第四个”#”，两边是”1”与”.”，也就是\w和\W之间的位置。</li>
+<li>第五个”#”，两边是”.”与”m”，也就是\W和\w之间的位置。</li>
+<li>第六个”#”，其对应的位置是结尾，但其前面的字符”4”是\w，即\w和$之间的位置。</li>
+</ul>
+<p>知道了\b的概念后，那么\B也就相对好理解了。<br>\B就是\b的反面的意思，非单词边界。例如在字符串中所有位置中，扣掉\b，剩下的都是\B的。<br>具体来说就是\w和\W,\W与\W，^与\W，\W与$之间的位置。<br>比如上面的例子，把所有\B替换成”#“：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = &quot;[JS] Lesson_01.mp4&quot;.replace(/\B/g,&apos;#&apos;);</span><br><span class="line">console.log(result); //// =&gt; &quot;#[J#S]# L#e#s#s#o#n#_#0#1.m#p#4&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="p-和-p"><a href="#p-和-p" class="headerlink" title="(?=p)和(?!p)"></a>(?=p)和(?!p)</h3><p>(?=p),其中p是一个子模式，即p前面的位置。<br>比如(?=l),表示“|”字符前面的位置，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = &quot;hello&quot;.replace(/(?=l)/g,&apos;#&apos;);</span><br><span class="line">console.log(result); //he#l#lo</span><br></pre></td></tr></table></figure>
+
+<p>二者的学名分别是positive lookahead和negative lookahead.<br>中文翻译分别是正向先行断言和负向先行断言<br>ES6中，还支持positive lookbehind和negative lookbehind<br>具体是(?&lt;=p)和(?&lt;!p)</p>
+<h3 id="位置的特性"><a href="#位置的特性" class="headerlink" title="位置的特性"></a>位置的特性</h3><p>对于位置的理解，我们可以理解为空字符。<br>比如“hello”字符串等价与如下的形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot; === &quot; &quot; + &quot;h&quot; + &quot; &quot; + &quot;e&quot; + &quot; &quot; + &quot;l&quot; + &quot; &quot; + &quot;l&quot; + &quot; &quot; + &quot;o&quot;</span><br></pre></td></tr></table></figure>
+
+<p>也等价于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot; === &quot; &quot; + &quot; &quot; + &quot;hello&quot;</span><br></pre></td></tr></table></figure>
+
+<p>因此，把/^hello/写成/^^hello$$$/,是没有任何问题的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = /^^hello$$$/.test(&quot;hello&quot;);</span><br><span class="line">console.log(result); //true</span><br></pre></td></tr></table></figure>
+
+<p>甚至可以写成更复杂的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = /(?=he)^^he(?=\w)llo$\b\b$/.test(&quot;hello&quot;); //true</span><br><span class="line">console.log(result);</span><br></pre></td></tr></table></figure>
+
+<p>也就是说字符之间的位置可以写成多个。<br>把位置理解空字符，是对位置非常有效的理解方式。</p>
+<h3 id="相关案例"><a href="#相关案例" class="headerlink" title="相关案例"></a>相关案例</h3><h4 id="不匹配任何东西的正则"><a href="#不匹配任何东西的正则" class="headerlink" title="不匹配任何东西的正则"></a>不匹配任何东西的正则</h4><p>写个正则不匹配任何东西</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/.^/</span><br></pre></td></tr></table></figure>
+
+<p>因为此正则要求只有一个字符，但是该字符后面是开头</p>
+<h4 id="数字的千位分割符表示法"><a href="#数字的千位分割符表示法" class="headerlink" title="数字的千位分割符表示法"></a>数字的千位分割符表示法</h4><p>比如把”12345678”，变成”12,345,678”<br>可见是需要把相应的位置替换成”,”。</p>
+<ul>
+<li>弄出最后一个括号<br>使用(?=\d{3}$)就可以做到。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = &quot;12345678&quot;.replace(/(?=\d&#123;3&#125;$)/g , &apos;,&apos;);</span><br><span class="line">console.log(result); // =&gt; &quot;12,345,678&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>匹配其余案例<br>写完正则后，要多验证几个案例，此时我们会发生问题：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = &quot;123456789&quot;.replace(/(?=(\d&#123;3&#125;)+$)/g, &apos;,&apos;);</span><br><span class="line">console.log(result);  //,123,456,789</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>因为上面的正则，仅仅是把从结尾向前数，一但是3的倍数，就把其前面的位置替换成逗号。因此才会出现在这个问题。<br>我们要求匹配的到这个位置不能是开头。<br>我们知道匹配开头可以使用^,但要求这个位置不是开头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?!^)</span><br></pre></td></tr></table></figure>
+
+<p>最终正则表达式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var string1 = &quot;12345678&quot;;</span><br><span class="line">var string2 = &quot;123456789&quot;;</span><br><span class="line">reg = /(?!^)(?=(\d&#123;3&#125;)+$)/g;</span><br><span class="line"></span><br><span class="line">var result = string1.replace(reg,&apos;,&apos;); </span><br><span class="line">console.log(result); //12,345,678</span><br><span class="line"></span><br><span class="line">result = string2.replace(reg , &apos;,&apos;);</span><br><span class="line">console.log(result);  //123,456,789</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>支持其他形式<br>如果要把”12345678 123456789”替换成”12,345,678 123,456,789”<br>此时我们需要修改正则，把里面的开头^和结尾$,替换成\b:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var string = &quot;12345678 123456789&quot;;</span><br><span class="line">reg = /(?!\b)(?=(\d&#123;3&#125;)+\b)/g;</span><br><span class="line"></span><br><span class="line">var result = string.replace(reg,&apos;,&apos;);</span><br><span class="line">console.log(result); //12,345,678 123,456,789</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证密码问题"><a href="#验证密码问题" class="headerlink" title="验证密码问题"></a>验证密码问题</h4><p>密码长度6-12位，由数字，小写字符，和大写字母组成，但是必须至少包括2种字符。<br>此题，如果写成多个正则来判断，比较容易，但要是写成一个正则就比较困难。</p>
+<ul>
+<li><p>简化<br>不考虑”但必须至少包括2种字符”这一条件，我们可以容易写处：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /^[0-9a-zA-Z]&#123;6,12&#125;$/;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断是否包含由某一种字符<br>假设，要求的必须包含数字，怎么办？此时我们可以使用(?=.*[0-9])来坐。<br>因此正则变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /(?=.*[0-9])^[0-9A-Za-z]&#123;6,12&#125;$/;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>同时包含具体两种字符<br>比如同时包含数字和小写字母，可以用(?=.<em>[0-9])(?=.</em>[a-z])来做;<br>因此正则变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /(?=.*[0-9])(?=.*[a-z])^[0-9a-zA-Z]&#123;6,12&#125;$/;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解答：</p>
+</li>
+</ul>
+<p>我们可以把原题变成下列集中情况之一：<br>1 同时包含数字和小写字母<br>2 同时包含数字和大写字母<br>3 同时包含小写字母和大写字母<br>4 同时包含数字,小写字母和大写字母<br>以上四种情况是或的关系（实际上，可以不用第4条）。<br>最终答案是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var reg = /((?=.*[0-9])(?=.*[a-z])|(?=.*[0-9])(?=.*[A-Z])|(?=.*[a-z])(?=.*[A-Z]))^[0-9a-zA-Z]&#123;6,12&#125;$/</span><br><span class="line">console.log(reg.test(&quot;1234567&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;abcdef&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;ABCDEFGH&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;ab23c&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;ABCDEF234&quot;)); //true</span><br><span class="line">console.log(reg.test(&quot;abcdEF234&quot;)); //true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解惑<br>上面的正则看起来比较复杂，只要理解了第二步，其余就全部理解了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?=.*[0-9])^[0-9a-zA-Z]&#123;6,12&#125;$/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>对于这个正则，我们只需要弄明白(?=.*[0-9])^即可。</p>
+</li>
+<li><p>分开来看就是(?=.*[0-9])和^。</p>
+</li>
+<li><p>表示开头前面还有个位置(当然也是开头，即同一个位置，想想之前的空字符类比)。</p>
+</li>
+<li><p>(?=.[0-9])表示该位置后面的字符匹配.*[0-9]，即，有任何多个任意字符，后面再跟个数字。</p>
+</li>
+<li><p>翻译成大白话，就是接下来的字符，必须包含个数字。</p>
+</li>
+</ul>
+<h4 id="验证密码问题二"><a href="#验证密码问题二" class="headerlink" title="验证密码问题二"></a>验证密码问题二</h4><p>“至少包含两种字符”的意思是说，不能全部都是数字，也不能全部都是小写字母，也不能全部都是大写字母。<br>那么要求“不能全部都是数字”，怎么做呢？ (?!p) 出马！<br>对应的正则是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /(?!^[0-9]&#123;6,12&#125;$)^[0-9a-zA-Z]&#123;6,12&#125;$/;</span><br></pre></td></tr></table></figure>
+
+<p>三种“都不能”呢？<br>最终答案是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var reg = /(?!^[0-9]&#123;6,12&#125;$)(?!^[a-z]&#123;6,12&#125;$)(?!^[A-Z]&#123;6,12&#125;$)^[0-9a-zA-Z]&#123;6,12&#125;$/;</span><br><span class="line">console.log(reg.test(&quot;1234567&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;abcdefg&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;ABCDEFGH&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;ab23c&quot;)); //false</span><br><span class="line">console.log(reg.test(&quot;ABCDEF234&quot;)); //true</span><br><span class="line">console.log(reg.test(&quot;abcdEF234&quot;)); //true</span><br></pre></td></tr></table></figure>
+
+
     </div>
     
     <div class="post-footer">
@@ -191,9 +309,9 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/07/31/正则表达式3/" class="pre-post btn btn-default" title='正则表达式（三）'>
+        <a href="/2019/07/31/正则表达式3/" class="pre-post btn btn-default" title='正则表达式 (三)'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">正则表达式（三）</span>
+            <span class="hidden-xs">正则表达式 (三)</span>
         </a>
     
     
@@ -242,7 +360,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <p>暂无目录</p>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式位置匹配攻略"><span class="toc-text">正则表达式位置匹配攻略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是位置？"><span class="toc-text">什么是位置？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#和¥"><span class="toc-text">^和¥</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#b和-B"><span class="toc-text">\b和\B</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#p-和-p"><span class="toc-text">(?=p)和(?!p)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位置的特性"><span class="toc-text">位置的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关案例"><span class="toc-text">相关案例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#不匹配任何东西的正则"><span class="toc-text">不匹配任何东西的正则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数字的千位分割符表示法"><span class="toc-text">数字的千位分割符表示法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证密码问题"><span class="toc-text">验证密码问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证密码问题二"><span class="toc-text">验证密码问题二</span></a></li></ol></li></ol></li></ol>
         
     </div>
 </aside>

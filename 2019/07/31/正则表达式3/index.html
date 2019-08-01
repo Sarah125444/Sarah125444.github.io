@@ -18,10 +18,10 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content>
+    <meta name="keywords" content="正则表达式">
 
 
-    <meta name="description" content>
+    <meta name="description" content="正则表达式括号的作用不管在哪门语言中都有括号。正则表达式也是一门语言，而括号的存在使这门语言更为强大。对括号的使用是否得心应手，是衡量对正则的掌握水平的一个侧面标准。括号的作用，其实三言两语就能...">
 
 
 
@@ -33,7 +33,7 @@
     <!--Title-->
 
 
-<title>正则表达式（三） | Hexo</title>
+<title>正则表达式 (三) | Hexo</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -138,9 +138,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="正则表达式（三）">
+        <h1 id="正则表达式 (三)">
             
-	            正则表达式（三）
+	            正则表达式 (三)
             
         </h1>
         <div class="post-meta">
@@ -155,6 +155,8 @@
         <span class="fa-wrap">
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/正则表达式/">正则表达式</a>
                 
             </span>
         </span>
@@ -174,7 +176,98 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h2 id="正则表达式括号的作用"><a href="#正则表达式括号的作用" class="headerlink" title="正则表达式括号的作用"></a>正则表达式括号的作用</h2><p>不管在哪门语言中都有括号。正则表达式也是一门语言，而括号的存在使这门语言更为强大。<br>对括号的使用是否得心应手，是衡量对正则的掌握水平的一个侧面标准。<br>括号的作用，其实三言两语就能说明白，括号提供了分组，便于我们引用它。<br>引用某个分组，会有两种情形：在javascript里面引用它，在正则表达式里面引用它。</p>
+<h3 id="分组和分支结构"><a href="#分组和分支结构" class="headerlink" title="分组和分支结构"></a>分组和分支结构</h3><p>这二者是括号最直觉的作用，也是最原始的功能。</p>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p>我们知道/a+/匹配连续出现的‘a’,而要匹配连续出现的‘ab’时，需要使用/(ab)+/。<br>其中括号是提供分组功能，使量词+作用于“ab”这个整体，测试如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(ab)+/g;</span><br><span class="line">var string = &quot;ababa abbb ababab&quot;; </span><br><span class="line">console.log(string.match(regex));  //[&quot;abab&quot;, &quot;ab&quot;, &quot;ababab&quot;]</span><br></pre></td></tr></table></figure>
+
+<h4 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h4><p>而在多选分支结构(p1|p2)中，此处括号的作用也是不言而喻的，提供了子表达式的所有可能。<br>比如：要匹配如下的字符串：<br>I love JavaScript<br>I love Regular Expression<br>可以使用正则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var regex = /^I love (JavaScript|Regular Expression)$/;</span><br><span class="line">console.log(regex.test(&quot;I love JavaScript&quot;)); //true</span><br><span class="line">console.log(regex.test(&quot;I love Regular Expression&quot;)); //true</span><br></pre></td></tr></table></figure>
+
+<p>如果去掉括号正则中的括号，即/^I love JavaScript|Regular Expression$/,匹配的字符串是”I love JavaScript”和”Regular Expression”,当然这不是我们想要的。</p>
+<h4 id="引用分组"><a href="#引用分组" class="headerlink" title="引用分组"></a>引用分组</h4><p>这是括号一个重要的作用，有了它，我们就可以进行数组提取，以及更强大的替换操作。<br>而要使用它带来的好处，必须配合使用实现环境的API。<br>以日期为例。假设格式是yyyy-mm-dd的，我们可以先写一个简单的正则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var regex = /\d&#123;4&#125;-\d&#123;2&#125;-\d&#123;2&#125;/;</span><br></pre></td></tr></table></figure>
+
+<p>然后再修改成括号版本的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/;</span><br></pre></td></tr></table></figure>
+
+<p>为什么要使用这个正则呢？</p>
+<h5 id="提取数组"><a href="#提取数组" class="headerlink" title="提取数组"></a>提取数组</h5><p>比如提取出年，月，日，可以这么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/;</span><br><span class="line">var string = &quot;2017-06-12&quot;;</span><br><span class="line">console.log(string.match(regex)); // =&gt; [&quot;2017-06-12&quot;, &quot;2017&quot;, &quot;06&quot;, &quot;12&quot;, index: 0, input: &quot;2017-06-12&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>match返回的一个数组，第一个元素是整体匹配结果，然后是各个分组（括号里）匹配的内容，然后是匹配小标，最后是输入的文本。（注意：如果正则是否有修饰符g,match返回的数组格式是不一样的）。<br>另外也可以使用正则对象的exec方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/;</span><br><span class="line">var string = &quot;2017-06-12&quot;;</span><br><span class="line">console.log(regex.exec(string)); //var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;))/;</span><br></pre></td></tr></table></figure>
+
+<p>同理：也可以使用构造函数的全局属性$1或者$9来获取：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/;</span><br><span class="line">var string = &quot;2017-06-12&quot;;</span><br><span class="line">regex.test(string);</span><br><span class="line">console.log(RegExp.$1); //2017</span><br><span class="line">console.log(RegExp.$2); //06</span><br><span class="line">console.log(RegExp.$3); //12</span><br></pre></td></tr></table></figure>
+
+<h5 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h5><p>比如，想把yyyy-mm-dd格式，替换成mm/dd/yyyy怎么做？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;3&#125;)/;</span><br><span class="line">var string = &quot;2017-06-12&quot;;</span><br><span class="line">var result = string.replace(regex,&quot;$2/$3/$1&quot;);</span><br><span class="line">console.log(result);  //2017-06-12</span><br></pre></td></tr></table></figure>
+
+<p>其中replace中的，第二个参数里用$1,$2,$3指代相应的分组。等价于如下的形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/;</span><br><span class="line">var string = &quot;2017-06-12&quot;;</span><br><span class="line">var result = string.replace(regex , function()&#123;</span><br><span class="line">  return RegExp.$2 + &quot;/&quot; + RegExp.$3 + &quot;/&quot; + RegExp.$1;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(result); //06/12/2017</span><br></pre></td></tr></table></figure>
+
+<p>也等价于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/;</span><br><span class="line">var string = &quot;2017-06-12&quot;;</span><br><span class="line">var result = string.replace(regex, function(match , year , month, day)&#123;</span><br><span class="line">  return month + &quot;/&quot; + day + &quot;/&quot; + year;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(result);  //06/12/2017</span><br></pre></td></tr></table></figure>
+
+<h5 id="反现引用"><a href="#反现引用" class="headerlink" title="反现引用"></a>反现引用</h5><p>除了使用相应的API来引用分组，也可以用在正则本身引用分组，但最能引用之前的分组，即反向引用。<br>还是以日前为例：<br>比如要写一个正则支持匹配如下三种规则：<br>2016-06-12<br>2016/06/12<br>2016.06.12<br>最先可能想到的正则是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var regex = /\d&#123;4&#125;(-|\/|\.)\d&#123;2&#125;\d&#123;2&#125;/;</span><br><span class="line">var string1 = &quot;2017-06-12&quot;;</span><br><span class="line">var string2 = &quot;2017/06/12&quot;;</span><br><span class="line">var string3 = &quot;2017.06.12&quot;;</span><br><span class="line">var string4 = &quot;2017-06/12&quot;; </span><br><span class="line">console.log(regex.test(string1)); //true</span><br><span class="line">console.log(regex.test(string2)); //true</span><br><span class="line">console.log(regex.test(string3)); //true</span><br><span class="line">console.log(regex.test(string4)); //true</span><br></pre></td></tr></table></figure>
+
+<p>其中/和.需要转义。虽然匹配了要求的情况，但也匹配“2016-06/12”这样的数据。<br>但是我们要求分隔符前后一致怎么办？此时需要使用反向引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var regex = /\d&#123;4&#125;(-|\/|\.)\d&#123;2&#125;\1\d&#123;2&#125;/;</span><br><span class="line">var string1 = &quot;2017-06-12&quot;;</span><br><span class="line">var string2 = &quot;2017/06/12&quot;;</span><br><span class="line">var string3 = &quot;2017.06.12&quot;;</span><br><span class="line">var string4 = &quot;2017-06/12&quot;; </span><br><span class="line">console.log(regex.test(string1)); //true</span><br><span class="line">console.log(regex.test(string2)); //true</span><br><span class="line">console.log(regex.test(string3)); //true</span><br><span class="line">console.log(regex.test(string4)); //false</span><br></pre></td></tr></table></figure>
+
+<p>注意里面的\1，表示的引用之前的那个分组(-|/|.).不管它匹配到什么（比如-），\1都匹配那个同样的某个字符。<br>我们知道了\1的含义后，那么\2和\3的盖脸也就理解了，即分别指代第二个和第三个分组。<br>看到这里，此时，恐怕你会有三个问题。</p>
+<ul>
+<li>括号嵌套怎么办<br>以做括号（开扩号）为准。比如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var regex = /^((\d)(\d(\d)))\1\2\3\4$/;</span><br><span class="line">var string = &quot;1231231233&quot;</span><br><span class="line">console.log(regex.test(string)); //true</span><br><span class="line">console.log(RegExp.$1); //123</span><br><span class="line">console.log(RegExp.$2); //1</span><br><span class="line">console.log(RegExp.$3); //23</span><br><span class="line">console.log(RegExp.$4); //3</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>我们看看这个正则匹配模式：</p>
+<ul>
+<li>第一个字符是数字,比如1，</li>
+<li>第二个字符是数字，比如2，</li>
+<li>第三个字符是数字，比如3，</li>
+<li>接下来是\1,是第一个分组内容，那么看第一个开括号对应的分组是什么，是123；</li>
+<li>接下来是\2，找到第二个开括号，对应的分组，匹配的内容是1；</li>
+<li>接下来是\3, 找到第三个开括号，对应的分组，匹配的内容是23；</li>
+<li>接下来是\4，找到第四个开括号，对应的分组，匹配的内容是3.</li>
+</ul>
+<h5 id="10表示什么呢？"><a href="#10表示什么呢？" class="headerlink" title="\10表示什么呢？"></a>\10表示什么呢？</h5><p>另外一个疑问可能是，即\10是表示第10个分组，还是\1和0呢？<br>答案是前者，虽然第一个正则里出现\10比较罕见。测试如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(1)(2)(3)(4)(5)(6)(7)(8)(9)(#) \10+/;</span><br><span class="line">var string = &quot;123456789# #####&quot;;</span><br><span class="line">console.log(regex.test(string)); //true</span><br></pre></td></tr></table></figure>
+
+<h5 id="引用不存在的分组会怎样"><a href="#引用不存在的分组会怎样" class="headerlink" title="引用不存在的分组会怎样"></a>引用不存在的分组会怎样</h5><p>因为是反向引用，是引用前面的分组，但我们在正则里引用了不存在的分组时，此时正则不会报错，只是匹配反向引用的字符本身。例如\2,就匹配”\2”。注意”\2”表示对”2”进行了转义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var regex = /\1\2\3\4\5\6\7\8\9/;</span><br><span class="line">console.log(regex.test(&quot;\1\2\3\4\5\6\7\8\9&quot;)); //true</span><br><span class="line">console.log(&quot;\1\2\3\4\5\6\7\8\9&quot;.split(&quot;&quot;)); //[&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;8&quot;, &quot;9&quot;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="非捕获分组"><a href="#非捕获分组" class="headerlink" title="非捕获分组"></a>非捕获分组</h3><p>之前文中出现的分组，都会捕获它们匹配到的数据，以便后续引用，因此也称他们是捕获型分组。<br>如果只想要括号最原始的功能，但是不引用它，即，既不再API里引用，也不在正则里正向反向引用。<br>此时可以使用非捕获分组(?:p)，例如本文第一个例子可以修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var regex = /(?:ab)+/g;</span><br><span class="line">var string = &quot;ababa abbb ababab&quot;;</span><br><span class="line">console.log(string.match(regex)); // [&quot;abab&quot;, &quot;ab&quot;, &quot;ababab&quot;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="相关案例"><a href="#相关案例" class="headerlink" title="相关案例"></a>相关案例</h3><p>至此括号的作用已经讲完了，总结一句话，就是提供了可供我们使用的分组，如何用就看我们的了。</p>
+<h5 id="字符串trim方法模拟"><a href="#字符串trim方法模拟" class="headerlink" title="字符串trim方法模拟"></a>字符串trim方法模拟</h5><p>trim方法是去掉字符串的开头和结尾的空白符号。有两种去做：<br>第一种，匹配到开头和结尾的空白符号，然后被替换成空字符。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function trim(str)&#123;</span><br><span class="line">  return str.replace(/^\s+|\s+$/g, &apos;&apos;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(trim(&quot;   foobar   &quot;));  //&quot;foobar&quot;</span><br></pre></td></tr></table></figure>
+
+<p>第二种，匹配整个字符串，然后引用来提取出相应的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function trim(str)&#123;</span><br><span class="line">  return str.replace(/^\s*(.*?)\s*$/g ,&apos;$1&apos; );</span><br><span class="line">&#125; </span><br><span class="line">console.log(trim(&quot;    foobar    &quot;));</span><br></pre></td></tr></table></figure>
+
+<p>这里使用了惰性匹配*？,不然也会匹配最后一个空格之前的所有空格的。</p>
+<h5 id="将首个单词的首字母转换为大写"><a href="#将首个单词的首字母转换为大写" class="headerlink" title="将首个单词的首字母转换为大写"></a>将首个单词的首字母转换为大写</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function titleize(str)&#123;</span><br><span class="line">  return str.toLowerCase().replace( /(?:^|\s)\w/g, function (c)&#123;</span><br><span class="line">    return c.toUpperCase();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(titleize(&apos;my name is epeli&apos;));  //My Name Is Epeli</span><br></pre></td></tr></table></figure>
+
+<p>思路是找到每个单词的首字母，当然这里不使用非捕获匹配也是可以的</p>
+<h5 id="驼峰化"><a href="#驼峰化" class="headerlink" title="驼峰化"></a>驼峰化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function camelize(str)&#123;</span><br><span class="line">  return str.replace(/[-_\s]+(.)?/g, function (match,c)&#123;</span><br><span class="line">    return c ? c.toUpperCase() : &apos;&apos;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(camelize(&apos;-moz-transform&apos;)); //MozTransform</span><br></pre></td></tr></table></figure>
+
+<h5 id="中划线化"><a href="#中划线化" class="headerlink" title="中划线化"></a>中划线化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function dasherize(str)&#123;</span><br><span class="line">  return str.replace(/([A-Z])/g , &apos;-$1&apos;).replace(/[-_\s]+/g , &apos;_&apos;).toLowerCase();</span><br><span class="line">&#125;</span><br><span class="line">console.log(dasherize(&apos;MozTransform&apos;)); //_moz_transform</span><br></pre></td></tr></table></figure>
+
+<p>驼峰化的逆过程</p>
+<h5 id="匹配成对标签"><a href="#匹配成对标签" class="headerlink" title="匹配成对标签"></a>匹配成对标签</h5><p>要求匹配：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;regular expression&lt;/title&gt;</span><br><span class="line">&lt;p&gt;laoyao bye bye&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>不匹配：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;wrong!&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>匹配一个开标签，可以使用正则&lt;[^&gt;]+&gt;,<br>匹配一个闭标签，可以使用正则&lt;/[^&gt;]+&gt;,<br>但是要求匹配成对标签，那就需要使用反向引用，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var regex = /&lt;([^&gt;]+)&gt;[\d\D]*&lt;\/\1&gt;/;</span><br><span class="line">var string1 = &quot;&lt;title&gt;regular expression&lt;/title&gt;&quot;;</span><br><span class="line">var string2 = &quot;&lt;p&gt;laoyao bye bye&lt;/p&gt;&quot;;</span><br><span class="line">var string3 = &quot;&lt;title&gt;wrong!&lt;/p&gt;&quot;;</span><br><span class="line">console.log(regex.test(string1));  //true</span><br><span class="line">console.log(regex.test(string2));  //true</span><br><span class="line">console.log(regex.test(string3));  //false</span><br></pre></td></tr></table></figure>
+
+<p>其中开标签&lt;[^&gt;]+&gt;改成&lt;([^&gt;]+)&gt;,使用括号的目的是为了后面使用反向引用，而提供分组。<br>闭标签使用了反向引用，&lt;/\1&gt;。<br>另外，[\d\D]的意思是，这个字符是数字或者不是数字，因此，也就是匹配任意字符的意思。</p>
+
     </div>
     
     <div class="post-footer">
@@ -242,7 +335,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <p>暂无目录</p>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式括号的作用"><span class="toc-text">正则表达式括号的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分组和分支结构"><span class="toc-text">分组和分支结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分组"><span class="toc-text">分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分支结构"><span class="toc-text">分支结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引用分组"><span class="toc-text">引用分组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#提取数组"><span class="toc-text">提取数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#替换"><span class="toc-text">替换</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#反现引用"><span class="toc-text">反现引用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10表示什么呢？"><span class="toc-text">\10表示什么呢？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#引用不存在的分组会怎样"><span class="toc-text">引用不存在的分组会怎样</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非捕获分组"><span class="toc-text">非捕获分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关案例"><span class="toc-text">相关案例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#字符串trim方法模拟"><span class="toc-text">字符串trim方法模拟</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#将首个单词的首字母转换为大写"><span class="toc-text">将首个单词的首字母转换为大写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#驼峰化"><span class="toc-text">驼峰化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#中划线化"><span class="toc-text">中划线化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#匹配成对标签"><span class="toc-text">匹配成对标签</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
 </aside>

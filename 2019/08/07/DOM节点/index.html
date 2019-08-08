@@ -1,0 +1,360 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Hexo">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="DOM">
+
+
+    <meta name="description" content="DOM基本操作-节点节点基础概念
+文档：document
+元素：页面中所有的标签，元素-element,标签—元素—对象
+节点：页面中所有的内容（标签，属性，文本），Node
+根元素：html标...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>DOM基本操作-节点 | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='John Doe'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 忙人的养猪综合指南 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Hexo</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>笔记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>日常</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="DOM基本操作-节点">
+            
+	            DOM基本操作-节点
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/DOM/">DOM</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/07</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="DOM基本操作-节点"><a href="#DOM基本操作-节点" class="headerlink" title="DOM基本操作-节点"></a>DOM基本操作-节点</h2><h3 id="节点基础概念"><a href="#节点基础概念" class="headerlink" title="节点基础概念"></a>节点基础概念</h3><ul>
+<li>文档：document</li>
+<li>元素：页面中所有的标签，元素-element,标签—元素—对象</li>
+<li>节点：页面中所有的内容（标签，属性，文本），Node</li>
+<li>根元素：html标签</li>
+</ul>
+<h3 id="节点的基本属性"><a href="#节点的基本属性" class="headerlink" title="节点的基本属性"></a>节点的基本属性</h3><ul>
+<li>节点的属性：（可以使用标签–元素，出来，可以使用属性节点，文本节点）</li>
+<li>nodeType:节点的类型：1—-标签，2—-属性，3—-文本</li>
+<li>nodeName:节点的名字：标签节点—大写的标签名字，属性节点—小写的属性名字，文本节点—-text</li>
+<li>nodeValue:节点的值：标签节点—null，属性节点—属性值，文本节点—文本内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// var dvObj=document.getElementById(&quot;dv&quot;);</span><br><span class="line">// for(var i=0; i &lt; dvObj.childNodes.length;i++)&#123;</span><br><span class="line">//     var node=dvObj.childNodes[i];</span><br><span class="line">//     console.log(node.nodeType+&quot;=====&quot;+node.nodeName+&quot;====&quot;+node.nodeValue);</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line">// var dvObj=document.getElementById(&quot;dv&quot;);</span><br><span class="line">// var node=dvObj.getAttributeNode(&quot;id&quot;);</span><br><span class="line">// console.log(node.nodeType+&quot;-----&quot;+node.nodeName+&quot;====&quot;+node.nodeValue);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// var ulobj=my$(&quot;uu&quot;);  </span><br><span class="line">//ul标签的父级节点 ----文本和属性都不能作为父节点 只有标签才可以作为父级节点</span><br><span class="line">// console.log(ulobj.parentNode);</span><br><span class="line">// console.log(ulobj.parentNode.parentNode);</span><br><span class="line">// console.log(ulobj.parentNode.parentNode.parentNode);</span><br><span class="line">// console.log(ulobj.parentNode.parentNode.parentNode.parentNode);</span><br><span class="line">//ul标签的父级元素</span><br><span class="line">// console.log(ulobj.parentElement);</span><br><span class="line">// console.log(ulobj.parentNode.nodeType);//标签的值----1</span><br><span class="line">// console.log(ulobj.parentNode.nodeName);//标签-----大写的标签名字</span><br><span class="line">// console.log(ulobj.parentNode.nodeValue);//标签NULL</span><br><span class="line">// var dvObj=document.getElementById(&quot;dv&quot;);</span><br><span class="line">// console.log(dvObj.childNodes);</span><br><span class="line">// console.log(dvObj.childElementCount);</span><br></pre></td></tr></table></figure>
+
+<h4 id="要点总结："><a href="#要点总结：" class="headerlink" title="要点总结："></a>要点总结：</h4><p> nodeType是—-节点的类型：1—标签,2—属性，3—文本<br> nodeName是—-节点的名字：大写的标签—标签，小写的属性名—属性，#text—-文本<br> nodeValue—-节点的值：标签—null, 属性—属性的值，文本—文本内容</p>
+<h4 id="案例-获取节点和元素"><a href="#案例-获取节点和元素" class="headerlink" title="案例-获取节点和元素"></a>案例-获取节点和元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">  &lt;div id=&quot;dv&quot; &gt;</span><br><span class="line">    &lt;span&gt;这是div中的第二个标签&lt;/span&gt;</span><br><span class="line">    &lt;p&gt;这是div中的第二个元素，第一个p标签&lt;/p&gt;</span><br><span class="line">    &lt;ul id=&quot;uu&quot;&gt;哈哈</span><br><span class="line">      &lt;li&gt;乔峰&lt;/li&gt;第一个</span><br><span class="line">      &lt;li id=&quot;three&quot;&gt;鹿茸&lt;/li&gt;第二个</span><br><span class="line">      &lt;li&gt;段誉&lt;/li&gt;第三个</span><br><span class="line">      &lt;li&gt;卡卡西&lt;/li&gt;第四个</span><br><span class="line">      &lt;li&gt;雏田&lt;/li&gt;嘎嘎</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function my$(id)&#123;</span><br><span class="line">  return document.getElementById(id);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">//12行代码：都是获取节点和元素的</span><br><span class="line">//ul</span><br><span class="line">var ulObj=document.getElementById(&quot;uu&quot;);</span><br><span class="line">//父级节点</span><br><span class="line">console.log(ulObj.parentNode);  //div</span><br><span class="line">//父级元素</span><br><span class="line">console.log(ulObj.parentElement); //div</span><br><span class="line">//div</span><br><span class="line">var dvObj=document.getElementById(&quot;dv&quot;);</span><br><span class="line">//字节点</span><br><span class="line">console.log(ulObj.childNodes);</span><br><span class="line">//子元素</span><br><span class="line">console.log(ulObj.children);</span><br><span class="line">//第一个子节点</span><br><span class="line">console.log(&quot;====================&quot;);</span><br><span class="line">console.log(ulObj.firstChild.innerText); //------在IE8中是第一个子元素</span><br><span class="line">//第一个子元素</span><br><span class="line">console.log(ulObj.firstElementChild);//-----IE8中不支持</span><br><span class="line">//最后一个子节点</span><br><span class="line">console.log(ulObj.lastChild);//--------在IE8是第一个子元素</span><br><span class="line">//最后一个子元素</span><br><span class="line">console.log(ulObj.lastElementChild);//-----在IE8中不支持</span><br><span class="line">//某个元素的前一个兄弟节点</span><br><span class="line">console.log(my$(&quot;three&quot;).previousSibling);</span><br><span class="line">//某个元素的前一个兄弟元素</span><br><span class="line">console.log(my$(&quot;three&quot;).previousElementSibling);</span><br><span class="line">//某个元素的后一个兄弟节点</span><br><span class="line">console.log(my$(&quot;three&quot;).nextSibling);</span><br><span class="line">//某个元素的后一个兄弟元素</span><br><span class="line">console.log(my$(&quot;three&quot;).nextElementSibling);</span><br></pre></td></tr></table></figure>
+
+<h5 id="案例小结："><a href="#案例小结：" class="headerlink" title="案例小结："></a>案例小结：</h5><ul>
+<li>凡是获取节点的代码在谷歌和火狐得到的都是相关的节点</li>
+<li>凡是获取元素的代码在谷歌和火狐得到的都是相关的元素</li>
+<li>从子节点和兄弟节点开始，凡事获取节点的代码在IE8中得到的是元素，获取元素的相关代码，在IE8中得到的是undefind</li>
+</ul>
+<h4 id="案例-通过节点操作元素的背景颜色"><a href="#案例-通过节点操作元素的背景颜色" class="headerlink" title="案例-通过节点操作元素的背景颜色"></a>案例-通过节点操作元素的背景颜色</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">  &lt;style&gt;</span><br><span class="line">    div &#123;</span><br><span class="line">      width: 300px;</span><br><span class="line">      height: 450px;</span><br><span class="line">      border: 1px solid red;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;input type=&quot;button&quot; value=&quot;变色&quot; id=&quot;btn&quot; /&gt;</span><br><span class="line">  &lt;div id=&quot;dv&quot;&gt;</span><br><span class="line">    &lt;span&gt;这是span&lt;/span&gt;</span><br><span class="line">    &lt;p&gt;这是p&lt;/p&gt;</span><br><span class="line">    &lt;span&gt;这是span&lt;/span&gt;</span><br><span class="line">    &lt;p&gt;这是p&lt;/p&gt;</span><br><span class="line">    &lt;span&gt;这是span&lt;/span&gt;</span><br><span class="line">    &lt;p&gt;这是p&lt;/p&gt;</span><br><span class="line">    &lt;a href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    function my$(id) &#123;</span><br><span class="line">      return document.getElementById(id);</span><br><span class="line">    &#125;</span><br><span class="line">    my$(&quot;btn&quot;).onclick = function () &#123;</span><br><span class="line">      //点击按钮，设置p变色---节点的方式做</span><br><span class="line">      //先获取div</span><br><span class="line">      var dvObj = my$(&quot;dv&quot;);</span><br><span class="line">      //获取里面所有的子节点</span><br><span class="line">      var nodes = dvObj.childNodes;</span><br><span class="line">      //循环遍历所有的子节点</span><br><span class="line">      for (var i = 0; i &lt; nodes.length; i++) &#123;</span><br><span class="line">        //判断这个子节点是不是p标签</span><br><span class="line">        if (nodes[i].nodeType == 1&amp;&amp;nodes[i].nodeName == &quot;p&quot;) &#123;</span><br><span class="line">          nodes[i].style.backgroundColor = &quot;red&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="案例-节点操作隔行变色"><a href="#案例-节点操作隔行变色" class="headerlink" title="案例-节点操作隔行变色"></a>案例-节点操作隔行变色</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;变色&quot; id=&quot;btn&quot;&gt;</span><br><span class="line"> &lt;ul id=&quot;uu&quot;&gt;</span><br><span class="line">   &lt;li&gt;爆炒猪肝&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;油炸班主任&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;清蒸小苏&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;红烧班长&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;红烧肉&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;红烧排骨&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;凉拌秋葵&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;鱼香胡萝卜丝&lt;/li&gt;</span><br><span class="line"> &lt;/ul&gt;</span><br><span class="line"> &lt;script&gt;</span><br><span class="line">   function my$(id) &#123;</span><br><span class="line">     return document.getElementById(id);</span><br><span class="line">   &#125;</span><br><span class="line">   //隔行变色</span><br><span class="line">   my$(&quot;btn&quot;).onclick = function () &#123;</span><br><span class="line">     var count = 0;//记录有多少个li</span><br><span class="line">     //获取ul中所有的子节点</span><br><span class="line">     var nodes = my$(&quot;uu&quot;).childNodes;</span><br><span class="line">     for (var i = 0; i &lt; nodes.length; i++) &#123;</span><br><span class="line">       if (nodes[i].nodeType == 1 &amp;&amp; nodes[i].nodeName == &quot;LI&quot;) &#123;</span><br><span class="line">         nodes[i].style.backgroundColor = count % 2 == 0 ? &quot;red&quot; : &quot;yellow&quot;;</span><br><span class="line">         count++; //8个</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="封装节点兼容代码"><a href="#封装节点兼容代码" class="headerlink" title="封装节点兼容代码"></a>封装节点兼容代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;uu&quot;&gt;</span><br><span class="line">  &lt;li&gt;第一个&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;第二个&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;第三个&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;第四个&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;第五个&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;第六个&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;第七个&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    function my$(id)&#123;</span><br><span class="line">      return document.getElementById(id);</span><br><span class="line">    &#125;</span><br><span class="line">    //第一个节点和第一个元素的获取的代码在IE8中可能不支持</span><br><span class="line"></span><br><span class="line">    //element.firstchild---&gt;谷歌和火狐获取的是第一个子节点</span><br><span class="line"></span><br><span class="line">    //获取任意一个父级元素的第一个子级元素</span><br><span class="line">    function getFirstElementChild(element)&#123;</span><br><span class="line">      if(element.firstElementChild)&#123; //true---支持</span><br><span class="line">        return element.firstElementChild;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        var node=element.firstChild; //第一个节点</span><br><span class="line">        while(node&amp;&amp;node.nodeType!=1)&#123;</span><br><span class="line">          node=node.nextSibling;</span><br><span class="line">        &#125;</span><br><span class="line">        return node;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //获取任意一个父级元素的最后一个子级元素</span><br><span class="line">   function getLastElementChild(element)&#123;</span><br><span class="line">    if(element.lastElementChild)&#123;</span><br><span class="line">      return element.lastElementChild;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      var node=element.lastChild;</span><br><span class="line">      while(node&amp;&amp;node.nodeType!=1)&#123; //因为nodeType1是指标签</span><br><span class="line">        node=node.previousSibling;</span><br><span class="line">      &#125; </span><br><span class="line">      return node;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  console.log(getFirstElementChild(my$(&quot;uu&quot;)));</span><br><span class="line">  console.log(getLastElementChild(my$(&quot;uu&quot;)));</span><br><span class="line">  </span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="案例小结：-1"><a href="#案例小结：-1" class="headerlink" title="案例小结："></a>案例小结：</h5><ul>
+<li>最后一个节点和最后一个元素获取的代码在IE8中可能不支持</li>
+<li>前一个节点和前一个元素的获取的代码在IE8中可能不支持</li>
+<li>后一个节点和后一个元素的获取的代码在IE8中可能不支持</li>
+<li>学习节点还是为了操作元素</li>
+</ul>
+<h4 id="案例-全选和全不选案例"><a href="#案例-全选和全不选案例" class="headerlink" title="案例-全选和全不选案例"></a>案例-全选和全不选案例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div class=&quot;wrap&quot;&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">      &lt;thead&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">          &lt;th&gt;</span><br><span class="line">            &lt;input type=&quot;checkbox&quot; id=&quot;j_cbAll&quot;&gt;</span><br><span class="line">          &lt;/th&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">      &lt;/thead&gt;</span><br><span class="line">      &lt;tbody id=&quot;j_tb&quot;&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">          &lt;td&gt;</span><br><span class="line">            &lt;input type=&quot;checkbox&quot;&gt;</span><br><span class="line">          &lt;/td&gt;</span><br><span class="line">          &lt;td&gt;西红柿鸡蛋&lt;/td&gt;</span><br><span class="line">          &lt;td&gt;田老师&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">          &lt;td&gt;</span><br><span class="line">            &lt;input type=&quot;checkbox&quot;&gt;</span><br><span class="line">          &lt;/td&gt;</span><br><span class="line">        &lt;td&gt;油炸榴莲&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;田老师&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">          &lt;td&gt;</span><br><span class="line">            &lt;input type=&quot;checkbox&quot;&gt;</span><br><span class="line">          &lt;/td&gt;</span><br><span class="line">        &lt;td&gt;红烧肉&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;田老师&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">          &lt;td&gt;</span><br><span class="line">            &lt;input type=&quot;checkbox&quot;&gt;</span><br><span class="line">          &lt;/td&gt;</span><br><span class="line">        &lt;td&gt;清蒸助教&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;田老师&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">      &lt;/tbody&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"> &lt;script&gt;</span><br><span class="line">   function my$(id)&#123;</span><br><span class="line">     return document.getElementById(id);</span><br><span class="line">   &#125;</span><br><span class="line">   //获取全选的这个复选框</span><br><span class="line">   var ckAll=my$(&quot;j_cbAll&quot;);</span><br><span class="line">   //获取tbody中所有的小复选框</span><br><span class="line">   var cks=my$(&quot;j_tb&quot;).getElementsByTagName(&quot;input&quot;);</span><br><span class="line">   //点击全选的这个复选框，获取他当前的状态，然后设置tbody中所有的复选框的状态</span><br><span class="line">   ckAll.onclick=function()&#123;</span><br><span class="line">     //console.log(this.checked);</span><br><span class="line">     for(var i=0; i &lt; cks.length; i++)&#123;</span><br><span class="line">      cks[i].checked=this.checked;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;;</span><br><span class="line">   //获取tbody中所有的复选框分别注册点击事件</span><br><span class="line">   for(var i=0; i&lt;cks.length;i++)&#123;</span><br><span class="line">    cks[i].onclick=function()&#123;</span><br><span class="line">      //判断是否所有的复选框都选中</span><br><span class="line">      var flag=true; //默认都被选中了</span><br><span class="line">      //判断是否所有的复选框都选中了</span><br><span class="line">      for(var j=0; j&lt;cks.length;j++)&#123;</span><br><span class="line">        if(!cks[j].checked)&#123;</span><br><span class="line">          //没选中就进来了</span><br><span class="line">          flag=false;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      //都选中</span><br><span class="line">      ckAll.checked=flag;</span><br><span class="line">    &#125;;</span><br><span class="line">   &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="元素创建的不同方式"><a href="#元素创建的不同方式" class="headerlink" title="元素创建的不同方式"></a>元素创建的不同方式</h4><p>元素的创建—–为了提高用户体验<br>元素创建的三种方式：<br>1 document.write(“标签的代码级内容”);<br>2 对象.innerHTML=”标签及代码”;<br>3 document.createElement(“标签的名字”);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  &lt;input type=&quot;button&quot; value=&quot;创建一个p&quot; id=&quot;btn&quot;&gt;</span><br><span class="line">  小苏是一个快乐的小男孩，今年才38岁，好帅</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    //document.write(&quot;标签代码及内容&quot;)</span><br><span class="line">    function my$(id)&#123;</span><br><span class="line">      return document.getElementById(id);</span><br><span class="line">    &#125;</span><br><span class="line">    my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">      document.write(&quot;&lt;p&gt;这是一个p&lt;/p&gt;&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">    //document.write()创建元素，缺陷：如果是在页面加载完毕弘扬，此时通过这种方式创建元素，那么页面上存在的所有的内容全部被干掉</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;input type=&quot;button&quot; value=&quot;创建一个p&quot; id=&quot;btn&quot; /&gt;</span><br><span class="line">&lt;div id=&quot;dv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function my$(id)&#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">  &#125;</span><br><span class="line">  my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">    my$(&quot;dv&quot;).innerHTML=&quot;&lt;p&gt;创建对象&lt;/p&gt;&quot;;</span><br><span class="line">  &#125;;</span><br><span class="line">  //点击按钮，在div中创建一个p标签</span><br><span class="line">  //第二种方式创建元素：对象.innerHTML=&quot;标签代码及内容&quot;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;button&quot; value=&quot;来个图片&quot; id=&quot;btn&quot;&gt;</span><br><span class="line">&lt;div id=&quot;dv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function my$(id)&#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">  &#125;</span><br><span class="line">  //点击按钮，在div中创建一个图片</span><br><span class="line">  my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">   my$(&quot;dv&quot;).innerHTML=&quot;&lt;img src=&apos;http://k.zol-img.com.cn/dcbbs/22000/a21999018_01000.jpg&apos; alt=&apos;风景&apos;&gt;&quot;;</span><br><span class="line">  &#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="案例-动态创建列表"><a href="#案例-动态创建列表" class="headerlink" title="案例-动态创建列表"></a>案例-动态创建列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;创建对象&quot; id=&quot;btn&quot; /&gt;</span><br><span class="line">&lt;div id=&quot;dv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function my$(id)&#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">  &#125;</span><br><span class="line">//  my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">//   my$(&quot;dv&quot;).innerHTML=&quot;&lt;ul&gt;&lt;li&gt;杨过&lt;/li&gt; &lt;li&gt;小龙女&lt;/li&gt; &lt;li&gt;神雕&lt;/li&gt;&lt;/ul&gt;&quot;;</span><br><span class="line">//  &#125;;</span><br><span class="line"> var names=[&quot;杨过&quot;,&quot;郭靖&quot;,&quot;神雕&quot;,&quot;小龙女&quot;,&quot;杨洋&quot;,&quot;杨幂&quot;];</span><br><span class="line"> my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">   var str=&quot;&lt;ul  style=&apos;list-style-type:none; cursor:pointer&apos;&gt;&quot;;</span><br><span class="line">   //根据循环创建对应对数的li</span><br><span class="line">   for(var i=0; i &lt; names.length ; i++)&#123;</span><br><span class="line">    str+=&quot;&lt;li&gt;&quot;+names[i]+&quot;&lt;/li&gt;&quot;</span><br><span class="line">   &#125;</span><br><span class="line">   str+=&quot;&lt;/ul&gt;&quot;;</span><br><span class="line">   my$(&quot;dv&quot;).innerHTML=str;</span><br><span class="line">  //代码执行到这里，li已经有了</span><br><span class="line">  //获取所有的li,遍历，添加鼠标进入事件事件，鼠标离开事件</span><br><span class="line">  var list=my$(&quot;dv&quot;).getElementsByTagName(&quot;li&quot;);</span><br><span class="line">  for(var i=0; i&lt;list.length;i++)&#123;</span><br><span class="line">    list[i].onmouseover=function()&#123;</span><br><span class="line">      this.style.backgroundColor=&quot;yellow&quot;;</span><br><span class="line">     &#125;;</span><br><span class="line">  list[i].onmouseout=function()&#123;</span><br><span class="line">      this.style.backgroundColor=&apos;&apos;;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="案例-动态创建表格"><a href="#案例-动态创建表格" class="headerlink" title="案例-动态创建表格"></a>案例-动态创建表格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;创建表格&quot; id=&quot;btn&quot; /&gt;</span><br><span class="line">&lt;div id=&quot;dv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function my$(id)&#123;</span><br><span class="line">  return document.getElementById(id);</span><br><span class="line">&#125;</span><br><span class="line">var kungfu=[&quot;降龙十八掌&quot;,&quot;黯然销魂掌&quot;,&quot;葵花宝典&quot;,&quot;九阴真经&quot;,&quot;吸星大法&quot;,&quot;如来神掌&quot;,&quot;化骨绵掌&quot;,&quot;玉女心经&quot;,&quot;极乐神功&quot;];</span><br><span class="line">//点击按钮动态的创建列表，把列表加到div中</span><br><span class="line">my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">  //创建ul，把ul立刻加入到父级元素div中</span><br><span class="line">  var ulObj=document.createElement(&quot;ul&quot;);</span><br><span class="line">  my$(&quot;dv&quot;).appendChild(ulObj);</span><br><span class="line">  //动态的创建li，加入到ul中</span><br><span class="line">  for(var i=0; i&lt;kungfu.length;i++)&#123;</span><br><span class="line">    var liObj=document.createElement(&quot;li&quot;);</span><br><span class="line">    //设置li中间的文字内容</span><br><span class="line">    liObj.innerHTML=kungfu[i];</span><br><span class="line">    ulObj.appendChild(liObj);</span><br><span class="line">    //为li添加鼠标进入事件</span><br><span class="line">    liObj.onmouseover=mouseoverHandle;</span><br><span class="line">    //为li添加鼠标离开事件</span><br><span class="line">    liObj.onmouseout=mouseoutHandle;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">//此位置，按钮的点击事件的外面</span><br><span class="line">function mouseoverHandle()&#123;</span><br><span class="line">  this.style.backgroundColor=&quot;red&quot;;</span><br><span class="line">&#125;</span><br><span class="line">function mouseoutHandle()&#123;</span><br><span class="line">  this.style.backgroundColor=&quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//如果是循环的方式添加事件，推荐使用命名函数</span><br><span class="line">//如果不是循环的方式添加事件，推荐使用匿名函数</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="案例-动态创建表格-二"><a href="#案例-动态创建表格-二" class="headerlink" title="案例-动态创建表格(二)"></a>案例-动态创建表格(二)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;创建表格&quot; id=&quot;btn&quot; /&gt;</span><br><span class="line">&lt;div id=&quot;dv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  var arr=[</span><br><span class="line">  &#123;name:&quot;百度&quot;,href:&quot;http://www.baidu.com&quot;&#125;,</span><br><span class="line">  &#123;name:&quot;谷歌&quot;,href:&quot;http://www.google.com&quot;&#125;,</span><br><span class="line">  &#123;name:&quot;优酷&quot;,href:&quot;http://www.youku.com&quot;&#125;,</span><br><span class="line">  &#123;name:&quot;土豆&quot;,href:&quot;http://www.tudou.com&quot;&#125;,</span><br><span class="line">  &#123;name:&quot;快播&quot;,href:&quot;http://www.kuaibo.com&quot;&#125;,</span><br><span class="line">  &#123;name:&quot;爱奇艺&quot;,href:&quot;http://www.aiqiyi.com&quot;&#125;</span><br><span class="line">  ];</span><br><span class="line">//点击按钮创建表格</span><br><span class="line">function my$(id)&#123;</span><br><span class="line">  return document.getElementById(id);</span><br><span class="line">&#125;</span><br><span class="line">my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">  //创建table加入到div中</span><br><span class="line">  var tableObj=document.createElement(&quot;table&quot;);</span><br><span class="line">  tableObj.border=&quot;1&quot;;</span><br><span class="line">  tableObj.cellPadding=&quot;0&quot;;</span><br><span class="line">  tableObj.cellSpacing=&quot;0&quot;;</span><br><span class="line"></span><br><span class="line">  my$(&quot;dv&quot;).appendChild(tableObj);</span><br><span class="line">  //创建行，把行加入到table中</span><br><span class="line">  for(var i=0; i &lt; arr.length; i++)&#123;</span><br><span class="line">    var dt=arr[i];//每个对象</span><br><span class="line">    var trObj=document.createElement(&quot;tr&quot;);</span><br><span class="line">     tableObj.appendChild(trObj);</span><br><span class="line">     //创建第一个列,然后加入到行中</span><br><span class="line">     var td1=document.createElement(&quot;td&quot;);</span><br><span class="line">     td1.innerText=dt.name;</span><br><span class="line">     trObj.appendChild(td1);</span><br><span class="line">     //创建第二个列</span><br><span class="line">     var td2=document.createElement(&quot;td&quot;);</span><br><span class="line">     td2.innerHTML=&quot;&lt;a href=&quot;+dt.href+&quot;&gt;&quot;+dt.name+&quot;&lt;/a&gt;&quot;;</span><br><span class="line">     trObj.appendChild(td2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="元素操作的相关方法"><a href="#元素操作的相关方法" class="headerlink" title="元素操作的相关方法"></a>元素操作的相关方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;创建元素&quot; id=&quot;btn&quot;&gt;</span><br><span class="line">&lt;input type=&quot;button&quot; value=&quot;移除元素&quot; id=&quot;btn2&quot;&gt;</span><br><span class="line">&lt;input type=&quot;button&quot; value=&quot;移除全部元素&quot; id=&quot;btn3&quot;&gt;</span><br><span class="line">&lt;div id=&quot;dv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function my$(id)&#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">  &#125;</span><br><span class="line">  var i=0;</span><br><span class="line">  my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">    i++;</span><br><span class="line">    var obj=document.createElement(&quot;input&quot;);  </span><br><span class="line">    obj.type=&quot;button&quot;;</span><br><span class="line">    obj.value=&quot;按钮&quot;+i;</span><br><span class="line">    //my$(&quot;dv&quot;).appendChild(obj); //追加子元素</span><br><span class="line">    my$(&quot;dv&quot;).insertBefore(obj,my$(&quot;dv&quot;).firstElementChild);</span><br><span class="line">   // my$(&quot;dv&quot;).replaceChild(); </span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  my$(&quot;btn2&quot;).onclick=function()&#123;</span><br><span class="line">    //移除父级元素中第一个子级元素</span><br><span class="line">    my$(&quot;dv&quot;).removeChild(my$(&quot;dv&quot;).firstElementChild);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  my$(&quot;btn3&quot;).onclick=function()&#123;</span><br><span class="line">    //点击按钮删除div中所有的子级元素</span><br><span class="line">    //判断父级元素中有没有第一个子元素</span><br><span class="line">    while(my$(&quot;dv&quot;).firstElementChild)&#123;</span><br><span class="line">      my$(&quot;dv&quot;).removeChild(my$(&quot;dv&quot;).firstElementChild);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="只创建一个元素"><a href="#只创建一个元素" class="headerlink" title="只创建一个元素"></a>只创建一个元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;显示效果&quot; id=&quot;btn&quot;/&gt;</span><br><span class="line">&lt;div id=&quot;dv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function my$(id)&#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">  &#125;</span><br><span class="line">  //有则删除，无则创建</span><br><span class="line">  //先判断有没有，有就删除，然后再创建</span><br><span class="line">  // my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">  //   //判断div中有没有这个按钮，有就删除</span><br><span class="line">  //   //判断这个按钮的子元素是否存在</span><br><span class="line">  //   if(my$(&quot;btn2&quot;))&#123; //如果为true就有</span><br><span class="line">  //     my$(&quot;dv&quot;).removeChild(my$(&quot;btn2&quot;));</span><br><span class="line">  //   &#125;</span><br><span class="line">  //   var obj=document.createElement(&quot;input&quot;);</span><br><span class="line">  //   obj.type=&quot;button&quot;;</span><br><span class="line">  //   obj.value=&quot;按钮&quot;;</span><br><span class="line">  //   obj.id=&quot;btn2&quot;;</span><br><span class="line">  //   my$(&quot;dv&quot;).appendChild(obj);</span><br><span class="line">  // &#125;;</span><br><span class="line"></span><br><span class="line">  my$(&quot;btn&quot;).onclick=function()&#123;</span><br><span class="line">    //判断div中有没有这个按钮，有就删除</span><br><span class="line">    //判断这个按钮的子元素是否存在</span><br><span class="line">    if(!my$(&quot;btn2&quot;))&#123;</span><br><span class="line">      var obj=document.createElement(&quot;input&quot;);</span><br><span class="line">      obj.type=&quot;button&quot;;</span><br><span class="line">      obj.value=&quot;按钮&quot;;</span><br><span class="line">      obj.id=&quot;btn2&quot;;</span><br><span class="line">      my$(&quot;dv&quot;).appendChild(obj);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="为元素绑定事件"><a href="#为元素绑定事件" class="headerlink" title="为元素绑定事件"></a>为元素绑定事件</h4><p>为元素绑定事件（DOM):一种，但是不兼容，有两种<br>第一种方式：对象.addEventlistener(“事件类型”，事件处理函数，false);—谷歌和火狐支持 IE8不支持<br>第二种方式：对象.attachEvent(“有on的事件类型”，事件处理函数)—谷歌不支持，火狐不支持，Ie8支持<br>为按钮绑定点击事件<br>参数1：事件的类型—事件的名字，没有on<br>参数2：事件处理函数—-函数（命名函数，匿名函数）<br>参数3:布尔类型，目前就是false—没有为什么，不解释，明天说<br>为同一个元素绑定多个相同的事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;btn&quot;/&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function my$(id)&#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  my$(&quot;btn&quot;).addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">    console.log(&quot;以勤俭节约为荣&quot;);</span><br><span class="line">  &#125;,false);</span><br><span class="line">  my$(&quot;btn&quot;).addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">    console.log(&quot;以诚实守信为荣&quot;);</span><br><span class="line">  &#125;,false);</span><br><span class="line">  my$(&quot;btn&quot;).addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">    console.log(&quot;以勤俭节约为荣&quot;);</span><br><span class="line">  &#125;,false);</span><br><span class="line">  my$(&quot;btn&quot;).addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">    console.log(&quot;以诚实守信为荣&quot;);</span><br><span class="line">  &#125;,false);</span><br><span class="line"> //参数1:事件类型----事件名字，有on</span><br><span class="line"> //参数2:事件处理函数----函数（民命函数，匿名函数）</span><br><span class="line"> my$(&quot;btn&quot;).attachEvent(&quot;onclick&quot;,function()&#123;</span><br><span class="line">   console.log(&quot;以勤俭节约为荣&quot;);</span><br><span class="line"> &#125;);</span><br><span class="line"> my$(&quot;btn&quot;).attachEvent(&quot;onclick&quot;,function()&#123;</span><br><span class="line">   console.log(&quot;以诚实守信为荣&quot;);</span><br><span class="line"> &#125;);</span><br><span class="line"> my$(&quot;btn&quot;).attachEvent(&quot;onclick&quot;,function()&#123;</span><br><span class="line">   console.log(&quot;以节约为荣&quot;);</span><br><span class="line"> &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="为元素绑定的事件的兼容代码"><a href="#为元素绑定的事件的兼容代码" class="headerlink" title="为元素绑定的事件的兼容代码"></a>为元素绑定的事件的兼容代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;按钮&quot; id=&quot;btn&quot;/&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function my$(id)&#123;</span><br><span class="line">   return document.getElementById(id);</span><br><span class="line">  &#125;</span><br><span class="line">  //为任意元素，绑定任意的事件,任意的元素，事件的类型，事件处理函数</span><br><span class="line">  function addEventListener(element,type,fn)&#123;</span><br><span class="line">    //判断浏览器是否支持这个方法</span><br><span class="line">    if(element.addEventListener)&#123;</span><br><span class="line">      element.addEventListener(type,fn,false);</span><br><span class="line">    &#125;else if(element.attachEvent)&#123;</span><br><span class="line">      element.attachEvent(&quot;on&quot;+type , fn);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      element[&quot;on&quot;+type]=fn;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  addEventListener(my$(&quot;btn&quot;),&quot;click&quot;,function()&#123;</span><br><span class="line">    console.log(&quot;哦1&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">  addEventListener(my$(&quot;btn&quot;),&quot;click&quot;,function()&#123;</span><br><span class="line">    console.log(&quot;哦2&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">  addEventListener(my$(&quot;btn&quot;),&quot;click&quot;,function()&#123;</span><br><span class="line">    console.log(&quot;哦3&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/08/08/DOM事件/" class="pre-post btn btn-default" title='DOM事件'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">DOM事件</span>
+        </a>
+    
+    
+        <a href="/2019/08/05/DOM2/" class="next-post btn btn-default" title='DOM的各种案例'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">DOM的各种案例</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: ''.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM基本操作-节点"><span class="toc-text">DOM基本操作-节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#节点基础概念"><span class="toc-text">节点基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节点的基本属性"><span class="toc-text">节点的基本属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要点总结："><span class="toc-text">要点总结：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-获取节点和元素"><span class="toc-text">案例-获取节点和元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#案例小结："><span class="toc-text">案例小结：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-通过节点操作元素的背景颜色"><span class="toc-text">案例-通过节点操作元素的背景颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-节点操作隔行变色"><span class="toc-text">案例-节点操作隔行变色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#封装节点兼容代码"><span class="toc-text">封装节点兼容代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#案例小结：-1"><span class="toc-text">案例小结：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-全选和全不选案例"><span class="toc-text">案例-全选和全不选案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#元素创建的不同方式"><span class="toc-text">元素创建的不同方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-动态创建列表"><span class="toc-text">案例-动态创建列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-动态创建表格"><span class="toc-text">案例-动态创建表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-动态创建表格-二"><span class="toc-text">案例-动态创建表格(二)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#元素操作的相关方法"><span class="toc-text">元素操作的相关方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#只创建一个元素"><span class="toc-text">只创建一个元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为元素绑定事件"><span class="toc-text">为元素绑定事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为元素绑定的事件的兼容代码"><span class="toc-text">为元素绑定的事件的兼容代码</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

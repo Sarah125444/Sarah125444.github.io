@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="mobike.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+        }
+
+        .nav {
+
+            height: 760px;
+            background-color: red;
+            background-image: url(https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-3.jpg),
+                url(https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-6.jpg),
+                url(https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-7.jpg),
+                url(https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-4.jpg),
+                url(https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-5.jpg),
+                url(https://mobike.com/cn/assets/themes/moby/img/landing/hero-bg-8.jpg);
+            ;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: relative;
+        }
+
+        .nav-item {
+            width: 1024px;
+            height: 73px;
+            margin: 0 auto;
+        }
+
+        .mobai {
+            float: left;
+            margin: 10px 0;
+            color: white;
+            font-size: 16px;
+            letter-spacing: 4px;
+        }
+
+        .mobai>span:nth-child(1) {
+            font-size: 22px;
+        }
+
+        .product {
+            display: inline-block;
+            float: right;
+            line-height: 73px;
+            color: white;
+
+        }
+
+        .product>span {
+            padding-left: 28px;
+        }
+
+        .return {
+            width: 1024px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+
+        }
+
+        .returncity {
+            position: absolute;
+            top: 35%;
+            left: 0;
+        }
+
+        .returncity span {
+            font-size: 68px;
+            font-weight: 500;
+            margin-bottom: 28px;
+            color: white;
+        }
+
+        .returncity>div {
+            height: 60px;
+            width: 300px;
+            border-radius: 7px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            color: white;
+            padding: 20px auto;
+            line-height: 60px;
+            background-color: rgba(0, 0, 0, 0.4);
+            letter-spacing: 2px;
+
+        }
+
+        .returncity>div:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .nav-bottom {
+            width: 100%;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 94%;
+            left: 0;
+
+        }
+
+        .nav-bottom-inset {
+            width: 1024px;
+            height: 40px;
+            margin: 0 auto;
+            line-height: 40px;
+            color: white;
+
+
+        }
+
+        .nav-bottom-inset>button {
+            width: 53px;
+            height: 20px;
+            text-transform: uppercase;
+            background-color: red;
+            border: 2px solid red;
+            color: white;
+            line-height: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+
+        }
+
+        @media screen and (max-width:1080px) {
+            .nav {
+                height: 540px;
+            }
+
+            .returncity span {
+                font-size: 44px;
+                font-weight: 500;
+            }
+        }
+
+        /* --------------------------------------上半部分结束----------------------------------------- */
+        .container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            border-top: 2px solid white;
+        }
+
+        .container .p1 {
+            width: 25%;
+            height: 265px;
+            border-right: 2px solid white;
+            background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-01.jpg);
+            background-size: cover;
+            color: white;
+            font-size: 22px;
+            text-align: center;
+            box-sizing: border-box;
+
+        }
+
+        .container .p2 {
+            width: 25%;
+            height: 265px;
+            border-right: 2px solid white;
+            background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-02.jpg);
+            background-size: cover;
+            color: white;
+            font-size: 22px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .container .p3 {
+            width: 25%;
+            height: 265px;
+            border-right: 2px solid white;
+            background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-03.jpg);
+            background-size: cover;
+            color: white;
+            font-size: 22px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .container .p4 {
+            width: 25%;
+            height: 265px;
+            background-image: url(https://mobike.com/cn/assets/themes/moby/img/promo-04.jpg);
+            background-size: cover;
+            color: white;
+            font-size: 22px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .container .p1 span,
+        .container .p2 span,
+        .container .p3 span,
+        .container .p4 span {
+            display: inline-block;
+            margin-top: 40px;
+        }
+
+
+        @media screen and (max-width:1080px) {
+
+            .container .p1,
+            .container .p2,
+            .container .p3,
+            .container .p4 {
+                width: 50%;
+
+            }
+
+            .container .p2 {
+                border-right: none;
+            }
+
+            .container .p3,
+            .container .p4 {
+                border-top: 2px solid white;
+            }
+        }
+
+        @media screen and (max-width:625px) {
+
+            .container .p1,
+            .container .p2,
+            .container .p3,
+            .container .p4 {
+                width: 100%;
+
+            }
+
+            .container .p2 {
+                border-top: 2px solid white;
+            }
+
+            .container .p1,
+            .container .p3 {
+                border-right: none;
+            }
+        }
+
+
+
+
+        /* ----------------------------------------------------四个图片结束------------------------------------------------- */
+        .software {
+            height: 139px;
+            width: 100%;
+            border-bottom: 2px solid #EEEEEE;
+        }
+
+        .software-inner {
+            max-width: 1024px;
+            /* 更改的地方使其自动伸缩 */
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .software-inner>div {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            box-sizing: border-box;
+
+            /* flex: 0 1 225px; */
+            /* 0是增长因子flex-grow  1是缩减因子 flex-shrink  225px flex-basis 基准值 */
+        }
+
+        .software-inner>div:first-child {
+            flex: 1 234px;
+        }
+
+        .software-inner>div:nth-child(2) {
+            flex: 1 190px;
+        }
+
+        .software-inner>div:last-child {
+            flex: 0 1 208px;
+            margin: 50px 0;
+
+
+        }
+
+        .software img {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+
+        .software-inner>div>div {
+            display: inline-block;
+            vertical-align: top;
+            margin: 5px 0;
+        }
+
+        @media screen and (max-width:643px) {
+
+            .software .software-inner>div:nth-child(1) {
+                width: 50%;
+                margin-top: 20px;
+
+            }
+
+            .software .software-inner>div:nth-child(2) {
+                width: 50%;
+                margin-top: 20px;
+
+            }
+
+            .software .software-inner>div:nth-child(3) {
+                width: 50%;
+                margin-top: -20px;
+
+            }
+
+            .software {
+                height: 180px;
+            }
+
+        }
+
+
+        /*  -------------------------------------------------结尾文字部分（2）-------------------------------------------------- */
+        .wrap {
+            width: 100%;
+            height: 242px;
+            border-bottom: 2px solid #EEEEEE;
+
+        }
+
+        .wrap-main {
+            height: 242px;
+            max-width: 1024px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+
+        }
+
+        .wrap .wrap-main .left {
+            flex-grow: 2;
+            /* 更改地方 */
+            height: 242px;
+
+        }
+
+        .wrap .wrap-main .left #mobike {
+            font-size: 22px;
+            height: 44px;
+            margin-top: 41px;
+            line-height: 22px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: red;
+
+        }
+
+        .wrap .wrap-main .left ul li {
+            height: 38px;
+            color: #858585;
+        }
+
+        .wrap .wrap-main .right {
+            flex: 1;
+            height: 242px;
+            max-width: 50%;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+
+        .wrap .wrap-main .right div {
+            margin-top: 41px;
+            width: 128px;
+        }
+
+        .wrap .wrap-main .right #ul4 {
+            width: 80px;
+
+        }
+
+        .wrap .wrap-main .right #ul4>ul>li:nth-child(1) {
+            width: 80px;
+
+        }
+
+        .wrap .wrap-main .right div ul li:first-child {
+            height: 37px;
+            font-size: 18px;
+            font-weight: 700px;
+
+        }
+
+        .wrap .wrap-main .right div ul li:nth-child(2),
+        .wrap .wrap-main .right div ul li:nth-child(3),
+        .wrap .wrap-main .right div ul li:nth-child(4),
+        .wrap .wrap-main .right div ul li:nth-child(5) {
+            height: 34px;
+            font-size: 14px;
+            color: #858585;
+        }
+
+        @media screen and (max-width:730px) {
+
+            .wrap .wrap-main .left,
+            .wrap .wrap-main .right {
+                width: 100%;
+            }
+
+            .wrap {
+                height: 400px;
+            }
+
+            .wrap .wrap-main .right {
+                margin-top: -90px;
+            }
+        }
+
+        @media screen and (max-width:640px) {
+
+            .wrap .wrap-main .left {
+                width: 50%;
+                margin-bottom: 40px;
+                margin-right: 40px;
+                flex-grow: 0;
+                /* 这是个坑 调优先级调了很久 */
+            }
+
+            .wrap .wrap-main .right {
+                width: 50%;
+                margin: 0;
+                flex-wrap: wrap;
+
+            }
+
+            .wrap {
+                height: 452px;
+            }
+
+        }
+
+        @media screen and (max-width:591px) {
+
+            .wrap .wrap-main .left {
+                width: 100%;
+                flex-grow: 2;
+                margin-bottom: 20px;
+                margin-top: 20px;
+                margin-left: 10px;
+
+            }
+
+            .wrap .wrap-main .right {
+                width: 100%;
+                margin-top: -40px;
+                flex-wrap: wrap;
+                margin-left: 10px;
+
+            }
+
+            .wrap {
+                height: 647px;
+            }
+
+        }
+
+        @media screen and (max-width:489px) {
+
+            .wrap .wrap-main .left {
+                width: 100%;
+                flex-grow: 2;
+                margin-bottom: 20px;
+                margin-top: 20px;
+                margin-left: 10px;
+
+            }
+
+            .wrap .wrap-main .right {
+                width: 100%;
+                margin-top: -40px;
+                flex-wrap: wrap;
+                margin-left: 10px;
+
+            }
+
+            .wrap {
+                height: 647px;
+            }
+
+        }
+
+
+        /* -------------------------------------结尾文字部分3------------------------- */
+        .footer {
+            height: 136px;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1024px;
+            height: 136px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .footer .left {
+            width: 50%;
+            height: 100%;
+        }
+
+        .footer .left>div {
+            margin: 55px 0;
+            font-size: 12px;
+            color: #CCCCCC;
+        }
+
+        .footer .left>div>span {
+            display: inline-block;
+            flex-wrap: wrap;
+            height: 30px;
+            color: #CCCCCC;
+        }
+
+        .footer .right {
+            width: 50%;
+            height: 100%;
+            position: relative;
+        }
+
+        .footer .right .icon {
+            margin-top: 55px;
+            margin-bottom: 55px;
+            margin-left: 90%;
+
+        }
+
+        .footer .right .squre {
+            width: 156px;
+            height: 40px;
+            background-color: #282828;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            left: 80%;
+            color: white;
+        }
+
+        .trangle {
+            width: 0px;
+            height: 0px;
+            border-top: 10px solid #282828;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            top: 40px;
+            left: 40%;
+        }
+
+        .hover-box {
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .footer .right .icon:hover~.hover-box {
+            opacity: 1;
+        }
+
+        @media screen and (max-width:1135px) {
+            .footer .right .icon {
+                margin-left: 80%;
+            }
+
+            .footer .right .squre {
+                left: 48%;
+            }
+
+            .footer .right .trangle {
+                left: 80%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="nav">
+        <div class="nav-item">
+            <div class="mobai">
+                <span> mobike </span> <br>
+                <span> 摩拜单车</span>
+
+            </div>
+            <div class="product">
+                <span>产品</span>
+                <span>摩拜科技</span>
+                <span>关于</span>
+                <span>广告合作</span>
+            </div>
+        </div>
+        <div class="return">
+            <div class="returncity">
+                <span>让自行车回归城市</span>
+                <div>立即开始使用Mobike</div>
+            </div>
+        </div>
+        <div class="nav-bottom">
+            <div class="nav-bottom-inset">
+
+                <button>news</button>
+                <span>“摩拜公交”</span> <span>小程序上线</span> <span>线上购买地铁票省时省力</span>
+
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------上半部分结束--------------------------------------------- -->
+    <div class="container">
+        <!-- 需要折行的品名1 .container p1-->
+        <div class="p1"><span>大国品牌</span></div>
+        <div class="p2"><span>摩拜科技</span></div>
+        <div class="p3"><span>摩拜生活</span></div>
+        <div class="p4"><span>摩拜校招</span></div>
+
+    </div>
+
+    <!-- --------------------------------------结尾文字部分(1)------------------------------------------ -->
+    <div class="software">
+        <div class="software-inner">
+            <div>
+
+                <img src="https://mobike.com/cn/assets/themes/moby/img/icon-wechat.png" alt="">
+
+                <div>
+                    <!-- 需要折行 software > software-inner div-->
+                    <p>微信小程序</p>
+                    <p>微信扫一扫，直接用车</p>
+                </div>
+            </div>
+            <div>
+
+                <img src="https://mobike.com/cn/assets/themes/moby/img/icon-rp.png" alt="">
+
+                <div>
+                    <span>红包车</span>
+                    <p>骑摩拜，能赚钱</p>
+                </div>
+            </div>
+            <div>
+
+                <img src="https://mobike.com/cn/assets/themes/moby/img/icon-credit.png" alt="">
+                <div>
+
+                    <p>摩范分</p>
+                    <p>文明骑行 信用生活</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- ------------------------------------------结尾文字部分（2）--------------------------------------------- -->
+
+        <div class="wrap">
+            <div class="wrap-main">
+                <div class="left" id="wrap_left">
+                    <!-- 需要折行的内容 left right-->
+                    <ul>
+                        <li id="mobike">摩拜mobike</li>
+                        <li>Beijing Mobike Technology Co.,Ltd</li>
+                        <li>客服电话 400-8117799</li>
+                        <li>北京摩拜科技有限公司</li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <div class="ul1">
+                        <ul>
+                            <li>产品</li>
+                            <li>经典版</li>
+                            <li>轻骑</li>
+                            <li>智能锁</li>
+                        </ul>
+                    </div>
+                    <div class="ul2">
+                        <ul>
+                            <li>生活</li>
+                            <li>城市</li>
+                        </ul>
+                    </div>
+                    <div class="ul3">
+                        <ul>
+                            <li>关于</li>
+                            <li>关于Mobike</li>
+                            <li>加入我们</li>
+                            <li>联系我们</li>
+                            <li>服务协议</li>
+                        </ul>
+                    </div>
+                    <div id="ul4">
+                        <ul>
+                            <li>社交网络</li>
+                            <li>微博</li>
+                            <li>微信</li>
+                            <li>知乎专栏</li>
+                            <li>Facebook</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="left">
+                    <!-- 需要折行的内容 footer >footer-container >left right -->
+                    <div>
+                        <span> 京 ICP 备15053449 号 <span style="display:inline-block;"><img
+                                    style="width:10px;height:10px;"
+                                    src="urlhttps://mobike.com/cn/assets/themes/moby/img/beian-icon.png')"
+                                    alt=""></span>京公网安备 11010502032956 号 </span><br>
+                        增值电信业务经营许可证编号：京B2-20170053
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="icon">
+                        <img src="https://mobike.com/cn/assets/themes/moby/img/footer-chengxin.jpg" alt="">
+                    </div>
+                    <div class="hover-box">
+                        <div class="squre">
+                            <span>诚信经营 放心消费</span>
+                            <div class="trangle"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

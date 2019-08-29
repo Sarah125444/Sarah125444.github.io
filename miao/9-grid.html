@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+
+        }
+        /* ........................正常流实现..................... */
+        p {
+            font-size: 16px;
+        }
+        .first-way {
+            width: 170px;
+            height: 170px;
+            margin-bottom: 100px;
+
+        }
+       .first-box {
+          
+           width: 50px;
+           height: 50px;
+           border: 5px solid blue;
+           display: inline-block;
+           background-color: white;
+           font-size:initial;
+           margin:0 -5px -5px 0;
+           text-align: center;
+           line-height: 50px;
+        }
+        .first-box:hover {
+            border: 5px solid red;
+            position: relative;
+        }
+
+         /* ........................float实现..................... */
+
+        .second-way {
+            display: inline-block;
+            width: 170px;
+            height: 170px;
+            margin-bottom: 100px;
+            
+        }
+        .second-box {
+            width: 50px;
+            height: 50px;
+            border: 5px solid blue;
+            margin:0 -5px -5px 0;
+            float: left;
+            overflow: hidden;
+            font-size: 16px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .second-box:hover {
+            border: 5px solid red;
+            position: relative;
+        }
+        /* ........................table实现..................... */
+        /* 最重要的是  col,tr的优先级比td的优先级高          */
+        td {
+            width: 50px;
+            height: 50px;
+           
+            font-size: 16px;
+            text-align: center;
+        }
+        col,tr {
+            border: 5px solid blue;
+        }
+        td:hover {
+            border: 5px solid red;
+           
+        }
+        table {
+            border-collapse: collapse;
+
+        }
+
+       
+
+
+    </style>
+</head>
+<body>
+
+<p>正常流实现</p>
+<div class="first-way">
+    <span class="first-box">1</span>
+    <span class="first-box">2</span>
+    <span class="first-box">3</span>
+    <span class="first-box">4</span>
+    <span class="first-box">5</span>
+    <span class="first-box">6</span>
+    <span class="first-box">7</span>
+    <span class="first-box">8</span>
+    <span class="first-box">9</span>
+</div>
+
+
+<p> float实现</p>
+
+<span class="second-way">
+    <div class="second-box">1</div>
+    <div class="second-box">2</div>
+    <div class="second-box">3</div>
+    <div class="second-box">4</div>
+    <div class="second-box">5</div>
+    <div class="second-box">6</div>
+    <div class="second-box">7</div>
+    <div class="second-box">8</div>
+    <div class="second-box">9</div>
+</span>
+
+
+<p>table实现</p>
+
+<table id="tb">
+        <col>
+        <col>
+        <col>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+ </table>
+
+
+
+
+</body>
+</html>

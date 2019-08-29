@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider {
+            width: 600px;
+            height: 300px;
+            border: 8px solid;
+            position: relative;
+        }
+        .slider input {
+            display: none;
+        }
+
+        .slider .indicators {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+
+        }
+        .slider .indicators label{
+         
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius:10px;
+            margin: 5px;
+            float: left;
+            
+
+        }
+        .slider img {
+            display:none;
+            height: 100%;
+            width: 100%;
+
+        }
+        .slider input:checked + img  {
+            display: block;
+            width: 600px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slider">
+
+
+
+
+
+        <div class="indicators">
+
+            <label for="i1"></label>
+            <label for="i2"></label>
+            <label for="i3"></label>
+            <label for="i4"></label>
+            <label for="i5"></label>
+
+        </div>
+
+
+
+
+            <input checked type="radio" name="hello" id="i1"><img src="https://i1.mifile.cn/a4/xmad_15566146318197_mAghl.jpg" alt="">
+            <input type="radio" name="hello" id="i2"><img src="https://i1.mifile.cn/a4/xmad_15529884424562_HKYaG.jpg" alt="">
+            <input type="radio" name="hello" id="i3"><img src="https://i1.mifile.cn/a4/xmad_15579184778872_ECdvK.jpg" alt="">
+            <input type="radio" name="hello" id="i4"><img src="https://i1.mifile.cn/a4/xmad_15548066591437_Stxlj.jpg" alt="">
+            <input type="radio" name="hello" id="i5"><img src="https://i1.mifile.cn/a4/xmad_15476942061027_STEvM.jpg" alt="">
+
+
+
+
+
+
+    </div>
+
+
+   
+   
+</body>
+
+</html>

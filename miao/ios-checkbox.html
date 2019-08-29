@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+      
+        .ellipse {
+            width: 181px;
+            height: 102px;
+            background-color: rgb(214, 214, 213);
+            border-radius: 100px ;
+            
+        }
+        .circle-botton {
+            width: 90px;
+            height: 90px;
+            background-color:white;
+            border-radius: 50%;
+            margin-top: 10px;
+            transition: left 1s;
+            position: absolute;
+            top:-5px;
+            left:0px;
+            transition: left 1s;
+           
+        }
+
+        input#ck:checked+label .circle-botton {
+            position: absolute;;
+            left: 90px;
+            transition:left 1s;
+        }
+        input#ck:checked+label .ellipse {
+            background-color: rgb(99, 195, 86);
+        }
+
+
+        input {
+            display:inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            display:none;
+            
+        }
+    </style>
+</head>
+
+<body>
+    
+
+
+        <input type="checkbox" id="ck">
+
+        <label for="ck">
+
+               
+                <div class="ellipse"></div>
+                <div class="circle-botton"></div>
+
+
+
+        </label>
+
+        
+
+
+
+
+</body>
+
+</html>

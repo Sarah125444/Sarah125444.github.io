@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        section {
+            height: 800px;
+            width: 100%;
+            background-color: pink;
+            box-sizing: border-box;
+            font-size: 0;
+            position: relative;
+
+
+
+        }
+
+        .content-box-1 {
+            width: calc(20% - 2px);
+            height: 100%;
+            /* display: inline-block; */
+            background-color: #EAEEF3;
+            border: 1px solid #BDC1C5;
+            box-shadow: 0px 0px 10px gray inset;
+            position: absolute;
+            top:0;
+            left:0;
+            font-size: 16px;
+            overflow-y: scroll;
+
+
+
+
+
+
+
+        }
+
+        .content-box-2 {
+            width: calc(40% - 2px);
+            height: 100%;
+            /* display: inline-block; */
+            background-color: #FFFFFF;
+            border: 1px solid #BDC1C5;
+            overflow-y: scroll;
+            position: absolute;
+            top:0px;
+            left: calc(20% - 2px);
+            font-size: 16px;
+
+
+
+
+
+
+
+        }
+
+        .content-box-3 {
+            width: calc(20% - 2px);
+            height: 100%;
+            /* display: inline-block; */
+            background-color: #E9EDF2;
+            border: 1px solid #BDC1C5;
+            overflow-y: scroll;
+            position: absolute;
+            top:0px;
+            left:calc(60% - 2px);
+
+            box-shadow: 0px 0px 10px gray inset;
+
+
+
+
+
+        }
+
+        .content-box-4 {
+            width: calc(20% - 2px);
+            height: 100%;
+            /* display: inline-block; */
+            background-color: #EAEEF3;
+
+            border: 1px solid #BDC1C5;
+            overflow-y: scroll;
+            position: absolute;
+            top:0px;
+            left:calc(80% - 2px);
+        }
+
+
+
+        .header {
+            height: 81px;
+            width: calc(100% - 16px);
+            background-color: #EAEEF3;
+            color: #53637C;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 81px;
+
+        }
+
+
+        .content-box-1-bottom {
+
+
+            color: #446BC6;
+            position: absolute;
+            top: 180;
+            left: 0;
+            font-size: 24px;
+            text-align: left;
+            line-height: 38px;
+            padding-left: 10px;
+
+
+        }
+
+        .search-container {
+            height: 60px;
+            width: 100%;
+            background-color: #EAEEF3;
+
+        }
+
+        .parent {
+            position: relative;
+        }
+
+        .parent>input:first-of-type {
+            width: 96%;
+            height: 42px;
+            border-radius: 29px;
+            outline: none;
+            border: 1px solid #BFBFBF;
+            padding-left: 10px;
+            position: absolute;
+            left: 1px;
+            top: 10px;
+
+        }
+
+        .middle-top {
+            height: 60px;
+            width: 100%;
+            background-color: #FFFFFF;
+            color: #53637C;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 18px;
+
+            line-height: 81px;
+            padding-right: 2px;
+
+        }
+
+        
+
+        .tool {
+            margin-left: 20%;
+            border: 1px solid #A3A3A3;
+            background-color: #F6F6F6;
+            border-radius: 30%;
+            height: 81px;
+
+
+
+
+        }
+
+        .add {
+            padding-left: 2px;
+            border: 1px solid #A3A3A3;
+            background-color: #F6F6F6;
+            border-radius: 30%;
+        }
+
+        .middle-bottom {
+            width: 100%;
+            height: 90%;
+            box-shadow: 0px 0px 10px #000 inset;
+            position: absolute;
+            top: 13%;
+        }
+
+        .header-2 {
+            height: 81px;
+            width: 100%;
+            background-color: #EAEEF3;
+            color: #53637C;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 81px;
+            position: absolute;
+        }
+
+        .header-3 {
+            height: 81px;
+            width: 100%;
+            background-color: #EAEEF3;
+            color: #53637C;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 81px;
+            position: absolute;
+        }
+
+        .search-container-2 {
+            height: 60px;
+            width: 100%;
+            background-color: #EAEEF3;
+
+        }
+
+        .parent-2 {
+            position: relative;
+        }
+
+        .parent-2>input:first-of-type {
+            width: 96%;
+            height: 42px;
+            border-radius: 29px;
+            outline: none;
+            border: 1px solid #BFBFBF;
+            padding-left: 10px;
+            position: absolute;
+            left: 1px;
+            top: 10px;
+
+        }
+
+        .search-container-3 {
+            height: 60px;
+            width: 100%;
+            background-color: #EAEEF3;
+
+        }
+
+        .parent-3 {
+            position: relative;
+        }
+
+        .parent-3>input:first-of-type {
+            width: 96%;
+            height: 42px;
+            border-radius: 29px;
+            outline: none;
+            border: 1px solid #BFBFBF;
+            padding-left: 10px;
+            position: absolute;
+            left: 1px;
+            top: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <div class="content-box-1">
+            <div class="header">
+                OALD Se7en
+
+                <div class="search-container">
+                    <form action="" class="parent">
+                        <input type="text">
+                        <input type="bottom" value="search">
+                    </form>
+                </div>
+                <div class="content-box-1-bottom">
+
+                    a <br>
+                    a cappella <br>
+                    a fortiori <br>
+                    a gogo <br>
+                    a la <br>
+                    a la carte <br>
+                    a la mode<br>
+                    a postteriori<br>
+                    a priori <br>
+                    a tempo <br>
+                    a - <br>
+                    a.m. <br>
+                    a/c <br>
+                    aardvark <br>
+                    aargh <br>
+                    ab initio<br>
+                    a postteriori<br>
+                    a priori <br>
+                    a tempo <br>
+                    a - <br>
+                    a.m. <br>
+                    a/c <br>
+                    aardvark <br>
+                    aargh <br>
+                    ab initio<br>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-box-2">
+            <div class="middle-top">
+               
+                    <button>+</button>
+                    <button>&</button>
+            </div>  
+            <div class="tool">
+                    <button>Tools</button>>
+                    <button>Settings</button>
+                    <button>Help</button>>
+                    <button>Donate</button>>
+               
+            </div>
+
+        </div>
+            <div class="middle-bottom">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, numquam ea! Voluptatem molestias, eos
+                doloremque sint architecto est dolorum autem deserunt nemo. Expedita officiis molestias neque, libero ex
+                nisi quos.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, numquam ea! Voluptatem molestias, eos
+                doloremque sint architecto est dolorum autem deserunt nemo. Expedita officiis molestias neque, libero ex
+                nisi quos.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, numquam ea! Voluptatem molestias, eos
+                doloremque sint architecto est dolorum autem deserunt nemo. Expedita officiis molestias neque, libero ex
+                nisi quos.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, numquam ea! Voluptatem molestias, eos
+                doloremque sint architecto est dolorum autem deserunt nemo. Expedita officiis molestias neque, libero ex
+                nisi quos.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, numquam ea! Voluptatem molestias, eos
+                doloremque sint architecto est dolorum autem deserunt nemo. Expedita officiis molestias neque, libero ex
+                nisi quos.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, numquam ea! Voluptatem molestias, eos
+                doloremque sint architecto est dolorum autem deserunt nemo. Expedita officiis molestias neque, libero ex
+                nisi quos.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, numquam ea! Voluptatem molestias, eos
+                doloremque sint architecto est dolorum autem deserunt nemo. Expedita officiis molestias neque, libero ex
+                nisi quos.
+            </div>
+        </div>
+        <div class="content-box-3">
+            <div class="header-2">
+                Vocabulary
+
+                <div class="search-container-2">
+                    <form action="" class="parent-2">
+                        <input type="text">
+                        <input type="bottom" value="search">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="content-box-4">
+            <div class="header-3">
+                History
+
+                <div class="search-container-3">
+                    <form action="" class="parent-3">
+                        <input type="text">
+                        <input type="bottom" value="search">
+                    </form>
+                </div>
+
+                <div class="content-box-1-bottom">
+
+                    a <br>
+                    a cappella <br>
+                    a fortiori <br>
+                    a gogo <br>
+                    a la <br>
+                    a la carte <br>
+                    a la mode<br>
+                    a postteriori<br>
+                    a priori <br>
+                    a tempo <br>
+                    a - <br>
+                    a.m. <br>
+                    a/c <br>
+                    aardvark <br>
+                    aargh <br>
+                    ab initio<br>
+                    a postteriori<br>
+                    a priori <br>
+                    a tempo <br>
+                    a - <br>
+                    a.m. <br>
+                    a/c <br>
+                    aardvark <br>
+                    aargh <br>
+                    ab initio<br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

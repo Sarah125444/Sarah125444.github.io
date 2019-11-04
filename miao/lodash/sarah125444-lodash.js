@@ -284,7 +284,7 @@ var sarah125444 = {
      }
     }else{
       for(let key in collection){
-        action(obj[key],key,collection)
+        action(collection[key],key,collection)
       }
     }
   },

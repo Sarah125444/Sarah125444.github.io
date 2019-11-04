@@ -1,4 +1,7 @@
 var sarah125444 = {
+  iteratee: function(func=(...args) => args[0]){
+
+  },
   chunk: function(array, size) {
     const result = [];
     const num = Math.ceil(array.length / size);
@@ -358,7 +361,17 @@ var sarah125444 = {
   isMap: function(value) {
     return Object.prototype.toString.call(value) == "[object Map]";
   },
-  isMatch: function(array) {},
+  isMatch: function(object,source) {
+    for(let key in source){
+      if(!(key in object)){
+        return false
+      }
+      if(source[key] !== object[key]){
+        return false
+      }
+    }
+    return true
+  },
   isMatchWith: function() {},
   isNaN: function(value) {
     if (value != undefined && value != null) {

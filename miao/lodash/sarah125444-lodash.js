@@ -252,27 +252,6 @@ var sarah125444 = {
       }
     }
     return current;
-
-
-
-
-     
-      // if (Array.isArray(collection)) {
-      //   let startIndex = 0;
-      //   if (accumulator === undefined) {
-      //     accumulator = collection[0];
-      //     startIndex = 1;
-      //   }
-      //   for (index = startIndex; index < collection.length; index++) {
-      //     accumulator = iteratee(accumulator, collection[index], index, collection);
-      //   }
-      // } else {
-      //   for (const key in collection) {
-      //     accumulator = iteratee(accumulator, collection[key], key, collection);
-      //   }
-      // }
-      // return accumulator;
-     
   },
   redeceRight: function() {},
   reject: function() {},
@@ -280,7 +259,23 @@ var sarah125444 = {
   sampleSize: function() {},
   shuffle: function() {},
   size: function() {},
-  some: function() {},
+  some: function(collection,predicate=(it => it)) {
+    if(Array.isArray(collection)){
+      for(let index = 0; index < collection.length; index++){
+        if(predicate(collection[index],index,collection)){
+          return true
+        }
+      }
+      return false
+    }else{
+      for(let key in collection){
+        if(predicate(collection[key],key,collection)){
+          return true
+        }
+      }
+      return false
+    }
+  },
   sortBy: function() {},
   defer: function() {},
   delay: function() {},

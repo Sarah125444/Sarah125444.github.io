@@ -235,21 +235,27 @@ var sarah125444 = {
 
   partition: function() {},
   reduce: function(collection, iteratee = it => it, accumulator) {
-    var current = accumulator,
-      j;
-    if (accumulator == undefined) {
-      j = 0;
-    } else {
-      j = 1;
-    }
+  
+   
     if (Array.isArray(collection)) {
+      let current,j=1;
+      if(accumulator){
+        current = accumulator;
+        j = 0;
+      }else{
+        current = collection[0]
+      }
       for (let index = j; index < collection.length; index++) {
         current = iteratee(current, collection[index], index, collection);
       }
     } else {
-      for (let key in collection) {
-        current = iteratee(current, collection[key], key, collection);
+      if(accumulator){
+        var current = accumulator;
+        for (let key in collection) {
+          current = iteratee(current, collection[key], key, collection);
+        }
       }
+     
     }
     return current;
   },

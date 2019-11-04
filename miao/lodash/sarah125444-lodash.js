@@ -338,8 +338,19 @@ var sarah125444 = {
   partition: function () {
 
   },
-  reduce: function () {
-
+  reduce: function (collection,iteratee,accumulator) {
+    var current = accumulator;
+    if(Array.isArray(collection)){
+      for(var index = 0; index < collection.length;index++){
+        current += collection[index]
+      }
+    }else{
+      for(var key in collection){
+        current += collection[key]
+      }
+    }
+    return current
+    
   },
   redeceRight: function () {
 

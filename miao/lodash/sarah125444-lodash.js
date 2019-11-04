@@ -259,8 +259,18 @@ var sarah125444 = {
   every: function () {
 
   },
-  filter: function () {
-
+  filter: function (collection,predicate=(it => it)) {
+    var passed = [];
+    if(Array.isArray(collection)){
+      for(var index = 0; index < collection.length; index++){
+        passed.push(predicate(collection[i],index,collection))
+      }
+    }else{
+      for(let key in collection){
+        passed.push(predicate(collection[key],key,collection))
+      }
+    }
+    return passed
   },
   find: function () {
 

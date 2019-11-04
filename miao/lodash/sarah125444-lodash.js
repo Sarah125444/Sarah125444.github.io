@@ -263,11 +263,15 @@ var sarah125444 = {
     var passed = [];
     if(Array.isArray(collection)){
       for(var index = 0; index < collection.length; index++){
-        passed.push(predicate(collection[i],index,collection))
+        if(predicate(collection[index],index,collection)){
+          passed.push(collection[index])
+        }
       }
     }else{
       for(let key in collection){
-        passed.push(predicate(collection[key],key,collection))
+        if(predicate(collection[key],key,collection)){
+          passed.push(collection[key])
+        } 
       }
     }
     return passed

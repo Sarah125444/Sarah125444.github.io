@@ -287,6 +287,7 @@ var sarah125444 = {
         action(collection[key],key,collection)
       }
     }
+    return collection;
   },
   forEachRight: function () {
 

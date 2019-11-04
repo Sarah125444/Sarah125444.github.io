@@ -178,7 +178,23 @@ var sarah125444 = {
   zipObjectDeep: function() {},
   zipWith: function() {},
   countBy: function() {},
-  every: function() {},
+  every: function(collection,predicate=(it => it)) {
+    if(Array.isArray(collection)){
+      for(let index = 0; index < collection.length; index++){
+        if(!predicate(collection[index],index,collection)){
+          return false
+        }
+      }
+      return true
+    }else{
+      for(let key in collection){
+        if(!predicate(collection[key],key,collection)){
+          return false
+        }
+      }
+      return true
+    }
+  },
   filter: function(collection, predicate = it => it) {
     var passed = [];
     if (Array.isArray(collection)) {

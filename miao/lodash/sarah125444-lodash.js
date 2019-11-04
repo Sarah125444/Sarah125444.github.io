@@ -362,14 +362,13 @@ var sarah125444 = {
     return Object.prototype.toString.call(value) == "[object Map]";
   },
   isMatch: function(object,source) {
+    if(typeof source !== "object" || typeof object !== "object"){
+      return source === object
+    }
     for(let key in source){
-      if(!(key in object)){
+      if(!(key in object) || !this.isMatch(object[key],source[key])){
         return false
       }
-      if((object[key] !== source[key]) || !this.isMatch(object[key],source[key])){
-        return false
-      }
-
     }
     return true
   },

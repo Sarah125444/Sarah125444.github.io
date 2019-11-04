@@ -366,9 +366,10 @@ var sarah125444 = {
       if(!(key in object)){
         return false
       }
-      if(source[key] !== object[key]){
+      if((object[key] !== source[key]) || !this.isMatch(object[key],source[key])){
         return false
       }
+
     }
     return true
   },

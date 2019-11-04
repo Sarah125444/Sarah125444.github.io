@@ -341,12 +341,13 @@ var sarah125444 = {
   reduce: function (collection,iteratee,accumulator) {
     var current = accumulator;
     if(Array.isArray(collection)){
-      for(var index = 0; index < collection.length;index++){
-        current += collection[index]
-      }
+        for(let index = 0; index < collection.length; index++){
+          current  = iteratee(current,collection[index])
+        }
+       
     }else{
-      for(var key in collection){
-        current += collection[key]
+      for(let key in collection){
+        current  = iteratee(current,collection[key])
       }
     }
     return current

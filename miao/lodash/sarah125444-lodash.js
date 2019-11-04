@@ -1,10 +1,3 @@
-/*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2019-08-25 13:51:35
- * @LastEditTime: 2019-08-28 14:47:26
- * @LastEditors: Please set LastEditors
- */
 
 var sarah125444 = {
   chunk: function (array, size) {
@@ -284,8 +277,16 @@ var sarah125444 = {
   flatMapDepth: function () {
 
   },
-  forEach: function () {
-
+  forEach: function (collection,action) {
+    if(Array.isArray(collection)){
+     for(let i = 0; i < collection.length; i++){
+        action(arr[i], i, arr)
+     }
+    }else{
+      for(let key in collection){
+        action(obj[key],key,collection)
+      }
+    }
   },
   forEachRight: function () {
 

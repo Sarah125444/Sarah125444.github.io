@@ -373,6 +373,11 @@ var sarah125444 = {
     return true
   },
   isMatchWith: function() {},
+  matches: function(source){
+    return function(object){
+      return this.isMatch(object,source)
+    }
+  },
   isNaN: function(value) {
     if (value != undefined && value != null) {
       return value.toString() === "NaN";

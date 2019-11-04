@@ -342,12 +342,12 @@ var sarah125444 = {
     var current = accumulator;
     if(Array.isArray(collection)){
         for(let index = 0; index < collection.length; index++){
-          current  = iteratee(current,collection[index])
+          current  = iteratee(current,collection[index],index,collection)
         }
        
     }else{
       for(let key in collection){
-        current  = iteratee(current,collection[key])
+        current  = iteratee(current,collection[key],key,collection)
       }
     }
     return current

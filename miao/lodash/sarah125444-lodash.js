@@ -235,29 +235,45 @@ var sarah125444 = {
 
   partition: function() {},
   reduce: function(collection, iteratee = it => it, accumulator) {
-  
-   
-    if (Array.isArray(collection)) {
-      let current,j=1;
-      if(accumulator){
-        current = accumulator;
-        j = 0;
-      }else{
-        current = collection[0]
-      }
-      for (let index = j; index < collection.length; index++) {
-        current = iteratee(current, collection[index], index, collection);
-      }
-    } else {
-      if(accumulator){
-        var current = accumulator;
-        for (let key in collection) {
-          current = iteratee(current, collection[key], key, collection);
+    // if (Array.isArray(collection)) {
+    //   let current,
+    //     j = 1;
+    //   if (accumulator) {
+    //     current = accumulator;
+    //     j = 0;
+    //   } else {
+    //     current = collection[0];
+    //   }
+    //   for (let index = j; index < collection.length; index++) {
+    //     current = iteratee(current, collection[index], index, collection);
+    //   }
+    // } else {
+    //   for (let key in collection) {
+    //     current = iteratee(current, collection[key], key, collection);
+    //   }
+    // }
+    // return current;
+
+
+
+
+     
+      if (Array.isArray(collection)) {
+        let startIndex = 0;
+        if (accumulator === undefined) {
+          accumulator = collection[0];
+          startIndex = 1;
+        }
+        for (index = startIndex; index < collection.length; index++) {
+          accumulator = iteratee(accumulator, collection[index], index, collection);
+        }
+      } else {
+        for (const key in collection) {
+          accumulator = iteratee(accumulator, collection[key], key, collection);
         }
       }
+      return accumulator;
      
-    }
-    return current;
   },
   redeceRight: function() {},
   reject: function() {},

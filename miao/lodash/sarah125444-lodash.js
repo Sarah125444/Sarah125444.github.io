@@ -304,8 +304,18 @@ var sarah125444 = {
   keyBy: function () {
 
   },
-  map: function () {
-
+  map: function (collection,iteratee=(it => it)) {
+    var transformed = [];
+    if(Array.isArray(collection)){
+      for(var index = 0; index < collection.length; index++){
+        transformed.push(iteratee(collection[index],index,collection))
+      }
+    }else{
+      for(let key in collection){
+        transformed.push(iteratee(collection[key],key,collection))
+      }
+    }
+    return transformed;
   },
   orderBy: function () {
 

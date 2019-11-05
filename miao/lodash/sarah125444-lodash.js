@@ -57,8 +57,21 @@ var sarah125444 = {
     return array.filter(item => !args.flat().includes(item));
   },
 
-  differenceBy: function() {},
-  differenceWith: function() {},
+  differenceBy: function(array,...args) {
+    let func, lastArg = args[args.length - 1];
+    if(typeof lastArg === "string" || typeof lastArg === "function"){
+      func = this.iteratee(args.pop())
+    }else{
+      func = it => it
+    }
+    let values = args.flat().map(func);
+    return array.filter(item => values.includes(func(item)))
+  },
+
+  differenceWith: function() {
+
+  },
+
   drop: function(array, n) {
     let arr = array.slice(n);
     return arr;

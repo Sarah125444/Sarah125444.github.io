@@ -38,12 +38,14 @@ var sarah125444 = {
   },
 
   compact: function(array) {
-    return (array = array.filter(Boolean));
+    return  array.filter(Boolean)
   },
+
   difference: function(array, ...args) {
     const result = array.filter(item => !args.flat().includes(item));
     return result;
   },
+
   differenceBy: function() {},
   differenceWith: function() {},
   drop: function(array, n) {

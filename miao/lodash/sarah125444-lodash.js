@@ -41,9 +41,20 @@ var sarah125444 = {
     return  array.filter(Boolean)
   },
 
-  difference: function(array, ...args) {
-    const result = array.filter(item => !args.flat().includes(item));
-    return result;
+  sameValueZero: function(x,y){
+    if(typeof x !== typeof y) return false;
+    if(typeof x === "number"){
+      if(isNaN(x) && isNaN(y)) return true;
+      if(x === +0 && y === -0) return true;
+      if(x === -0 && y === +0) return true;
+      if(x === y) return true;
+      return false;
+    }
+    return x == y
+  },
+
+  difference: function(array, values) {
+    return array.filter(item => !values.includes(item));
   },
 
   differenceBy: function() {},

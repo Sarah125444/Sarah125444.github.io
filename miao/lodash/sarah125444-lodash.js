@@ -72,8 +72,16 @@ var sarah125444 = {
     return array.filter(item => values.includes(func(item)));
   },
 
-  differenceWith: function() {
-    
+  differenceWith: function(array,...args) {
+    let func,
+    lastArg = args[args.length - 1];
+    if (typeof lastArg === "string" || typeof lastArg === "function") {
+      func = this.iteratee(args.pop());
+    } else {
+      func = it => it;
+    }
+    let values = args.flat();
+    return array.filter(arrVal => values.every(othVal => !func(arrVal,othVal)))
   },
 
   drop: function(array, n) {

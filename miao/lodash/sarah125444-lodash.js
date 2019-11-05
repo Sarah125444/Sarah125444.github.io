@@ -206,34 +206,36 @@ var sarah125444 = {
   zipObjectDeep: function() {},
   zipWith: function() {},
   countBy: function() {},
-  every: function(collection,predicate=(it => it)) {
+  every: function(collection,func=this.identity) {
+    func = this.iteratee(func)
     if(Array.isArray(collection)){
       for(let index = 0; index < collection.length; index++){
-        if(!predicate(collection[index],index,collection)){
+        if(!func(collection[index],index,collection)){
           return false
         }
       }
       return true
     }else{
       for(let key in collection){
-        if(!predicate(collection[key],key,collection)){
+        if(!func(collection[key],key,collection)){
           return false
         }
       }
       return true
     }
   },
-  filter: function(collection, predicate = it => it) {
+  filter: function(collection, func=this.identity) {
+    func = this.iteratee(func)
     var passed = [];
     if (Array.isArray(collection)) {
       for (var index = 0; index < collection.length; index++) {
-        if (predicate(collection[index], index, collection)) {
+        if (func(collection[index], index, collection)) {
           passed.push(collection[index]);
         }
       }
     } else {
       for (let key in collection) {
-        if (predicate(collection[key], key, collection)) {
+        if (func(collection[key], key, collection)) {
           passed.push(collection[key]);
         }
       }
@@ -279,7 +281,8 @@ var sarah125444 = {
   orderBy: function() {},
 
   partition: function() {},
-  reduce: function(collection, iteratee = it => it, accumulator) {
+  reduce: function(collection, func = it => it, accumulator) {
+    func = this.iteratee(func)
     let current = accumulator,j; 
     if (Array.isArray(collection)) {
       if (accumulator !== undefined) {
@@ -289,11 +292,11 @@ var sarah125444 = {
         j=1;
       }
       for (let index = j; index < collection.length; index++) {
-        current = iteratee(current, collection[index], index, collection);
+        current = func(current, collection[index], index, collection);
       }
     } else {
       for (const key in collection) {
-        current = iteratee(current, collection[key], key, collection);
+        current = func(current, collection[key], key, collection);
       }
     }
     return current;
@@ -304,17 +307,18 @@ var sarah125444 = {
   sampleSize: function() {},
   shuffle: function() {},
   size: function() {},
-  some: function(collection,predicate=(it => it)) {
+  some: function(collection,func=this.identity) {
+    func = this.iteratee(func)
     if(Array.isArray(collection)){
       for(let index = 0; index < collection.length; index++){
-        if(predicate(collection[index],index,collection)){
+        if(func(collection[index],index,collection)){
           return true
         }
       }
       return false
     }else{
       for(let key in collection){
-        if(predicate(collection[key],key,collection)){
+        if(func(collection[key],key,collection)){
           return true
         }
       }

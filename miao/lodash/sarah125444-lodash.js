@@ -2,6 +2,12 @@ var sarah125444 = {
   iteratee: function(func=(...args) => args[0]){
 
   },
+  identity: function(...args){
+    return args[0]
+  },
+  toPath: function(value){
+    return value.match(/\w+/g)
+  },
   chunk: function(array, size) {
     const result = [];
     const num = Math.ceil(array.length / size);

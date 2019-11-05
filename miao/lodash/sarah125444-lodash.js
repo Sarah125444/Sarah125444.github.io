@@ -8,6 +8,12 @@ var sarah125444 = {
   toPath: function(value){
     return value.match(/\w+/g)
   },
+  property:function(path){
+    if(typeof path === "string"){
+      path=this.toPath(path)
+    }
+    return obj => path.reduce((res, item) => res[item],obj)
+  },
   chunk: function(array, size) {
     const result = [];
     const num = Math.ceil(array.length / size);

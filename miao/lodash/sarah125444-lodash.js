@@ -72,7 +72,9 @@ var sarah125444 = {
     return array.filter(item => values.includes(func(item)));
   },
 
-  differenceWith: function() {},
+  differenceWith: function() {
+    
+  },
 
   drop: function(array, n) {
     let arr = array.slice(n);

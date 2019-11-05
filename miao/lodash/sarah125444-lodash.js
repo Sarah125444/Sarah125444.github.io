@@ -28,16 +28,15 @@ var sarah125444 = {
     return obj => sarah125444.isMatch(this.property(path)(obj),srcValue)
   },
   chunk: function(array, size) {
-    const result = [];
-    const num = Math.ceil(array.length / size);
-    for (var i = 0; i < num; i++) {
-      if (i === num - 1) {
-        result.push(array.slice(num - 1));
-      } else {
-        result.push(array.slice(i * size, size * (i + 1)));
-      }
+    let res = [];
+    for(let i = 0; i < array.length;i++){
+      let index = Math.floor(i/size);
+      if(!res[index]){
+        res[index]=[];
+      } 
+      res[index].push(array[i])
     }
-    return result;
+    return res
   },
   compact: function(array) {
     return (array = array.filter(Boolean));

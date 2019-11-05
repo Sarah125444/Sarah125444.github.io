@@ -53,8 +53,8 @@ var sarah125444 = {
     return x == y
   },
 
-  difference: function(array, values) {
-    return array.filter(item => !values.includes(item));
+  difference: function(array, ...args) {
+    return array.filter(item => !args.flat().includes(item));
   },
 
   differenceBy: function() {},

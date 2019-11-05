@@ -1,76 +1,78 @@
 var sarah125444 = {
-
-  iteratee: function(func= this.identity){
-    if(typeof func === "string"){
-      return this.property(func)
+  iteratee: function(func = this.identity) {
+    if (typeof func === "string") {
+      return this.property(func);
     }
-    if(Array.isArray(func)){
-      return this.matchesProperty(func[0],func[1])
+    if (Array.isArray(func)) {
+      return this.matchesProperty(func[0], func[1]);
     }
-    if(typeof func === "function"){
-      return func
-    }else{
-      return this.matches(func)
+    if (typeof func === "function") {
+      return func;
+    } else {
+      return this.matches(func);
     }
   },
 
-  identity: function(...args){
-    return args[0]
+  identity: function(...args) {
+    return args[0];
   },
 
-  toPath: function(value){
-    return value.match(/\w+/g)
+  toPath: function(value) {
+    return value.match(/\w+/g);
   },
 
-  property:function(path){
-    if(typeof path === "string"){
-      path=this.toPath(path)
+  property: function(path) {
+    if (typeof path === "string") {
+      path = this.toPath(path);
     }
-    return obj => path.reduce((res, item) => res[item],obj)
+    return obj => path.reduce((res, item) => res[item], obj);
   },
 
-  matchesProperty: function(path,srcValue){ 
-    return obj => sarah125444.isMatch(this.property(path)(obj),srcValue)
+  matchesProperty: function(path, srcValue) {
+    return obj => sarah125444.isMatch(this.property(path)(obj), srcValue);
   },
 
-  chunk: function(array, size=1) {
-    return array.map((_,index) => index % size === 0 ? array.slice(index, index+size) : null).filter(Boolean)
+  chunk: function(array, size = 1) {
+    return array
+      .map((_, index) =>
+        index % size === 0 ? array.slice(index, index + size) : null
+      )
+      .filter(Boolean);
   },
 
   compact: function(array) {
-    return  array.filter(Boolean)
+    return array.filter(Boolean);
   },
 
-  sameValueZero: function(x,y){
-    if(typeof x !== typeof y) return false;
-    if(typeof x === "number"){
-      if(isNaN(x) && isNaN(y)) return true;
-      if(x === +0 && y === -0) return true;
-      if(x === -0 && y === +0) return true;
-      if(x === y) return true;
+  sameValueZero: function(x, y) {
+    if (typeof x !== typeof y) return false;
+    if (typeof x === "number") {
+      if (isNaN(x) && isNaN(y)) return true;
+      if (x === +0 && y === -0) return true;
+      if (x === -0 && y === +0) return true;
+      if (x === y) return true;
       return false;
     }
-    return x == y
+    return x == y;
   },
 
   difference: function(array, ...args) {
     return array.filter(item => !args.flat().includes(item));
   },
 
-  differenceBy: function(array,...args) {
-    let func, lastArg = args[args.length - 1];
-    if(typeof lastArg === "string" || typeof lastArg === "function"){
-      func = this.iteratee(args.pop())
-    }else{
-      func = it => it
+  differenceBy: function(array, ...args) {
+    let func,
+      lastArg = args[args.length - 1];
+    if (typeof lastArg === "string" || typeof lastArg === "function") {
+      func = this.iteratee(args.pop());
+    } else {
+      func = it => it;
     }
     let values = args.flat().map(func);
-    return array.filter(item => values.includes(func(item)))
+    return array.filter(item => values.includes(func(item)));
   },
 
-  differenceWith: function() {
-
-  },
+  differenceWith: function() {},
 
   drop: function(array, n) {
     let arr = array.slice(n);
@@ -230,26 +232,26 @@ var sarah125444 = {
   zipObjectDeep: function() {},
   zipWith: function() {},
   countBy: function() {},
-  every: function(collection,func=this.identity) {
-    func = this.iteratee(func)
-    if(Array.isArray(collection)){
-      for(let index = 0; index < collection.length; index++){
-        if(!func(collection[index],index,collection)){
-          return false
+  every: function(collection, func = this.identity) {
+    func = this.iteratee(func);
+    if (Array.isArray(collection)) {
+      for (let index = 0; index < collection.length; index++) {
+        if (!func(collection[index], index, collection)) {
+          return false;
         }
       }
-      return true
-    }else{
-      for(let key in collection){
-        if(!func(collection[key],key,collection)){
-          return false
+      return true;
+    } else {
+      for (let key in collection) {
+        if (!func(collection[key], key, collection)) {
+          return false;
         }
       }
-      return true
+      return true;
     }
   },
-  filter: function(collection, func=this.identity) {
-    func = this.iteratee(func)
+  filter: function(collection, func = this.identity) {
+    func = this.iteratee(func);
     var passed = [];
     if (Array.isArray(collection)) {
       for (var index = 0; index < collection.length; index++) {
@@ -289,7 +291,7 @@ var sarah125444 = {
   invokeMap: function() {},
   keyBy: function() {},
   map: function(collection, func = it => it) {
-    func = this.iteratee(func)
+    func = this.iteratee(func);
     var transformed = [];
     if (Array.isArray(collection)) {
       for (var index = 0; index < collection.length; index++) {
@@ -306,14 +308,15 @@ var sarah125444 = {
 
   partition: function() {},
   reduce: function(collection, func = it => it, accumulator) {
-    func = this.iteratee(func)
-    let current = accumulator,j; 
+    func = this.iteratee(func);
+    let current = accumulator,
+      j;
     if (Array.isArray(collection)) {
       if (accumulator !== undefined) {
         j = 0;
       } else {
         current = collection[0];
-        j=1;
+        j = 1;
       }
       for (let index = j; index < collection.length; index++) {
         current = func(current, collection[index], index, collection);
@@ -331,22 +334,22 @@ var sarah125444 = {
   sampleSize: function() {},
   shuffle: function() {},
   size: function() {},
-  some: function(collection,func=this.identity) {
-    func = this.iteratee(func)
-    if(Array.isArray(collection)){
-      for(let index = 0; index < collection.length; index++){
-        if(func(collection[index],index,collection)){
-          return true
+  some: function(collection, func = this.identity) {
+    func = this.iteratee(func);
+    if (Array.isArray(collection)) {
+      for (let index = 0; index < collection.length; index++) {
+        if (func(collection[index], index, collection)) {
+          return true;
         }
       }
-      return false
-    }else{
-      for(let key in collection){
-        if(func(collection[key],key,collection)){
-          return true
+      return false;
+    } else {
+      for (let key in collection) {
+        if (func(collection[key], key, collection)) {
+          return true;
         }
       }
-      return false
+      return false;
     }
   },
   sortBy: function() {},
@@ -415,20 +418,20 @@ var sarah125444 = {
   isMap: function(value) {
     return Object.prototype.toString.call(value) == "[object Map]";
   },
-  isMatch: function(object,source) {
-    if(typeof source !== "object" || typeof object !== "object"){
-      return source === object
+  isMatch: function(object, source) {
+    if (typeof source !== "object" || typeof object !== "object") {
+      return source === object;
     }
-    for(let key in source){
-      if(!(key in object) || !this.isMatch(object[key],source[key])){
-        return false
+    for (let key in source) {
+      if (!(key in object) || !this.isMatch(object[key], source[key])) {
+        return false;
       }
     }
-    return true
+    return true;
   },
   isMatchWith: function() {},
-  matches: function(source){
-    return object => this.isMatch(object,source) 
+  matches: function(source) {
+    return object => this.isMatch(object, source);
   },
   isNaN: function(value) {
     if (value != undefined && value != null) {

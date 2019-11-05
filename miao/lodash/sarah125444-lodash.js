@@ -14,6 +14,9 @@ var sarah125444 = {
     }
     return obj => path.reduce((res, item) => res[item],obj)
   },
+  matchesProperty: function(path,srcValue){ 
+    return obj => sarah125444.isMatch(this.property(path)(obj),srcValue)
+  },
   chunk: function(array, size) {
     const result = [];
     const num = Math.ceil(array.length / size);

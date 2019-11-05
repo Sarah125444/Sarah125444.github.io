@@ -69,7 +69,7 @@ var sarah125444 = {
       func = it => it;
     }
     let values = args.flat().map(func);
-    return array.filter(item => values.includes(func(item)));
+    return array.filter(item => !values.includes(func(item)));
   },
 
   differenceWith: function(array,...args) {

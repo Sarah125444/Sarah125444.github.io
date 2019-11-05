@@ -1,6 +1,16 @@
 var sarah125444 = {
-  iteratee: function(func=(...args) => args[0]){
-
+  iteratee: function(func= this.identity){
+    if(typeof func === "string"){
+      return this.property(func)
+    }
+    if(Array.isArray(func)){
+      return this.matchesProperty(func[0],func[1])
+    }
+    if(typeof func === "function"){
+      return func
+    }else{
+      return this.matches(func)
+    }
   },
   identity: function(...args){
     return args[0]
@@ -252,15 +262,16 @@ var sarah125444 = {
   includes: function() {},
   invokeMap: function() {},
   keyBy: function() {},
-  map: function(collection, iteratee = it => it) {
+  map: function(collection, func = it => it) {
+    func = this.iteratee(func)
     var transformed = [];
     if (Array.isArray(collection)) {
       for (var index = 0; index < collection.length; index++) {
-        transformed.push(iteratee(collection[index], index, collection));
+        transformed.push(func(collection[index], index, collection));
       }
     } else {
       for (let key in collection) {
-        transformed.push(iteratee(collection[key], key, collection));
+        transformed.push(func(collection[key], key, collection));
       }
     }
     return transformed;

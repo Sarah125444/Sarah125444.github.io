@@ -84,15 +84,27 @@ var sarah125444 = {
     return array.filter(arrVal => values.every(othVal => !func(arrVal,othVal)))
   },
 
-  drop: function(array, n) {
-    let arr = array.slice(n);
-    return arr;
+  drop: function(array, n=1) {
+   return array.slice(n)
   },
-  dropRight: function(array, n) {
-    let arr = array.slice(0, n ? -n : array.length);
-    return arr;
+
+  dropRight: function(array, n=1) {
+    return array.reverse().slice(n).reverse()
   },
-  dropRightWhile: function() {},
+
+  dropRightWhile: function(array,func=this.identity) {
+    func = this.iteratee(func);
+    let res = array.slice();
+    for(let i = array.length-1; i > 0;i--){
+      if(func(array[i])){
+        res.pop()
+      }else{
+        break;
+      }
+    }
+    return res
+  },
+
   dropWhile: function() {},
   fill: function(array, value, start = 0, end = array.length) {
     for (let i = start; i < end; i++) {

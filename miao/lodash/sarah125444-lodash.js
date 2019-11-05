@@ -1,4 +1,5 @@
 var sarah125444 = {
+
   iteratee: function(func= this.identity){
     if(typeof func === "string"){
       return this.property(func)
@@ -12,21 +13,26 @@ var sarah125444 = {
       return this.matches(func)
     }
   },
+
   identity: function(...args){
     return args[0]
   },
+
   toPath: function(value){
     return value.match(/\w+/g)
   },
+
   property:function(path){
     if(typeof path === "string"){
       path=this.toPath(path)
     }
     return obj => path.reduce((res, item) => res[item],obj)
   },
+
   matchesProperty: function(path,srcValue){ 
     return obj => sarah125444.isMatch(this.property(path)(obj),srcValue)
   },
+
   chunk: function(array, size) {
     let res = [];
     for(let i = 0; i < array.length;i++){
@@ -38,6 +44,7 @@ var sarah125444 = {
     }
     return res
   },
+  
   compact: function(array) {
     return (array = array.filter(Boolean));
   },

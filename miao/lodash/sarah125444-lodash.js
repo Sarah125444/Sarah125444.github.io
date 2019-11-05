@@ -33,18 +33,10 @@ var sarah125444 = {
     return obj => sarah125444.isMatch(this.property(path)(obj),srcValue)
   },
 
-  chunk: function(array, size) {
-    let res = [];
-    for(let i = 0; i < array.length;i++){
-      let index = Math.floor(i/size);
-      if(!res[index]){
-        res[index]=[];
-      } 
-      res[index].push(array[i])
-    }
-    return res
+  chunk: function(array, size=1) {
+    return array.map((_,index) => index % size === 0 ? array.slice(index, index+size) : null).filter(Boolean)
   },
-  
+
   compact: function(array) {
     return (array = array.filter(Boolean));
   },

@@ -187,11 +187,14 @@ var sarah125444 = {
   initial: function(array) {
     return array.slice(0, array.length - 1);
   },
-  
-  intersection: function() {},
+
+  intersection: function(...args) {
+    return args[0].filter(item => args.slice(1).every(arr => arr.includes(item)))
+  },
+
   intersectionBy: function() {},
   intersectionWith: function() {},
-  join: function(array, separator = "") {
+  join: function(array,separator="") {
     let str = array[0] + "";
     for (let i = 1; i < array.length; i++) {
       str += separator + "" + array[i];

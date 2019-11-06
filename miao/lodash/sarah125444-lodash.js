@@ -150,8 +150,8 @@ var sarah125444 = {
   },
 
   flattenDeep: function(array) {
-    let res = [].concat(...array);
-    return this.flattenDeep(res)
+    while(array.some(Array.isArray)) array = array.flat()
+    return array
   },
 
   flattenDepth: function(array, depth = 1) {

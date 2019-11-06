@@ -448,7 +448,7 @@ var sarah125444 = {
     return count == 0;
   },
 
-  isEquel: function(value, other) {
+  isEqual: function(value, other) {
     if(value === other) return true;
     if(value === null || other === null || typeof value !== "object" || typeof other !== "object") return false;
     let keysVal = Object.keys(value), keysOth=Object.keys(other);

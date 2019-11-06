@@ -228,16 +228,10 @@ var sarah125444 = {
     return array.filter(item => !args.includes(item));
   },
 
-  pullAll: function(array, array2) {
-    for (let i = 0; i < array.length; ) {
-      if (array2.includes(array[i])) {
-        array.splice(i, 1);
-      } else {
-        i++;
-      }
-    }
-    return array;
+  pullAll: function(array, values) {
+    return array.filter(item => !values.includes(item))
   },
+  
   pullAllBy: function() {},
   pullAllWith: function() {},
   reverse: function(array) {

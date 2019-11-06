@@ -237,7 +237,9 @@ var sarah125444 = {
     return array.filter(it => !values.map(func).includes(func(it)))
   },
 
-  pullAllWith: function() {},
+  pullAllWith: function(array,values,comparator) {
+    return array.filter(it => !values.map(item => comparator(it,item)))
+  },
 
   reverse: function(array) {
     let l = array.length,
@@ -247,11 +249,13 @@ var sarah125444 = {
     }
     return result;
   },
+
   sortedIndex: function(array, value) {
     let result = [value];
     let newarr = array.cancat(result).sort((a, b) => a - b);
     return newarr.indexOf(value);
   },
+  
   sortedIndexBy: function() {},
   sortedIndexOf: function() {},
   sortedLastIndex: function() {},

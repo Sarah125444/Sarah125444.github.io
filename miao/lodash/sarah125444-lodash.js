@@ -254,7 +254,15 @@ var sarah125444 = {
     }
   },
 
-  sortedIndexBy: function() {},
+  sortedIndexBy: function(array,value,func) {
+    func = this.iteratee(func);
+    for(let i = 0; i < array.length;i++){
+      if(func(array[i]) <= func(value) && (func(array[i+1])) > func(value)){
+        return i;
+      }
+    } 
+  },
+
   sortedIndexOf: function() {},
   sortedLastIndex: function() {},
   sortedLastIndexBy: function() {},

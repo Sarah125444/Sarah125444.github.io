@@ -171,6 +171,7 @@ var sarah125444 = {
   head: function(array) {
     return array[0];
   },
+
   indexOf: function(array, value, fromIndex = 0) {
     fromIndex += fromIndex < 0 ? array.length : 0;
     for (let i = fromIndex; i < array.length; i++) {
@@ -182,9 +183,11 @@ var sarah125444 = {
     }
     return -1;
   },
+
   initial: function(array) {
     return array.slice(0, array.length - 1);
   },
+  
   intersection: function() {},
   intersectionBy: function() {},
   intersectionWith: function() {},

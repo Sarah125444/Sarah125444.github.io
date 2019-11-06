@@ -283,8 +283,12 @@ var sarah125444 = {
     } 
   },
 
-  sortedLastIndexOf: function() {
-
+  sortedLastIndexOf: function(array,value) {
+    for(let i = 0; i < array.length; i++){
+      if(array[i] <= value && array[i] > value){
+        return i+1;
+      }
+    }
   },
 
   sortedUniq: function() {

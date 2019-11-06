@@ -454,7 +454,7 @@ var sarah125444 = {
     let keysVal = Object.keys(value), keysOth=Object.keys(other);
     if(keysVal.length !== keysObj) return false;
     for(let key of keysVal){
-      if(!keysOth.includes(keysVal) || !this.isEqual(value[key],other[key])) return false;
+      if(!keysOth.includes(key) || !this.isEqual(value[key],other[key])) return false;
     }
     return true
   },

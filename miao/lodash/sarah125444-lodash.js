@@ -295,8 +295,8 @@ var sarah125444 = {
     return [...new Set(array)]
   },
 
-  sortedUniqBy: function() {
-
+  sortedUniqBy: function(array,func) {
+    return [...new Set(array.map(func))]
   },
 
   tail: function(array) {

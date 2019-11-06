@@ -450,7 +450,7 @@ var sarah125444 = {
 
   isEquel: function(value, other) {
     if(value === other) return true;
-    if(a === null || b === null || typeof a !== "object" || typeof b !== "object") return false;
+    if(value === null || other === null || typeof value !== "object" || typeof other !== "object") return false;
     let keysVal = Object.keys(value), keysOth=Object.keys(other);
     if(keysVal.length !== keysObj) return false;
     for(let key of keysVal){

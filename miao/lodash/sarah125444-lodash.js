@@ -237,8 +237,8 @@ var sarah125444 = {
     return array.filter(it => !values.map(func).includes(func(it)))
   },
 
-  pullAllWith: function(array,values,comparator) {
-    return array.filter(it => !values.map(item => comparator(it,item)))
+  pullAllWith: function(array,values,func) {
+    return array.filter(it => !values.some(item => func(it,item)))
   },
 
   reverse: function(array) {
@@ -255,7 +255,7 @@ var sarah125444 = {
     let newarr = array.cancat(result).sort((a, b) => a - b);
     return newarr.indexOf(value);
   },
-  
+
   sortedIndexBy: function() {},
   sortedIndexOf: function() {},
   sortedLastIndex: function() {},
@@ -452,7 +452,7 @@ var sarah125444 = {
     let keysVal = Object.keys(value), keysOth=Object.keys(other);
     if(keysVal.length !== keysOth.length) return false;
     for(let key of keysVal){
-      if(!keysOth.includes(key) || !this.isEqual(value[key],other[key])) return false;
+      if(!keysOth.includes(key) || !sarah125444.isEqual(value[key],other[key])) return false;
     }
     return true
   },

@@ -291,8 +291,8 @@ var sarah125444 = {
     }
   },
 
-  sortedUniq: function() {
-
+  sortedUniq: function(array) {
+    return [...new Set(array)]
   },
 
   sortedUniqBy: function() {

@@ -452,7 +452,7 @@ var sarah125444 = {
     if(value === other) return true;
     if(value === null || other === null || typeof value !== "object" || typeof other !== "object") return false;
     let keysVal = Object.keys(value), keysOth=Object.keys(other);
-    if(keysVal.length !== keysObj) return false;
+    if(keysVal.length !== keysOth.length) return false;
     for(let key of keysVal){
       if(!keysOth.includes(key) || !this.isEqual(value[key],other[key])) return false;
     }

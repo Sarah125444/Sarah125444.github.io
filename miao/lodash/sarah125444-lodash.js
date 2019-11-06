@@ -220,12 +220,14 @@ var sarah125444 = {
   },
 
   nth: function(array, n = 0) {
-    if (n >= 0) return array[n];
-    if (n < 0) return array[array.length - -n];
+    n += n < 0 ? array.length : 0;
+    return array[n]
   },
+
   pull: function(array, ...args) {
     return array.filter(item => !args.includes(item));
   },
+
   pullAll: function(array, array2) {
     for (let i = 0; i < array.length; ) {
       if (array2.includes(array[i])) {

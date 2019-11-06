@@ -263,7 +263,10 @@ var sarah125444 = {
     } 
   },
 
-  sortedIndexOf: function() {},
+  sortedIndexOf: function(array,value) {
+    return array.sort((a,b) => a-b).indexOf(value)
+  },
+
   sortedLastIndex: function() {},
   sortedLastIndexBy: function() {},
   sortedLastIndexOf: function() {},

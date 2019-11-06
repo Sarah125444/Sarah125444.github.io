@@ -284,9 +284,9 @@ var sarah125444 = {
   },
 
   sortedLastIndexOf: function(array,value) {
-    for(let i = 0; i < array.length; i++){
-      if(array[i] <= value && array[i] > value){
-        return i+1;
+    for(let i = array.length - 1; i >= 0 ; i--){
+      if(array[i] > value && array[i-1] <= value){
+        return i-1;
       }
     }
   },

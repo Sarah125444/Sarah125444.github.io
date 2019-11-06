@@ -162,12 +162,12 @@ var sarah125444 = {
   },
 
   fromPairs: function(pairs) {
-    let object = {};
-    pairs.forEach(Element => {
-      object[Element[0]] = Element[1];
-    });
-    return pairs;
+    return pairs.reduce((res,item) => {
+      res[item[0]] = item[1];
+      return res
+    },{})
   },
+
   head: function(array) {
     return array[0];
   },

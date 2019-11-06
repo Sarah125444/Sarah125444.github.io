@@ -243,7 +243,7 @@ var sarah125444 = {
 
   reverse: function(array) {
     let result = [];
-    for (let i = 0; i <= array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
       result[i] = array[array.length - i];
     }
     return result;

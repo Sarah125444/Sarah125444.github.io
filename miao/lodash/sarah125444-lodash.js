@@ -201,10 +201,13 @@ var sarah125444 = {
       func = it => it
     }
     return array.filter(item => args.every(arr => arr.map(func).includes(func(item))))
-
   },
 
-  intersectionWith: function() {},
+  intersectionWith: function(...args) {
+    let func = args.pop()
+    return args[0].filter(item => args.slice(1).every(arr => arr.some(arrVal => func(item,arrVal))))
+  },
+
   join: function(array,separator="") {
     let str = array[0] + "";
     for (let i = 1; i < array.length; i++) {
@@ -444,7 +447,18 @@ var sarah125444 = {
     }
     return count == 0;
   },
-  isEquel: function(value, other) {},
+
+  isEquel: function(value, other) {
+    if(value === other) return true;
+    if(a === null || b === null || typeof a !== "object" || typeof b !== "object") return false;
+    let keysVal = Object.keys(value), keysOth=Object.keys(other);
+    if(keysVal.length !== keysObj) return false;
+    for(let key of keysVal){
+      if(!keysOth.includes(keysVal) || !this.isEqual(value[key],other[key])) return false;
+    }
+    return true
+  },
+
   isEqualWith: function() {},
   isError: function(value) {
     return value instanceof Error;

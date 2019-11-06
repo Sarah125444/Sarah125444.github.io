@@ -308,7 +308,16 @@ var sarah125444 = {
   tail: function(array) {
     return array.slice(1, array.length);
   },
-  take: function() {},
+
+  take: function(array,n=1) {
+    let res = [];
+    for(let i = 0; i < n; i++){
+      if(array[i]){
+        res.push(array[i])
+      }
+    }
+    return res;
+  },
 
   takeRight: function() {},
   takeRightWhile: function() {},

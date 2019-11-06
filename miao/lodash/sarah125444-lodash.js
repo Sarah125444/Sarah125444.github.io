@@ -124,7 +124,17 @@ var sarah125444 = {
     }
     return array;
   },
-  findIndex: function() {},
+
+  findIndex: function(array,func=this.identity,fromIndex=0) {
+    func = this.iteratee(func);
+    for(let i = fromIndex; i < array.length; i++){
+      if(func(array[i])){
+        return i;
+        break;
+      }
+    }
+  },
+
   findLastIndex: function() {},
   flatten: function(array) {
     return [].concat(...array);

@@ -212,8 +212,11 @@ var sarah125444 = {
     return array[array.length-1]
   },
 
-  lastIndexOf: function(array, value, fromIndex) {
-    
+  lastIndexOf: function(array, value, fromIndex=array.length-1) {
+    for(let i = fromIndex; i > 0; i++){
+      if(this.sameValueZero(array[i],value)) return i
+    }
+    return -1
   },
 
   nth: function(array, n = 0) {

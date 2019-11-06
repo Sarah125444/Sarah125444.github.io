@@ -155,20 +155,12 @@ var sarah125444 = {
   },
 
   flattenDepth: function(array, depth = 1) {
-    let result = [];
-    for (let i = 0; i < array.length; i++) {
-      if (depth > 1) {
-        if (typeof array[i] === `object`) {
-          result.push(...flattenDepth(array[i], --depth));
-        } else {
-          result.push(array[i]);
-        }
-      } else {
-        result.push(array[i]);
-      }
+    for(let i = 0; i < depth;i++){
+      array = array.flat()
     }
-    return result;
+    return array;
   },
+
   fromPairs: function(pairs) {
     let object = {};
     pairs.forEach(Element => {

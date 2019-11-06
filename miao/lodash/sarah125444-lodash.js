@@ -105,11 +105,20 @@ var sarah125444 = {
     return res
   },
 
-  dropWhile: function() {
-
+  dropWhile: function(array,func=this.identity) {
+    func = this.iteratee(func);
+    let res = array.slice();
+    for(let i = 0; i < array.length - 1; i++){
+      if(func(array[i])){
+        res.shift()
+      }else{
+        break;
+      }
+    }
+    return res;
   },
   
-  fill: function(array, value, start = 0, end = array.length) {
+  fill: function(array,value, start = 0, end = array.length) {
     for (let i = start; i < end; i++) {
       array[i] = value;
     }

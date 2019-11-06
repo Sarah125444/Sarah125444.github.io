@@ -209,7 +209,7 @@ var sarah125444 = {
   },
 
   join: function(array,separator=",") {
-    return array.reduce((res,item) => res+separator+item)
+    return array.reduce((res,item) => ""+res+separator+item)
   },
 
   last: function(array) {

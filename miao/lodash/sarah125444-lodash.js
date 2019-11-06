@@ -247,8 +247,9 @@ var sarah125444 = {
 
   sortedIndex: function(array, value) {
     for(let i = 0; i < array.length; i++){
-      if(array[i] > value){
-        
+      if(array[i] < value && array[i+1] >= value){
+        return i+1;
+        break;
       }
     }
   },

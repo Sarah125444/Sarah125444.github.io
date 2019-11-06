@@ -213,7 +213,7 @@ var sarah125444 = {
   },
 
   lastIndexOf: function(array, value, fromIndex=array.length-1) {
-    for(let i = fromIndex; i > 0; i++){
+    for(let i = fromIndex; i > 0; i--){
       if(this.sameValueZero(array[i],value)) return i
     }
     return -1

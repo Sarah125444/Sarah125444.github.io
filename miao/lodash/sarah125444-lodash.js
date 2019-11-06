@@ -208,24 +208,18 @@ var sarah125444 = {
     return args[0].filter(item => args.slice(1).every(arr => arr.some(arrVal => func(item,arrVal))))
   },
 
-  join: function(array,separator="") {
-    let str = array[0] + "";
-    for (let i = 1; i < array.length; i++) {
-      str += separator + "" + array[i];
-    }
-    return str;
+  join: function(array,separator=",") {
+    return array.reduce((res,item) => res+separator+item)
   },
+
   last: function(array) {
-    let l = array.length - 1;
-    return (nums = array[l]);
+    
   },
+
   lastIndexOf: function(array, value, fromIndex) {
-    for (var i = array.length; i > 0; i--) {
-      if (array[i] === value) {
-        return i;
-      }
-    }
+    
   },
+
   nth: function(array, n = 0) {
     if (n >= 0) return array[n];
     if (n < 0) return array[array.length - -n];

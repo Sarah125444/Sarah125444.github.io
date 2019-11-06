@@ -249,7 +249,6 @@ var sarah125444 = {
     for(let i = 0; i < array.length; i++){
       if(array[i] < value && array[i+1] >= value){
         return i+1;
-        break;
       }
     }
   },
@@ -267,7 +266,14 @@ var sarah125444 = {
     return array.sort((a,b) => a-b).indexOf(value)
   },
 
-  sortedLastIndex: function() {},
+  sortedLastIndex: function() {
+    for(let i = 0; i < array.length; i++){
+      if(array[i] <= value && array[i+1] > value){
+        return i+1;
+      }
+    }
+  },
+
   sortedLastIndexBy: function() {},
   sortedLastIndexOf: function() {},
   sortedUniq: function() {},

@@ -274,10 +274,27 @@ var sarah125444 = {
     }
   },
 
-  sortedLastIndexBy: function() {},
-  sortedLastIndexOf: function() {},
-  sortedUniq: function() {},
-  sortedUniqBy: function() {},
+  sortedLastIndexBy: function(array,value,func=identity) {
+    func = this.iteratee(func);
+    for(let i = 0; i < array.length;i++){
+      if(func(array[i]) <= func(value) && (func(array[i+1])) > func(value)){
+        return i+1;
+      }
+    } 
+  },
+
+  sortedLastIndexOf: function() {
+
+  },
+
+  sortedUniq: function() {
+
+  },
+
+  sortedUniqBy: function() {
+
+  },
+
   tail: function(array) {
     return array.slice(1, array.length);
   },

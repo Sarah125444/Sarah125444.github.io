@@ -213,7 +213,7 @@ var sarah125444 = {
   },
 
   last: function(array) {
-    
+    return array[array.length-1]
   },
 
   lastIndexOf: function(array, value, fromIndex) {

@@ -242,17 +242,15 @@ var sarah125444 = {
   },
 
   reverse: function(array) {
-    let result = [];
-    for (let i = 0; i < array.length; i++) {
-      result[i] = array[array.length - i];
-    }
-    return result;
+    return array.reverse()
   },
 
   sortedIndex: function(array, value) {
-    let result = [value];
-    let newarr = array.cancat(result).sort((a, b) => a - b);
-    return newarr.indexOf(value);
+    for(let i = 0; i < array.length; i++){
+      if(array[i] > value){
+        
+      }
+    }
   },
 
   sortedIndexBy: function() {},

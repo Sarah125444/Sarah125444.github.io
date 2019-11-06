@@ -296,7 +296,13 @@ var sarah125444 = {
   },
 
   sortedUniqBy: function(array,func) {
-    return [...new Set(array.map(func))]
+    let res = [];
+    for(let i = 0; i < array.length; i++){
+      if(func(array[i]) !== func(res[res.length - 1])){
+        res.push(array[i])
+      }
+    }
+    return res;
   },
 
   tail: function(array) {

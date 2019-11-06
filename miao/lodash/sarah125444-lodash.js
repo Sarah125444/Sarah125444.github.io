@@ -192,7 +192,18 @@ var sarah125444 = {
     return args[0].filter(item => args.slice(1).every(arr => arr.includes(item)))
   },
 
-  intersectionBy: function() {},
+  intersectionBy: function(array,...args) {
+    let func;
+    let lastArgs = args[args.length-1]
+    if(typeof lastArgs === "string" || typeof lastArgs === "function"){
+      func = this.iteratee(args.pop())
+    }else{
+      func = it => it
+    }
+    return array.filter(item => args.every(arr => arr.map(func).includes(func(item))))
+
+  },
+
   intersectionWith: function() {},
   join: function(array,separator="") {
     let str = array[0] + "";

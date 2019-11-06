@@ -231,9 +231,14 @@ var sarah125444 = {
   pullAll: function(array, values) {
     return array.filter(item => !values.includes(item))
   },
-  
-  pullAllBy: function() {},
+
+  pullAllBy: function(array,values,func=identity) {
+    func=this.iteratee(func)
+    return array.filter(it => !values.map(func).includes(func(it)))
+  },
+
   pullAllWith: function() {},
+
   reverse: function(array) {
     let l = array.length,
       result = [];

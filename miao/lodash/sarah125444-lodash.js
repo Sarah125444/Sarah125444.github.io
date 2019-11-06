@@ -148,17 +148,12 @@ var sarah125444 = {
   flatten: function(array) {
     return [].concat(...array);
   },
+
   flattenDeep: function(array) {
-    let result = [];
-    for (let i = 0; i < array.length; i++) {
-      if (typeof array[i] === `object`) {
-        result.push(...flattenDeep(array[i]));
-      } else {
-        result.push(array[i]);
-      }
-    }
-    return result;
+    let res = [].concat(...array);
+    return this.flattenDeep(res)
   },
+
   flattenDepth: function(array, depth = 1) {
     let result = [];
     for (let i = 0; i < array.length; i++) {
@@ -212,7 +207,7 @@ var sarah125444 = {
     let l = array.length - 1;
     return (nums = array[l]);
   },
-  lastindexof: function(array, value, fromIndex) {
+  lastIndexof: function(array, value, fromIndex) {
     for (var i = array.length; i > 0; i--) {
       if (array[i] === value) {
         return i;

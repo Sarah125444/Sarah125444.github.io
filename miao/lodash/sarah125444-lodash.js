@@ -207,7 +207,7 @@ var sarah125444 = {
     let l = array.length - 1;
     return (nums = array[l]);
   },
-  lastIndexof: function(array, value, fromIndex) {
+  lastIndexOf: function(array, value, fromIndex) {
     for (var i = array.length; i > 0; i--) {
       if (array[i] === value) {
         return i;

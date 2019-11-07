@@ -325,13 +325,7 @@ var sarah125444 = {
   },
 
   take: function(array, n = 1) {
-    let res = [];
-    for (let i = 0; i < n; i++) {
-      if (array[i]) {
-        res.push(array[i]);
-      }
-    }
-    return res;
+    return array.slice(0,n)
   },
 
   takeRight: function(array, n = 1) {
@@ -349,7 +343,15 @@ var sarah125444 = {
     return arr.slice();
   },
 
-  takeWhile: function() {},
+  takeWhile: function(array,func=identity) {
+    func = this.iteratee(func);
+    for(let i = 0; i < array.length; i++){
+      if(!func(array[i],i,array)){
+        return array.slice(0,i)
+      }
+    }
+    return array.slice();
+  },
 
   union: function() {},
 

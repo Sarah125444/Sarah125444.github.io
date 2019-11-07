@@ -419,7 +419,10 @@ var sarah125444 = {
 
   zipObjectDeep: function() {},
 
-  zipWith: function() {},
+  zipWith: function(...args) {
+    func = this.iteratee(args.pop())
+    return  array[0].map((_,i) => func(...array.map(arr => arr[i])))
+  },
 
   countBy: function() {},
 

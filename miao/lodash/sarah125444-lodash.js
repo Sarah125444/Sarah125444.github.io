@@ -393,8 +393,8 @@ var sarah125444 = {
     return  array[0].map((_,index) => array.map(item => item[index]))
   },
 
-  unzipWith: function() {
-
+  unzipWith: function(array,func) {
+    return  array[0].map((_,i) => func(...array.map(arr => arr[i])))
   },
 
   without: function() {
@@ -721,9 +721,11 @@ var sarah125444 = {
   toNumber: function() {},
   assgin: function() {},
   toSafeIntegar: function() {},
+
   add: function(augend, addend) {
     return augend + addend;
   },
+
   ceil: function(number, precision = 0) {
     let power = 10 ** precision;
     let num = Math.ceil(number * power);

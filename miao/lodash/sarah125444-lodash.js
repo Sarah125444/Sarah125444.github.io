@@ -385,8 +385,8 @@ var sarah125444 = {
   },
 
   uniqWith: function(array,func) {
-    func = this.iteratee(args.pop())
-    return args.flat().reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
+    func = this.iteratee(func)
+    return array.reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
   },
 
   unzip: function() {

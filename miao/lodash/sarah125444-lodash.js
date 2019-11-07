@@ -412,7 +412,7 @@ var sarah125444 = {
   xorWith: function() {},
 
   zip: function(...args) {
-    return  Array(Math.max(args.map(it => it.length))).fill(0).map((_,index) => args.map(item => item[index]))
+    return  Array(Math.max(...(args.map(it => it.length)))).fill(0).map((_,index) => args.map(item => item[index]))
   },
 
   zipObject: function() {},

@@ -319,11 +319,22 @@ var sarah125444 = {
     return res;
   },
 
-  takeRight: function() {},
-  takeRightWhile: function() {},
-  takeWhile: function() {},
+  takeRight: function(array,n=1) {
+    if(n > 0) return array.slice(-n)
+    if(n === 0) return this.take(array,n)
+  },
 
-  union: function() {},
+  takeRightWhile: function() {
+
+  },
+
+  takeWhile: function() {
+
+  },
+
+  union: function() {
+
+  },
 
   unionBy: function() {},
   unionWith: function() {},

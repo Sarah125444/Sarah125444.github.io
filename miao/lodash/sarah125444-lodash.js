@@ -389,8 +389,8 @@ var sarah125444 = {
     return array.reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
   },
 
-  unzip: function(array) {
-
+  unzip: function(...args) {
+    return  args[0].map((_,index) => args.map(item => item[index]))
   },
 
   unziqWith: function() {

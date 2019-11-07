@@ -393,7 +393,7 @@ var sarah125444 = {
     return  array[0].map((_,index) => array.map(item => item[index]))
   },
 
-  unziqWith: function() {
+  unzipWith: function() {
 
   },
 

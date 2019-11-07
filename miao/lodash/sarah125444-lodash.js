@@ -415,7 +415,9 @@ var sarah125444 = {
     return  Array(Math.max(...args.map(it => it.length))).fill(0).map((_,index) => args.map(item => item[index]))
   },
 
-  zipObject: function() {},
+  zipObject: function(props,values) {
+    return Object.fromEntries(this.zip(props,values))
+  },
 
   zipObjectDeep: function() {},
 

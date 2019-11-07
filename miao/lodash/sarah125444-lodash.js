@@ -72,73 +72,82 @@ var sarah125444 = {
     return array.filter(item => !values.includes(func(item)));
   },
 
-  differenceWith: function(array,...args) {
+  differenceWith: function(array, ...args) {
     let func,
-    lastArg = args[args.length - 1];
+      lastArg = args[args.length - 1];
     if (typeof lastArg === "string" || typeof lastArg === "function") {
       func = this.iteratee(args.pop());
     } else {
       func = it => it;
     }
     let values = args.flat();
-    return array.filter(arrVal => values.every(othVal => !func(arrVal,othVal)))
+    return array.filter(arrVal =>
+      values.every(othVal => !func(arrVal, othVal))
+    );
   },
 
-  drop: function(array, n=1) {
-   return array.slice(n)
+  drop: function(array, n = 1) {
+    return array.slice(n);
   },
 
-  dropRight: function(array, n=1) {
-    return array.reverse().slice(n).reverse()
+  dropRight: function(array, n = 1) {
+    return array
+      .reverse()
+      .slice(n)
+      .reverse();
   },
 
-  dropRightWhile: function(array,func=this.identity) {
+  dropRightWhile: function(array, func = this.identity) {
     func = this.iteratee(func);
     let res = array.slice();
-    for(let i = array.length-1; i > 0;i--){
-      if(func(array[i])){
-        res.pop()
-      }else{
-        break;
-      }
-    }
-    return res
-  },
-
-  dropWhile: function(array,func=this.identity) {
-    func = this.iteratee(func);
-    let res = array.slice();
-    for(let i = 0; i < array.length - 1; i++){
-      if(func(array[i])){
-        res.shift()
-      }else{
+    for (let i = array.length - 1; i > 0; i--) {
+      if (func(array[i])) {
+        res.pop();
+      } else {
         break;
       }
     }
     return res;
   },
-  
-  fill: function(array,value, start = 0, end = array.length) {
+
+  dropWhile: function(array, func = this.identity) {
+    func = this.iteratee(func);
+    let res = array.slice();
+    for (let i = 0; i < array.length - 1; i++) {
+      if (func(array[i])) {
+        res.shift();
+      } else {
+        break;
+      }
+    }
+    return res;
+  },
+
+  fill: function(array, value, start = 0, end = array.length) {
     for (let i = start; i < end; i++) {
       array[i] = value;
     }
     return array;
   },
 
-  findIndex: function(array,func=this.identity,fromIndex=0) {
+  findIndex: function(array, func = this.identity, fromIndex = 0) {
     func = this.iteratee(func);
-    for(let i = fromIndex; i < array.length; i++){
-      if(func(array[i])){
+    for (let i = fromIndex; i < array.length; i++) {
+      if (func(array[i])) {
         return i;
         break;
       }
     }
   },
 
-  findLastIndex: function(array,func=this.identity,fromIndex=array.length-1) {
+  findLastIndex: function(
+    array,
+    func = this.identity,
+    fromIndex = array.length - 1
+  ) {
     func = this.iteratee(func);
-    for(let i = fromIndex; i >= 0;i--){
-      if(func(array[i])){
+    for (let i = fromIndex; i >= 0; i--) {
+      if (func(array[i])) {
         return i;
         break;
       }
@@ -150,22 +159,22 @@ var sarah125444 = {
   },
 
   flattenDeep: function(array) {
-    while(array.some(Array.isArray)) array = array.flat()
-    return array
+    while (array.some(Array.isArray)) array = array.flat();
+    return array;
   },
 
   flattenDepth: function(array, depth = 1) {
-    for(let i = 0; i < depth;i++){
-      array = array.flat()
+    for (let i = 0; i < depth; i++) {
+      array = array.flat();
     }
     return array;
   },
 
   fromPairs: function(pairs) {
-    return pairs.reduce((res,item) => {
+    return pairs.reduce((res, item) => {
       res[item[0]] = item[1];
-      return res
-    },{})
+      return res;
+    }, {});
   },
 
   head: function(array) {
@@ -175,7 +184,7 @@ var sarah125444 = {
   indexOf: function(array, value, fromIndex = 0) {
     fromIndex += fromIndex < 0 ? array.length : 0;
     for (let i = fromIndex; i < array.length; i++) {
-      if(this.sameValueZero(array[i],value)) return i
+      if (this.sameValueZero(array[i], value)) return i;
     }
     return -1;
   },
@@ -185,43 +194,49 @@ var sarah125444 = {
   },
 
   intersection: function(...args) {
-    return args[0].filter(item => args.slice(1).every(arr => arr.includes(item)))
+    return args[0].filter(item =>
+      args.slice(1).every(arr => arr.includes(item))
+    );
   },
 
-  intersectionBy: function(array,...args) {
+  intersectionBy: function(array, ...args) {
     let func;
-    let lastArgs = args[args.length-1]
-    if(typeof lastArgs === "string" || typeof lastArgs === "function"){
-      func = this.iteratee(args.pop())
-    }else{
-      func = it => it
+    let lastArgs = args[args.length - 1];
+    if (typeof lastArgs === "string" || typeof lastArgs === "function") {
+      func = this.iteratee(args.pop());
+    } else {
+      func = it => it;
     }
-    return array.filter(item => args.every(arr => arr.map(func).includes(func(item))))
+    return array.filter(item =>
+      args.every(arr => arr.map(func).includes(func(item)))
+    );
   },
 
   intersectionWith: function(...args) {
-    let func = args.pop()
-    return args[0].filter(item => args.slice(1).every(arr => arr.some(arrVal => func(item,arrVal))))
+    let func = args.pop();
+    return args[0].filter(item =>
+      args.slice(1).every(arr => arr.some(arrVal => func(item, arrVal)))
+    );
   },
 
-  join: function(array,separator=",") {
-    return array.reduce((res,item) => ""+res+separator+item)
+  join: function(array, separator = ",") {
+    return array.reduce((res, item) => "" + res + separator + item);
   },
 
   last: function(array) {
-    return array[array.length-1]
+    return array[array.length - 1];
   },
 
-  lastIndexOf: function(array, value, fromIndex=array.length-1) {
-    for(let i = fromIndex; i > 0; i--){
-      if(this.sameValueZero(array[i],value)) return i
+  lastIndexOf: function(array, value, fromIndex = array.length - 1) {
+    for (let i = fromIndex; i > 0; i--) {
+      if (this.sameValueZero(array[i], value)) return i;
     }
-    return -1
+    return -1;
   },
 
   nth: function(array, n = 0) {
     n += n < 0 ? array.length : 0;
-    return array[n]
+    return array[n];
   },
 
   pull: function(array, ...args) {
@@ -229,77 +244,77 @@ var sarah125444 = {
   },
 
   pullAll: function(array, values) {
-    return array.filter(item => !values.includes(item))
+    return array.filter(item => !values.includes(item));
   },
 
-  pullAllBy: function(array,values,func=identity) {
-    func=this.iteratee(func)
-    return array.filter(it => !values.map(func).includes(func(it)))
+  pullAllBy: function(array, values, func = identity) {
+    func = this.iteratee(func);
+    return array.filter(it => !values.map(func).includes(func(it)));
   },
 
-  pullAllWith: function(array,values,func) {
-    return array.filter(it => !values.some(item => func(it,item)))
+  pullAllWith: function(array, values, func) {
+    return array.filter(it => !values.some(item => func(it, item)));
   },
 
   reverse: function(array) {
-    return array.reverse()
+    return array.reverse();
   },
 
   sortedIndex: function(array, value) {
-    for(let i = 0; i < array.length; i++){
-      if(array[i] < value && array[i+1] >= value){
-        return i+1;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] < value && array[i + 1] >= value) {
+        return i + 1;
       }
     }
   },
 
-  sortedIndexBy: function(array,value,func) {
+  sortedIndexBy: function(array, value, func) {
     func = this.iteratee(func);
-    for(let i = 0; i < array.length;i++){
-      if(func(array[i]) <= func(value) && (func(array[i+1])) > func(value)){
+    for (let i = 0; i < array.length; i++) {
+      if (func(array[i]) <= func(value) && func(array[i + 1]) > func(value)) {
         return i;
       }
-    } 
+    }
   },
 
-  sortedIndexOf: function(array,value) {
-    return array.sort((a,b) => a-b).indexOf(value)
+  sortedIndexOf: function(array, value) {
+    return array.sort((a, b) => a - b).indexOf(value);
   },
 
-  sortedLastIndex: function(array,value) {
-    for(let i = 0; i < array.length; i++){
-      if(array[i] <= value && array[i+1] > value){
-        return i+1;
+  sortedLastIndex: function(array, value) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] <= value && array[i + 1] > value) {
+        return i + 1;
       }
     }
   },
 
-  sortedLastIndexBy: function(array,value,func=identity) {
+  sortedLastIndexBy: function(array, value, func = identity) {
     func = this.iteratee(func);
-    for(let i = 0; i < array.length;i++){
-      if(func(array[i]) <= func(value) && (func(array[i+1])) > func(value)){
-        return i+1;
+    for (let i = 0; i < array.length; i++) {
+      if (func(array[i]) <= func(value) && func(array[i + 1]) > func(value)) {
+        return i + 1;
       }
-    } 
+    }
   },
 
-  sortedLastIndexOf: function(array,value) {
-    for(let i = array.length - 1; i >= 0 ; i--){
-      if(array[i] > value && array[i-1] <= value){
-        return i-1;
+  sortedLastIndexOf: function(array, value) {
+    for (let i = array.length - 1; i >= 0; i--) {
+      if (array[i] > value && array[i - 1] <= value) {
+        return i - 1;
       }
     }
   },
 
   sortedUniq: function(array) {
-    return [...new Set(array)]
+    return [...new Set(array)];
   },
 
-  sortedUniqBy: function(array,func) {
+  sortedUniqBy: function(array, func) {
     let res = [];
-    for(let i = 0; i < array.length; i++){
-      if(func(array[i]) !== func(res[res.length - 1])){
-        res.push(array[i])
+    for (let i = 0; i < array.length; i++) {
+      if (func(array[i]) !== func(res[res.length - 1])) {
+        res.push(array[i]);
       }
     }
     return res;
@@ -309,32 +324,34 @@ var sarah125444 = {
     return array.slice(1, array.length);
   },
 
-  take: function(array,n=1) {
+  take: function(array, n = 1) {
     let res = [];
-    for(let i = 0; i < n; i++){
-      if(array[i]){
-        res.push(array[i])
+    for (let i = 0; i < n; i++) {
+      if (array[i]) {
+        res.push(array[i]);
       }
     }
     return res;
   },
 
-  takeRight: function(array,n=1) {
-    if(n > 0) return array.slice(-n)
-    if(n === 0) return this.take(array,n)
+  takeRight: function(array, n = 1) {
+    if (n > 0) return array.slice(-n);
+    if (n === 0) return this.take(array, n);
   },
 
-  takeRightWhile: function() {
-
+  takeRightWhile: function(arr, func = identity) {
+    func = this.iteratee(func);
+    for (let i = arr.length - 1; i >= 0; i--) {
+      if (!func(arr[i], i, arr)) {
+        return arr.slice(i + 1);
+      }
+    }
+    return arr.slice();
   },
 
-  takeWhile: function() {
+  takeWhile: function() {},
 
-  },
-
-  union: function() {
-
-  },
+  union: function() {},
 
   unionBy: function() {},
   unionWith: function() {},
@@ -509,14 +526,25 @@ var sarah125444 = {
   },
 
   isEqual: function(value, other) {
-    if(value === other) return true;
-    if(value === null || other === null || typeof value !== "object" || typeof other !== "object") return false;
-    let keysVal = Object.keys(value), keysOth=Object.keys(other);
-    if(keysVal.length !== keysOth.length) return false;
-    for(let key of keysVal){
-      if(!keysOth.includes(key) || !sarah125444.isEqual(value[key],other[key])) return false;
+    if (value === other) return true;
+    if (
+      value === null ||
+      other === null ||
+      typeof value !== "object" ||
+      typeof other !== "object"
+    )
+      return false;
+    let keysVal = Object.keys(value),
+      keysOth = Object.keys(other);
+    if (keysVal.length !== keysOth.length) return false;
+    for (let key of keysVal) {
+      if (
+        !keysOth.includes(key) ||
+        !sarah125444.isEqual(value[key], other[key])
+      )
+        return false;
     }
-    return true
+    return true;
   },
 
   isEqualWith: function() {},

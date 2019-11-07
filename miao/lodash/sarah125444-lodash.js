@@ -353,7 +353,9 @@ var sarah125444 = {
     return array.slice();
   },
 
-  union: function() {},
+  union: function(...args) {
+    return [...new Set(args.flat())]
+  },
 
   unionBy: function() {},
   unionWith: function() {},

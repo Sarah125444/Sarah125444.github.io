@@ -412,17 +412,7 @@ var sarah125444 = {
   xorWith: function() {},
 
   zip: function(...args) {
-    let res = [];
-    for(let i = 0; i < args[0].length;i++){
-      for(let j = 0; j < args.length;j++){
-        if(!res[i]){
-          res[i]=[args[j][i]]
-        }else{
-          res[i].push(args[j][i])
-        }
-      }
-    }
-    return res;
+    return  args[0].map((_,index) => args.map(item => item[index]))
   },
 
   zipObject: function() {},

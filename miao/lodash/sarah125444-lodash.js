@@ -357,7 +357,18 @@ var sarah125444 = {
     return [...new Set(args.flat())]
   },
 
-  unionBy: function() {},
+  unionBy: function(...args) {
+    let lastArgs = args[args.length - 1];
+    if(typeof lastArgs === "function" || typeof lastArgs === "string"){
+      func = this.iteratee(args.pop())
+    }else{
+      func = it => it
+    }
+    let argsOrigin = args.flat();
+    let argsFalse = argsOrigin.map(func);
+    return argsOrigin.filter((_,index) => argsFalse.indexOf(argsFalse[index]) === index)
+  },
+
   unionWith: function() {},
   uniq: function() {},
   uniqBy: function() {},

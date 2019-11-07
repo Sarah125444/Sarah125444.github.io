@@ -378,8 +378,10 @@ var sarah125444 = {
     return [...new Set(array)]
   },
 
-  uniqBy: function() {
-
+  uniqBy: function(array,func=identity) {
+    func=this.iteratee(func);
+    let transfromed = array.map(func);
+    return array.filter((_,index) => transfromed.indexOf(transfromed[index]) === index)
   },
 
   uniqWith: function() {

@@ -384,8 +384,9 @@ var sarah125444 = {
     return array.filter((_,index) => transfromed.indexOf(transfromed[index]) === index)
   },
 
-  uniqWith: function() {
-
+  uniqWith: function(array,func) {
+    func = this.iteratee(args.pop())
+    return args.flat().reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
   },
 
   unzip: function() {

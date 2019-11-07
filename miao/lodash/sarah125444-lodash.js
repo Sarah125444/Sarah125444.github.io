@@ -412,7 +412,7 @@ var sarah125444 = {
   xorWith: function() {},
 
   zip: function(...args) {
-    return  Array(Math.max(...(args.map(it => it.length)))).fill(0).map((_,index) => args.map(item => item[index]))
+    return  Array(Math.max(...args.map(it => it.length))).fill(0).map((_,index) => args.map(item => item[index]))
   },
 
   zipObject: function() {},
@@ -423,7 +423,7 @@ var sarah125444 = {
 
   countBy: function() {},
 
-  every: function(collection, func = this.identity) {
+  every: function(collection,func=this.identity) {
     func = this.iteratee(func);
     if (Array.isArray(collection)) {
       for (let index = 0; index < collection.length; index++) {

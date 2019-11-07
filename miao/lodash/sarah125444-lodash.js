@@ -370,12 +370,12 @@ var sarah125444 = {
   },
 
   unionWith: function(...args) {
-      func = this.iteratee(args.pop())
-      return args.flat().reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
+    func = this.iteratee(args.pop())
+    return args.flat().reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
   },
 
-  uniq: function() {
-
+  uniq: function(array) {
+    return [...new Set(array)]
   },
 
   uniqBy: function() {

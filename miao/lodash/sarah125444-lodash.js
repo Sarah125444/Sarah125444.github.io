@@ -365,25 +365,66 @@ var sarah125444 = {
       func = it => it
     }
     let argsOrigin = args.flat();
-    let argsFalse = argsOrigin.map(func);
-    return argsOrigin.filter((_,index) => argsFalse.indexOf(argsFalse[index]) === index)
+    let argsTransformed = argsOrigin.map(func);
+    return argsOrigin.filter((_,index) => argsTransformed.indexOf(argsTransformed[index]) === index)
   },
 
-  unionWith: function() {},
-  uniq: function() {},
-  uniqBy: function() {},
-  uniqWith: function() {},
-  unzip: function() {},
-  unziqWith: function() {},
-  without: function() {},
-  xor: function() {},
-  xorBy: function() {},
+  unionWith: function(...args) {
+      func = this.iteratee(args.pop())
+      let argsOrigin = args.flat();
+      let res = [];
+      for(let i = 0; i < argsOrigin.length;i++){
+        if(!res.some(item => func(argsOrigin[i],item))){
+          res.push(argsOrigin[i])
+        }
+      }
+      return res;
+  },
+
+  uniq: function() {
+
+  },
+
+  uniqBy: function() {
+
+  },
+
+  uniqWith: function() {
+
+  },
+
+  unzip: function() {
+
+  },
+
+  unziqWith: function() {
+
+  },
+
+  without: function() {
+
+  },
+
+  xor: function() {
+
+  },
+
+  xorBy: function() {
+
+  },
+
   xorWith: function() {},
+
   zip: function() {},
+
   zipObject: function() {},
+
   zipObjectDeep: function() {},
+
   zipWith: function() {},
+
   countBy: function() {},
+
   every: function(collection, func = this.identity) {
     func = this.iteratee(func);
     if (Array.isArray(collection)) {

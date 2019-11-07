@@ -371,14 +371,7 @@ var sarah125444 = {
 
   unionWith: function(...args) {
       func = this.iteratee(args.pop())
-      let argsOrigin = args.flat();
-      let res = [];
-      for(let i = 0; i < argsOrigin.length;i++){
-        if(!res.some(item => func(argsOrigin[i],item))){
-          res.push(argsOrigin[i])
-        }
-      }
-      return res;
+      return args.flat().reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
   },
 
   uniq: function() {

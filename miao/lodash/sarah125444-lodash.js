@@ -468,9 +468,7 @@ var sarah125444 = {
   },
 
   set: function(object, path, value){
-    if (typeof path === "string") {
-      path = this.toPath(path);
-    }
+    path = (typeof path === "string" ? path.match(/\w+/g) : path).map(it => Number(it) >= 0 ? +it : it)
     path.reduce((res,item,index) => {
       if(index === path.length - 1){
         res[item] = value;

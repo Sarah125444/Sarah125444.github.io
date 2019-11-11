@@ -414,8 +414,9 @@ var sarah125444 = {
     return res;
   },
 
-  xor: function() {
-
+  xor: function(...args) {
+    let newArg = args.flat();
+    return  newArg.filter(it => newArg.indexOf(it) === newArg.lastIndexOf(it))
   },
 
   xorBy: function() {

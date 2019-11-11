@@ -325,7 +325,7 @@ var sarah125444 = {
   },
 
   take: function(array, n = 1) {
-    return array.slice(0,n)
+    return array.slice(0, n);
   },
 
   takeRight: function(array, n = 1) {
@@ -343,120 +343,156 @@ var sarah125444 = {
     return arr.slice();
   },
 
-  takeWhile: function(array,func=identity) {
+  takeWhile: function(array, func = identity) {
     func = this.iteratee(func);
-    for(let i = 0; i < array.length; i++){
-      if(!func(array[i],i,array)){
-        return array.slice(0,i)
+    for (let i = 0; i < array.length; i++) {
+      if (!func(array[i], i, array)) {
+        return array.slice(0, i);
       }
     }
     return array.slice();
   },
 
   union: function(...args) {
-    return [...new Set(args.flat())]
+    return [...new Set(args.flat())];
   },
 
   unionBy: function(...args) {
     let lastArgs = args[args.length - 1];
-    if(typeof lastArgs === "function" || typeof lastArgs === "string"){
-      func = this.iteratee(args.pop())
-    }else{
-      func = it => it
+    if (typeof lastArgs === "function" || typeof lastArgs === "string") {
+      func = this.iteratee(args.pop());
+    } else {
+      func = it => it;
     }
     let argsOrigin = args.flat();
     let argsTransformed = argsOrigin.map(func);
-    return argsOrigin.filter((_,index) => argsTransformed.indexOf(argsTransformed[index]) === index)
+    return argsOrigin.filter(
+      (_, index) => argsTransformed.indexOf(argsTransformed[index]) === index
+    );
   },
 
   unionWith: function(...args) {
-    func = this.iteratee(args.pop())
-    return args.flat().reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
+    func = this.iteratee(args.pop());
+    return args
+      .flat()
+      .reduce(
+        (res, item) => (res.some(it => func(item, it)) ? res : [...res, item]),
+        []
+      );
   },
 
   uniq: function(array) {
-    return [...new Set(array)]
+    return [...new Set(array)];
   },
 
-  uniqBy: function(array,func=identity) {
-    func=this.iteratee(func);
+  uniqBy: function(array, func = identity) {
+    func = this.iteratee(func);
     let transfromed = array.map(func);
-    return array.filter((_,index) => transfromed.indexOf(transfromed[index]) === index)
+    return array.filter(
+      (_, index) => transfromed.indexOf(transfromed[index]) === index
+    );
   },
 
-  uniqWith: function(array,func) {
-    func = this.iteratee(func)
-    return array.reduce((res,item) => res.some(it => func(item,it)) ? res : [...res,item],[])
+  uniqWith: function(array, func) {
+    func = this.iteratee(func);
+    return array.reduce(
+      (res, item) => (res.some(it => func(item, it)) ? res : [...res, item]),
+      []
+    );
   },
 
   unzip: function(array) {
-    return  array[0].map((_,index) => array.map(item => item[index]))
+    return array[0].map((_, index) => array.map(item => item[index]));
   },
 
-  unzipWith: function(array,func) {
-    return  array[0].map((_,i) => func(...array.map(arr => arr[i])))
+  unzipWith: function(array, func) {
+    return array[0].map((_, i) => func(...array.map(arr => arr[i])));
   },
 
   without: function(array, ...args) {
     let res = [];
-    let newAry=[...new Set(array)];
-    for(let i = 0; i < newAry.length;i++){
+    let newAry = [...new Set(array)];
+    for (let i = 0; i < newAry.length; i++) {
       let cur = newAry[i];
       let shouldPush = true;
-      for(let j = 0; j < args.length;j++){
-        if(cur === args[j]){
+      for (let j = 0; j < args.length; j++) {
+        if (cur === args[j]) {
           shouldPush = false;
           break;
         }
       }
-      if(shouldPush) res.push(newAry[i]);
+      if (shouldPush) res.push(newAry[i]);
     }
     return res;
   },
 
   xor: function(...args) {
     let newArg = args.flat();
-    return  newArg.filter(it => newArg.indexOf(it) === newArg.lastIndexOf(it))
+    return newArg.filter(it => newArg.indexOf(it) === newArg.lastIndexOf(it));
   },
 
   xorBy: function(...args) {
     let lastArgs = args[args.length - 1];
-    if(typeof lastArgs === "function" || typeof lastArgs === "string"){
-      func = this.iteratee(args.pop())
-    }else{
-      func = it => it
+    if (typeof lastArgs === "function" || typeof lastArgs === "string") {
+      func = this.iteratee(args.pop());
+    } else {
+      func = it => it;
     }
     let OriginArgs = args.flat();
-    let transArgs = OriginArgs.map(func)
-    return OriginArgs.filter((_,index) => transArgs.indexOf(transArgs[index]) === transArgs.lastIndexOf(transArgs[index]))
+    let transArgs = OriginArgs.map(func);
+    return OriginArgs.filter(
+      (_, index) =>
+        transArgs.indexOf(transArgs[index]) ===
+        transArgs.lastIndexOf(transArgs[index])
+    );
   },
 
   xorWith: function(...args) {
     func = this.iteratee(args.pop());
     let originArgs = args.flat();
-    return originArgs.filter((item ,index)=> [...originArgs.slice(0,index),...originArgs.slice(index+1)].every(it => !func(item , it)))
+    return originArgs.filter((item, index) =>
+      [...originArgs.slice(0, index), ...originArgs.slice(index + 1)].every(
+        it => !func(item, it)
+      )
+    );
   },
 
-
-  
   zip: function(...args) {
-    return  Array(Math.max(...args.map(it => it.length))).fill(0).map((_,index) => args.map(item => item[index]))
+    return Array(Math.max(...args.map(it => it.length)))
+      .fill(0)
+      .map((_, index) => args.map(item => item[index]));
   },
 
-  zipObject: function(props,values) {
-    return Object.fromEntries(this.zip(props,values))
+  zipObject: function(props, values) {
+    return Object.fromEntries(this.zip(props, values));
   },
+
+  set: function(object, path, value){
+    if (typeof path === "string") {
+      path = this.toPath(path);
+    }
+    return obj => path.reduce((res, item) => res[item], obj);
+  },
+
+  // set: function(object, path, value) {
+  //   path = typeof path === "string" ? path.match(/\w+/g).map(it => (isNaN(it) ? it : +it)) : path;
+  //   path.reduce((res, p, i) => {res[p] = res[p] || typeof path[i + 1] === "string" ? {}
+  //         : typeof path[i + 1] === "number" ? [] : value;
+  //     return res[p];
+  //   }, object);
+  //   return object;
+  // },
 
   zipObjectDeep: function() {},
 
   zipWith: function(...args) {
-    func = this.iteratee(args.pop())
-    return  args[0].map((_,i) => func(...args.map(arr => arr[i])))
+    func = this.iteratee(args.pop());
+    return args[0].map((_, i) => func(...args.map(arr => arr[i])));
   },
 
   countBy: function() {},
 
-  every: function(collection,func=this.identity) {
+  every: function(collection, func = this.identity) {
     func = this.iteratee(func);
     if (Array.isArray(collection)) {
       for (let index = 0; index < collection.length; index++) {
@@ -474,6 +510,7 @@ var sarah125444 = {
       return true;
     }
   },
+
   filter: function(collection, func = this.identity) {
     func = this.iteratee(func);
     var passed = [];
@@ -614,12 +651,21 @@ var sarah125444 = {
 
   isEqual: function(value, other) {
     if (value === other) return true;
-    if (value === null ||other === null ||typeof value !== "object" ||typeof other !== "object")
+    if (
+      value === null ||
+      other === null ||
+      typeof value !== "object" ||
+      typeof other !== "object"
+    )
       return false;
-    let keysVal = Object.keys(value),keysOth = Object.keys(other);
+    let keysVal = Object.keys(value),
+      keysOth = Object.keys(other);
     if (keysVal.length !== keysOth.length) return false;
     for (let key of keysVal) {
-      if (!keysOth.includes(key) ||!sarah125444.isEqual(value[key], other[key]))
+      if (
+        !keysOth.includes(key) ||
+        !sarah125444.isEqual(value[key], other[key])
+      )
         return false;
     }
     return true;
@@ -925,7 +971,7 @@ var sarah125444 = {
   pick: function() {},
   pickBy: function() {},
   result: function() {},
-  set: function() {},
+ 
   setWith: function() {},
   toPairs: function() {},
   toPairsIn: function() {},
@@ -944,7 +990,20 @@ var sarah125444 = {
   deburr: function() {},
   endsWith: function() {},
   escape: function() {},
-  pad: function() {},
-  camelCase: function() {},
-  camelCase: function() {}
+  escapeRegExp: function() {},
+  kebabCase: function() {},
+  pad: function(string='',length=0,chars=' '){
+    let padLen =  length - string.length ;
+    let charsStr = chars.repeat(Math.ceil(padLen / chars.length)).slice(0,padLen);
+    let left = charsStr.slice(0,Math.floor(padLen/2));
+    let right = charsStr.slice(Math.floor(padLen/2));
+    return  `${left}${string}${right}`
+  },
+
+
+
+
+
+
 };
+ 

@@ -397,8 +397,21 @@ var sarah125444 = {
     return  array[0].map((_,i) => func(...array.map(arr => arr[i])))
   },
 
-  without: function() {
-
+  without: function(array, ...args) {
+    let res = [];
+    let newAry=[...new Set(array)];
+    for(let i = 0; i < newAry.length;i++){
+      let cur = newAry[i];
+      let shouldPush = true;
+      for(let j = 0; j < args.length;j++){
+        if(cur === args[j]){
+          shouldPush = false;
+          break;
+        }
+      }
+      if(shouldPush) res.push(newAry[i]);
+    }
+    return res;
   },
 
   xor: function() {

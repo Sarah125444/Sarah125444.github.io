@@ -471,17 +471,20 @@ var sarah125444 = {
     if (typeof path === "string") {
       path = this.toPath(path);
     }
-    return obj => path.reduce((res, item) => res[item], obj);
+    path.reduce((res,item,index) => {
+      if(index === path.length - 1){
+        res[item] = value;
+      }else if(!res[item] || typeof path[index+1]=== "number"){
+        res[item] = [];
+      }else if(!res[item] || typeof path[index+1] === "string"){
+        res[item] = {};
+      }
+      return res[item]
+    },object)
+    return object;
   },
 
-  // set: function(object, path, value) {
-  //   path = typeof path === "string" ? path.match(/\w+/g).map(it => (isNaN(it) ? it : +it)) : path;
-  //   path.reduce((res, p, i) => {res[p] = res[p] || typeof path[i + 1] === "string" ? {}
-  //         : typeof path[i + 1] === "number" ? [] : value;
-  //     return res[p];
-  //   }, object);
-  //   return object;
-  // },
+
 
   zipObjectDeep: function() {},
 

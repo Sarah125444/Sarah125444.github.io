@@ -431,8 +431,14 @@ var sarah125444 = {
     return OriginArgs.filter((_,index) => transArgs.indexOf(transArgs[index]) === transArgs.lastIndexOf(transArgs[index]))
   },
 
-  xorWith: function() {},
+  xorWith: function(...args) {
+    func = this.iteratee(args.pop());
+    let originArgs = args.flat();
+    return originArgs.filter(item => [...originArgs.slice(0,i),...originArgs(i+1)].every(it => !func(item , it)))
+  },
 
+
+  
   zip: function(...args) {
     return  Array(Math.max(...args.map(it => it.length))).fill(0).map((_,index) => args.map(item => item[index]))
   },
@@ -608,21 +614,12 @@ var sarah125444 = {
 
   isEqual: function(value, other) {
     if (value === other) return true;
-    if (
-      value === null ||
-      other === null ||
-      typeof value !== "object" ||
-      typeof other !== "object"
-    )
+    if (value === null ||other === null ||typeof value !== "object" ||typeof other !== "object")
       return false;
-    let keysVal = Object.keys(value),
-      keysOth = Object.keys(other);
+    let keysVal = Object.keys(value),keysOth = Object.keys(other);
     if (keysVal.length !== keysOth.length) return false;
     for (let key of keysVal) {
-      if (
-        !keysOth.includes(key) ||
-        !sarah125444.isEqual(value[key], other[key])
-      )
+      if (!keysOth.includes(key) ||!sarah125444.isEqual(value[key], other[key]))
         return false;
     }
     return true;

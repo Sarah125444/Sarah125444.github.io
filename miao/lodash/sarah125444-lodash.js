@@ -434,7 +434,7 @@ var sarah125444 = {
   xorWith: function(...args) {
     func = this.iteratee(args.pop());
     let originArgs = args.flat();
-    return originArgs.filter(item => [...originArgs.slice(0,i),...originArgs(i+1)].every(it => !func(item , it)))
+    return originArgs.filter(item => [...originArgs.slice(0,i),...originArgs.slice(i+1)].every(it => !func(item , it)))
   },
 
 

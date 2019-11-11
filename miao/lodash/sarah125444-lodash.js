@@ -472,9 +472,9 @@ var sarah125444 = {
     path.reduce((res,item,index) => {
       if(index === path.length - 1){
         res[item] = value;
-      }else if(!res[item] || typeof path[index+1]=== "number"){
+      }else if(!res[item] && typeof path[index+1]=== "number"){
         res[item] = [];
-      }else if(!res[item] || typeof path[index+1] === "string"){
+      }else if(!res[item] && typeof path[index+1] === "string"){
         res[item] = {};
       }
       return res[item]

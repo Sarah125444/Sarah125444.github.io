@@ -419,8 +419,16 @@ var sarah125444 = {
     return  newArg.filter(it => newArg.indexOf(it) === newArg.lastIndexOf(it))
   },
 
-  xorBy: function() {
-
+  xorBy: function(...args) {
+    let lastArgs = args[args.length - 1];
+    if(typeof lastArgs === "function" || typeof lastArgs === "string"){
+      func = this.iteratee(args.pop())
+    }else{
+      func = it => it
+    }
+    let OriginArgs = args.flat();
+    let transArgs = OriginArgs.map(func)
+    return OriginArgs.filter((_,index) => transArgs.indexOf(transArgs[index]) === transArgs.lastIndexOf(transArgs[index]))
   },
 
   xorWith: function() {},

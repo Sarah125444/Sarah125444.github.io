@@ -164,10 +164,7 @@ var sarah125444 = {
   },
 
   flattenDepth: function(array, depth = 1) {
-    for (let i = 0; i < depth; i++) {
-      array = array.flat();
-    }
-    return array;
+    return array.reduce((res,item) => res.flat(),array)
   },
 
   fromPairs: function(pairs) {
@@ -562,7 +559,11 @@ var sarah125444 = {
     return this.flattenDeep(collection.map(func));
   },
 
-  flatMapDepth: function() {},
+  flatMapDepth: function(collection,func=identity,depth=1) {
+    func = this.identity(func);
+    
+  },
+
   forEach: function(collection, action) {
     if (Array.isArray(collection)) {
       for (let i = 0; i < collection.length; i++) {

@@ -704,7 +704,7 @@ var sarah125444 = {
     func=this.iteratee(func);
     let current = accumulator;
     if(Array.isArray(collection)){
-      for(let index = collection.length; index >= 0; index--){
+      for(let index = collection.length - 1; index >= 0; index--){
         current = func(current,collection[index],index,collection)
       }
     }

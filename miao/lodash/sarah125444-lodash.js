@@ -611,14 +611,12 @@ var sarah125444 = {
         }
       }
       return false;
-    }  
-    if(this.isString(collection)){
+    }else if(this.isString(collection)){
       if(collection.indexOf(value) > 0) {
         return true;
       } 
       return false;
-    }
-    if(this.isObject(collection)){
+    }else if(this.isObject(collection)){
      return  value in collection ? true : false;
     }
 

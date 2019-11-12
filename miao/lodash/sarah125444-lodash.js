@@ -652,12 +652,12 @@ var sarah125444 = {
     return transformed;
   },
 
-  orderBy: function(collection,func=this.identity,orders) {
-    funcs = func.map(it => this.iteratee(it));
+  orderBy: function(collection,funcs=this.identity,orders) {
+    funcs = funcs.map(it => this.iteratee(it));
     const compare = (a,b,func,order = "asc") => {
       const flag = order === "asc" ? 1 : -1;
       if(func(a) < func(b)) return -1*flag;
-      if(func(b) > func(b)) return 1*flag;
+      if(func(a) > func(b)) return 1*flag;
       return 0;
      };
     if(Array.isArray(collection)){

@@ -545,7 +545,10 @@ var sarah125444 = {
   },
 
   findLast: function(collection,func=this.identity,fromIndex=collection.length-1) {
-    
+    func = this.identity(func);
+    for(let i = fromIndex; i > 0;i--){
+      if(func(collection[i])) return collection[i];  
+    }
   },
 
   flatMap: function() {},

@@ -549,6 +549,7 @@ var sarah125444 = {
     for(let i = fromIndex; i > 0;i--){
       if(func(collection[i])) return collection[i];  
     }
+    return undefined;
   },
 
   flatMap: function() {},

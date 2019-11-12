@@ -711,8 +711,9 @@ var sarah125444 = {
     return current;
   },
 
-  reject: function() {
-
+  reject: function(collection,func=identity) {
+    func=this.iteratee(func);
+    return collection.filter(item => !func(item))
   },
 
   sample: function() {

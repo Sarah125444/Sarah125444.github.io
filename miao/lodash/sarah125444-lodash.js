@@ -724,8 +724,8 @@ var sarah125444 = {
     return collection.sort(() => Math.random() - 0.5).slice(0,n); 
   },
 
-  shuffle: function() {
-
+  shuffle: function(collection) {
+    return collection.sort(() => Math.random() - 1)
   },
 
   size: function() {

@@ -482,9 +482,11 @@ var sarah125444 = {
     return object;
   },
 
-
-
-  zipObjectDeep: function() {},
+  zipObjectDeep: function(props=[],values=[]) {
+    const res = {};
+    props.forEach((item,index) => this.set(res,item,values[index]));
+    return res;
+  },
 
   zipWith: function(...args) {
     func = this.iteratee(args.pop());

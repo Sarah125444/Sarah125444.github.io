@@ -691,7 +691,7 @@ var sarah125444 = {
         j = 1;
       }
       for (let index = j; index < collection.length; index++) {
-        current = func(current, collection[index], index, collection);is
+        current = func(current, collection[index], index, collection);
       }
     } else {
       for (const key in collection) {
@@ -700,7 +700,7 @@ var sarah125444 = {
     }
     return current;
   },
-  
+
   redeceRight: function() {},
   reject: function() {},
   sample: function() {},

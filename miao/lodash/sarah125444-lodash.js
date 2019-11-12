@@ -612,14 +612,20 @@ var sarah125444 = {
       }
       return false;
     }else if(this.isString(collection)){
-      if(collection.indexOf(value) > 0) {
+      if(collection.indexOf(value) > 0){
         return true;
-      } 
+      }
       return false;
+      
     }else if(this.isObject(collection)){
-     return  value in collection ? true : false;
+     let tans = Object.values(collection);
+     for(let i = fromIndex; i < collection.length;i++){
+       if(tans[i] === value) {
+        return true;
+       }
+       return false;
+     }
     }
-
   },
 
   invokeMap: function() {},
@@ -656,7 +662,7 @@ var sarah125444 = {
         j = 1;
       }
       for (let index = j; index < collection.length; index++) {
-        current = func(current, collection[index], index, collection);
+        current = func(current, collection[index], index, collection);is
       }
     } else {
       for (const key in collection) {
@@ -832,10 +838,10 @@ var sarah125444 = {
   isSet: function(value) {
     return Object.prototype.toString.call(value) === "[object Set]";
   },
-  isString: function() {
+  isString: function(value) {
     return Object.prototype.toString.call(value) === "[object String]";
   },
-  isSymbol: function() {
+  isSymbol: function(value) {
     return Object.prototype.toString.call(value) === "[object Symbol]";
   },
   isTypeArray: function() {},
@@ -845,7 +851,7 @@ var sarah125444 = {
   isWeakMap: function(value) {
     return Object.prototype.toString.call(value) === "[object WeakMap]";
   },
-  isWeakSet: function() {
+  isWeakSet: function(value) {
     return Object.prototype.toString.call(value) === "[object WeakSet]";
   },
   it: function(value, other) {

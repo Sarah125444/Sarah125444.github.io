@@ -716,10 +716,8 @@ var sarah125444 = {
     return collection.filter(item => !func(item))
   },
 
-
-  
-  sample: function() {
-
+  sample: function(collection) {
+    return collection[Math.floor(Math.random()*collection.length)]
   },
 
   sampleSize: function() {

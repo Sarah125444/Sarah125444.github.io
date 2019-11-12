@@ -557,7 +557,11 @@ var sarah125444 = {
     return collection.map(item => func(item)).flat();
   },
 
-  flatMapDeep: function() {},
+  flatMapDeep: function(collection,func=identity) {
+    func = this.identity(func);
+    return this.flattenDeep(collection.map(func));
+  },
+
   flatMapDepth: function() {},
   forEach: function(collection, action) {
     if (Array.isArray(collection)) {

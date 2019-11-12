@@ -603,7 +603,26 @@ var sarah125444 = {
     return res;
   },
 
-  includes: function() {},
+  includes: function(collection,value,fromIndex=0) {
+    if(Array.isArray(collection)){
+      for(let i = fromIndex; i < collection.length;i++){
+        if(collection[i] === value){
+          return true;
+        }
+      }
+      return false;
+    }  
+    if(this.isString(collection)){
+      if(collection.indexOf(value) > 0) {
+        return true;
+      } 
+      return false;
+    }
+    if(this.isObject(collection)){
+     return  value in collection ? true : false;
+    }
+
+  },
 
   invokeMap: function() {},
 

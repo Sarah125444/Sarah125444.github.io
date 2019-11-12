@@ -653,7 +653,7 @@ var sarah125444 = {
   },
 
   orderBy: function(collection,func=this.identity,orders) {
-    funcs = funcs.map(it => this.iteratee(it));
+    funcs = func.map(it => this.iteratee(it));
     const compare = (a,b,func,order = "asc") => {
       const flag = order === "asc" ? 1 : -1;
       if(func(a) < func(b)) return -1*flag;

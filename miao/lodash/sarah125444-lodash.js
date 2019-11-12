@@ -552,7 +552,11 @@ var sarah125444 = {
     return undefined;
   },
 
-  flatMap: function() {},
+  flatMap: function(collection,func=identity) {
+    func=this.identity(func);
+    return collection.map(item => func(item)).flat();
+  },
+
   flatMapDeep: function() {},
   flatMapDepth: function() {},
   forEach: function(collection, action) {

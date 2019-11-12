@@ -580,8 +580,18 @@ var sarah125444 = {
     return collection;
   },
 
-  forEachRight: function() {
-    
+  forEachRight: function(collection,action) {
+    if(Array.isArray(collection)){
+      for(let i = collection.length - 1; i >= 0; i--){
+        action(collection[i], i, collection)
+      }
+    }else{
+      let objTransformed = Object.entries(collection);
+      for(let i = collection.length - 1; i >= 0; i--){
+        action(objTransformed[i][1], objTransformed[i][0], collection)
+      }
+    }
+    return collection;
   },
 
   groupBy: function() {},

@@ -581,8 +581,9 @@ var sarah125444 = {
     return collection;
   },
 
-  forEachRight: function() {
-
+  forEachRight: function(collection,func=identity) {
+    func=this.identity(func);
+    if(Array.is)
   },
 
   groupBy: function() {},

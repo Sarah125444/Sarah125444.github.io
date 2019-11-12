@@ -627,9 +627,14 @@ var sarah125444 = {
     }
   },
 
-  invokeMap: function(collection,path,args) {
-    let func = path(args);
-    return collection.map(item => func(item))
+  invokeMap: function(collection,path,...args) {
+    if(typeof path === "string"){
+      return collection.map(item => item[path](...args))
+    }else if(typeof path === "function"){
+      return collection.map(item => path.call(item,...args))
+    }else {
+      return collection.map(item => this.iteratee(path)(it).call(item,...args))
+    }
   },
 
   keyBy: function() {},
@@ -820,6 +825,7 @@ var sarah125444 = {
       return false;
     }
   },
+
   isNumber: function(value) {
     return Object.prototype.toString.call(value) === "[object Number]";
   },
@@ -885,14 +891,17 @@ var sarah125444 = {
     let num = Math.ceil(number * power);
     return num / power;
   },
+
   divide: function(dividend, divisor) {
     return dividend / divisor;
   },
+
   floor: function(number, precision = 0) {
     let power = 10 ** precision;
     let num = Math.floor(number * power);
     return num / power;
   },
+
   max: function(array) {
     return array.length === 0
       ? undefined
@@ -900,6 +909,7 @@ var sarah125444 = {
           return a > b ? a : b;
         }, array[0]);
   },
+
   maxBy: function(array, iteratee) {
     let max = array[0],
       temp;

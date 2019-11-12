@@ -627,7 +627,10 @@ var sarah125444 = {
     }
   },
 
-  invokeMap: function() {},
+  invokeMap: function(collection,path,args) {
+    let func = path(args);
+    return collection.map(item => func(item))
+  },
 
   keyBy: function() {},
 

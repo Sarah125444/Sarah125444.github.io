@@ -671,7 +671,14 @@ var sarah125444 = {
     }
   },
 
-  partition: function() {},
+  partition: function(collection,func=identity) {
+    func=this.iteratee(func);
+    return collection.reduce((res,item) => {
+      res[func(item) ? 0 : 1].push(item);
+      return res;
+    },[[],[]] );
+  },
+
   reduce: function(collection, func = it => it, accumulator) {
     func = this.iteratee(func);
     let current = accumulator,

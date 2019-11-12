@@ -720,8 +720,8 @@ var sarah125444 = {
     return collection[Math.floor(Math.random()*collection.length)]
   },
 
-  sampleSize: function() {
-
+  sampleSize: function(collection,n=1) {
+    return collection.sort(() => Math.random() - 0.5).slice(0,n); 
   },
 
   shuffle: function() {

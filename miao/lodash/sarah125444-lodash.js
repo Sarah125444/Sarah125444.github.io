@@ -679,7 +679,7 @@ var sarah125444 = {
     },[[],[]] );
   },
 
-  reduce: function(collection, func = it => it, accumulator) {
+  reduce: function(collection, func=identity, accumulator) {
     func = this.iteratee(func);
     let current = accumulator,
       j;

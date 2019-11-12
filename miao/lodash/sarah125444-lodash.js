@@ -708,6 +708,7 @@ var sarah125444 = {
         current = func(current,collection[index],index,collection)
       }
     }
+    return current;
   },
 
   reject: function() {

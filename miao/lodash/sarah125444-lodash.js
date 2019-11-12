@@ -681,8 +681,7 @@ var sarah125444 = {
 
   reduce: function(collection, func=identity, accumulator) {
     func = this.iteratee(func);
-    let current = accumulator,
-      j;
+    let current = accumulator, j;
     if (Array.isArray(collection)) {
       if (accumulator !== undefined) {
         j = 0;
@@ -701,12 +700,42 @@ var sarah125444 = {
     return current;
   },
 
-  redeceRight: function() {},
-  reject: function() {},
-  sample: function() {},
-  sampleSize: function() {},
-  shuffle: function() {},
-  size: function() {},
+  reduceRight: function(collection,func=identity,accumulator) {
+    func=this.iteratee(func);
+    let current = accumulator,j;
+    if(Array.isArray(collection)){
+      if(accumulator !== undefined){
+        j = 0;
+      }else{
+        current = collection[0];
+        j = 1;
+      }
+      for(let index = collection.length; index >= 0; index--){
+        current = func(current,collection[index],index,collection)
+      }
+    }
+  },
+
+  reject: function() {
+
+  },
+
+  sample: function() {
+
+  },
+
+  sampleSize: function() {
+
+  },
+
+  shuffle: function() {
+
+  },
+
+  size: function() {
+
+  },
+
   some: function(collection, func = this.identity) {
     func = this.iteratee(func);
     if (Array.isArray(collection)) {

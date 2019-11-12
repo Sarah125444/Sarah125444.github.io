@@ -728,8 +728,17 @@ var sarah125444 = {
     return collection.sort(() => Math.random() - 1)
   },
 
-  size: function() {
-
+  size: function(collection) {
+    if(Array.isArray(collection)){
+      return collection.length;
+    }
+    if(typeof collection === "string"){
+      return collection.length;
+    }
+    if(this.isObject(collection)){
+      let transCol = Object.keys(collection);
+      return transCol.length;
+    }
   },
 
   some: function(collection, func = this.identity) {

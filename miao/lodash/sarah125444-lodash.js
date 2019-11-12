@@ -616,15 +616,14 @@ var sarah125444 = {
         return true;
       }
       return false;
-      
     }else if(this.isObject(collection)){
      let tans = Object.values(collection);
      for(let i = fromIndex; i < collection.length;i++){
        if(tans[i] === value) {
         return true;
        }
-       return false;
      }
+     return false;
     }
   },
 

@@ -570,7 +570,7 @@ var sarah125444 = {
   forEach: function(collection, action) {
     if (Array.isArray(collection)) {
       for (let i = 0; i < collection.length; i++) {
-        action(arr[i], i, arr);
+        action(collection[i], i, collection);
       }
     } else {
       for (let key in collection) {

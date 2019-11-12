@@ -613,10 +613,8 @@ var sarah125444 = {
       return false;
     }
     if(this.isString(collection)){
-      if(collection.indexOf(value) > 0){
-        return true;
-      }
-      return false;
+      collection = collection.slice(fromIndex);
+      return collection.includes(value);
     }
     if(this.isObject(collection)){
      let tans = Object.values(collection);

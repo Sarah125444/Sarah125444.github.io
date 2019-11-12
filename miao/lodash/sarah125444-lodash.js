@@ -544,8 +544,10 @@ var sarah125444 = {
     return collection.filter(func)[0];
   },
 
+  findLast: function(collection,func=this.identity,fromIndex=collection.length-1) {
+    
+  },
 
-  findlast: function() {},
   flatMap: function() {},
   flatMapDeep: function() {},
   flatMapDepth: function() {},

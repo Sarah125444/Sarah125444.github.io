@@ -567,23 +567,32 @@ var sarah125444 = {
     return this.flattenDepth(collection.map(func) , depth)
   },
 
-  forEach: function(collection, action) {
+  forEach: function(collection, func=identity) {
+    func=this.identity(func);
     if (Array.isArray(collection)) {
       for (let i = 0; i < collection.length; i++) {
-        action(arr[i], i, arr);
+        func(arr[i], i, arr);
       }
     } else {
       for (let key in collection) {
-        action(collection[key], key, collection);
+        func(collection[key], key, collection);
       }
     }
     return collection;
   },
-  forEachRight: function() {},
+
+  forEachRight: function() {
+
+  },
+
   groupBy: function() {},
+
   includes: function() {},
+
   invokeMap: function() {},
+
   keyBy: function() {},
+
   map: function(collection, func = it => it) {
     func = this.iteratee(func);
     var transformed = [];
@@ -598,6 +607,7 @@ var sarah125444 = {
     }
     return transformed;
   },
+
   orderBy: function() {},
 
   partition: function() {},

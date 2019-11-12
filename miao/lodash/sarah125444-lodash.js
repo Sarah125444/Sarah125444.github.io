@@ -567,23 +567,21 @@ var sarah125444 = {
     return this.flattenDepth(collection.map(func) , depth)
   },
 
-  forEach: function(collection, func=identity) {
-    func=this.identity(func);
+  forEach: function(collection, action) {
     if (Array.isArray(collection)) {
       for (let i = 0; i < collection.length; i++) {
-        func(arr[i], i, arr);
+        action(arr[i], i, arr);
       }
     } else {
       for (let key in collection) {
-        func(collection[key], key, collection);
+        action(collection[key], key, collection);
       }
     }
     return collection;
   },
 
-  forEachRight: function(collection,func=identity) {
-    func=this.identity(func);
-    if(Array.is)
+  forEachRight: function() {
+    
   },
 
   groupBy: function() {},

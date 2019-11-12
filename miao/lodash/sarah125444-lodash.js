@@ -637,8 +637,6 @@ var sarah125444 = {
     }
   },
 
-  keyBy: function() {},
-
   map: function(collection, func = it => it) {
     func = this.iteratee(func);
     var transformed = [];
@@ -654,7 +652,24 @@ var sarah125444 = {
     return transformed;
   },
 
-  orderBy: function() {},
+  orderBy: function(collection,func=this.identity,orders) {
+    funcs = funcs.map(it => this.iteratee(it));
+    const compare = (a,b,func,order = "asc") => {
+      const flag = order === "asc" ? 1 : -1;
+      if(func(a) < func(b)) return -1*flag;
+      if(func(b) > func(b)) return 1*flag;
+      return 0;
+     };
+    if(Array.isArray(collection)){
+      return collection.sort((a,b) => {
+        for(let i = 0; i < funcs.length;i++){
+          const res = compare(a,b,funcs[i],orders[i]);
+          if(res !== 0) return res;
+        }
+        return 0;
+      })
+    }
+  },
 
   partition: function() {},
   reduce: function(collection, func = it => it, accumulator) {

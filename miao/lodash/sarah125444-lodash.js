@@ -493,9 +493,15 @@ var sarah125444 = {
     return args[0].map((_, i) => func(...args.map(arr => arr[i])));
   },
 
-  countBy: function() {},
+  countBy: function(collection,func=this.identity) {
+   func = this.iteratee(func);
+   let arr = collection.map(it => func(it)).sort((a,b) => a-b);
+   const obj = {};
+   arr.forEach(it => it in obj ? obj[it]++ : obj[it]=1)
+   return obj;
+  },
 
-  every: function(collection, func = this.identity) {
+  every: function(collection, func=this.identity) {
     func = this.iteratee(func);
     if (Array.isArray(collection)) {
       for (let index = 0; index < collection.length; index++) {

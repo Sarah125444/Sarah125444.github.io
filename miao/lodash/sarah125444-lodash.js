@@ -561,7 +561,7 @@ var sarah125444 = {
 
   flatMapDepth: function(collection,func=identity,depth=1) {
     func = this.identity(func);
-    
+    return this.flattenDepth(collection.map(func),depth)
   },
 
   forEach: function(collection, action) {

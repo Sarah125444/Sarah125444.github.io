@@ -594,7 +594,14 @@ var sarah125444 = {
     return collection;
   },
 
-  groupBy: function() {},
+  groupBy: function(collection,func=identity) {
+    func = this.iteratee(func);
+    const res = {};
+    const originCol = collection.sort((a,b) => a - b);
+    const transCol = collection.map(func).sort((a,b) => a - b);
+    transCol.forEach((item,index) => item in res ? res[item].push(originCol[index]) : res[item]=[originCol[index]]);
+    return res;
+  },
 
   includes: function() {},
 

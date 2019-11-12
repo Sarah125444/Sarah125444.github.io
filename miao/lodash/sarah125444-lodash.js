@@ -538,7 +538,13 @@ var sarah125444 = {
     }
     return passed;
   },
-  find: function() {},
+
+  find: function(collection,func=this.identity,fromIndex=0) {
+    func=this.iteratee(func);
+    return collection.filter(func)[0];
+  },
+
+
   findlast: function() {},
   flatMap: function() {},
   flatMapDeep: function() {},

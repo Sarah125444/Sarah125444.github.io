@@ -784,7 +784,18 @@ var sarah125444 = {
     return Array.isArray(...args) ? args[0] : args;
   },
 
-  conformsTo: function() {},
+  conformsTo: function(object,source) {
+    let transObj = Object.entries(object);
+    let transSour = Object.entries(source);
+    for(let i = 0; i < transObj.length;i++){
+      for(let j = 0; j < transObj[0].length;j++){
+        if(transObj[i][j] === transSour[0][i]){
+          return transSour[0][i](transObj[i][j+1]) ? true : false;
+        }
+      }
+    }
+  },
+
   eq: function() {},
   gt: function() {},
   gte: function() {},

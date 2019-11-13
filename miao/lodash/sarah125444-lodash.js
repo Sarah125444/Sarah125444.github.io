@@ -1020,8 +1020,12 @@ var sarah125444 = {
    return value;
   },
 
-  toInteger: function() {
-
+  toInteger: function(value) {
+    value = Number(value);
+    if(this.isNaN(value) || value === 0) return 0;
+    if(value === Infinity) return Number.MAX_VALUE;
+    if(value === - Infinity) return -Number.MAX_VALUE;
+    return Math.floor(Math.abs(value))*(value > 0 ? 1 : -1);
   },
 
   toLength: function() {

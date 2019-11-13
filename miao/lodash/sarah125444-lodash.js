@@ -820,9 +820,7 @@ var sarah125444 = {
   },
 
   isArrayLikeObject: function(value) {
-    if(Array.isArray(value)) return true;
-    if(typeof value !== "string") return true;
-    if(typeof value !== "function") return true;
+    return this.isArrayLike(value) && this.isObject(value)
   },
 
   isBoolean: function(value) {

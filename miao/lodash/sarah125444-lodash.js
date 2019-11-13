@@ -1020,7 +1020,7 @@ var sarah125444 = {
    return value;
   },
 
-  toIntegar: function() {
+  toInteger: function() {
 
   },
 
@@ -1032,11 +1032,11 @@ var sarah125444 = {
 
   },
 
-  assgin: function() {
+  assign: function() {
 
   },
 
-  toSafeIntegar: function() {
+  toSafeInteger: function() {
 
   },
 

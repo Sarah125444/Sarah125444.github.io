@@ -788,8 +788,8 @@ var sarah125444 = {
    return Object.values(source).every((func,index) => func(object[Object.keys(source)[index]]))
   },
 
-  eq: function() {
-
+  eq: function(value,other) {
+    return this.sameValueZero(value,other)
   },
 
   gt: function() {

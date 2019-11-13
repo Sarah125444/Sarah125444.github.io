@@ -888,11 +888,7 @@ var sarah125444 = {
 
   isLength: function(value) {
     if (typeof value === "string") return false;
-    if (value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER) {
-      return true;
-    } else {
-      return false;
-    }
+    return value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER
   },
 
   isMap: function(value) {
@@ -911,10 +907,15 @@ var sarah125444 = {
     return true;
   },
 
-  isMatchWith: function() {},
+  isMatchWith: function(object,source,customizer) {
+    if(this.isMatch(object,source)) return true;
+    if(this.isEqualWith(object,source,customizer)) return true;
+  },
+
   matches: function(source) {
     return object => this.isMatch(object, source);
   },
+
   isNaN: function(value) {
     if (value != undefined && value != null) {
       return value.toString() === "NaN";

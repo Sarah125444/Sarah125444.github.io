@@ -780,7 +780,10 @@ var sarah125444 = {
     return setTimeout(() => func(...args),wait)
   },
 
-  castArray: function() {},
+  castArray: function(...args) {
+    return Array.isArray(...args) ? args[0] : args;
+  },
+
   conformsTo: function() {},
   eq: function() {},
   gt: function() {},

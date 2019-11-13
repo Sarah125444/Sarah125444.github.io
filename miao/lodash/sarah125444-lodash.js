@@ -796,9 +796,18 @@ var sarah125444 = {
     }
   },
 
-  eq: function() {},
-  gt: function() {},
-  gte: function() {},
+  eq: function() {
+
+  },
+
+  gt: function() {
+
+  },
+
+  gte: function() {
+    
+  },
+
   isArguments: function(value) {
     return Object.prototype.toString.call(value) === "[object Arguments]";
   },

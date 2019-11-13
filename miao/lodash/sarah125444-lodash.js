@@ -796,8 +796,9 @@ var sarah125444 = {
    return Number(value) > Number(other) ? true : false;
   },
 
-  gte: function() {
-
+  gte: function(value,other) {
+    if(Number(value) > Number(other) || Number(value) === Number(other)) return true
+    return false;
   },
 
   isArguments: function(value) {

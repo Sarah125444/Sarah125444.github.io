@@ -980,8 +980,9 @@ var sarah125444 = {
     return Object.prototype.toString.call(value) === "[object Symbol]";
   },
 
-  isTypeArray: function() {
-
+  isTypedArray: function(value) {
+    let reg = /^(Int|Uint|Float)(8|16|32|64)(Clamped)?(Array)$/;
+    return reg.test(Object.prototype.toString.call(value).slice(8,-1))
   },
 
   isUndefined: function(value) {

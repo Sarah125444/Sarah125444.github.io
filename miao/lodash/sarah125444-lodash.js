@@ -785,15 +785,7 @@ var sarah125444 = {
   },
 
   conformsTo: function(object,source) {
-    let transObj = Object.entries(object);
-    let transSour = Object.entries(source);
-    for(let i = 0; i < transObj.length;i++){
-      for(let j = 0; j < transObj[0].length;j++){
-        if(transObj[i][j] === transSour[0][j]){
-          return transSour[0][j+1](transObj[i][j+1]) ? true : false;
-        }
-      }
-    }
+   return Object.values(source).every((func,index) => func(object[Object.keys(source)[index]]))
   },
 
   eq: function() {
@@ -805,7 +797,7 @@ var sarah125444 = {
   },
 
   gte: function() {
-    
+
   },
 
   isArguments: function(value) {

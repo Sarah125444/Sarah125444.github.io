@@ -776,8 +776,8 @@ var sarah125444 = {
     return setTimeout(() => func(args),0)
   },
 
-  delay: function() {
-
+  delay: function(func,wait,...args) {
+    return setTimeout(() => func(...args),wait)
   },
 
   castArray: function() {},

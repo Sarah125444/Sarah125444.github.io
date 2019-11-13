@@ -922,6 +922,7 @@ var sarah125444 = {
     }
     return false;
   },
+
   isNil: function(value) {
     if (value == undefined || value === null) {
       return true;
@@ -929,6 +930,7 @@ var sarah125444 = {
       return false;
     }
   },
+
   isNull: function(value) {
     if (value === null) {
       return true;
@@ -940,45 +942,64 @@ var sarah125444 = {
   isNumber: function(value) {
     return Object.prototype.toString.call(value) === "[object Number]";
   },
+
   isObject: function(value) {
     let type = typeof value;
     return value != null && (type === "function" || type === "object");
   },
+
   isObjectLike: function(value) {
     return typeof value == "object" && value != null;
   },
-  isPlainObject: function(value) {},
+
+  isPlainObject: function(value) {
+
+  },
+
   isRegExp: function(value) {
     return Object.prototype.toString.call(value) === "[object RegExp]";
   },
+
   isSafeInteger: function(value) {
     return Name.isSafeInteger(value);
   },
+
   isSet: function(value) {
     return Object.prototype.toString.call(value) === "[object Set]";
   },
+
   isString: function(value) {
     return Object.prototype.toString.call(value) === "[object String]";
   },
+
   isSymbol: function(value) {
     return Object.prototype.toString.call(value) === "[object Symbol]";
   },
-  isTypeArray: function() {},
+
+  isTypeArray: function() {
+
+  },
+
   isUndefined: function(value) {
     return value === undefined;
   },
+
   isWeakMap: function(value) {
     return Object.prototype.toString.call(value) === "[object WeakMap]";
   },
+
   isWeakSet: function(value) {
     return Object.prototype.toString.call(value) === "[object WeakSet]";
   },
+
   it: function(value, other) {
     return value < other;
   },
+
   ite: function(value, other) {
     return value <= other;
   },
+
   toArray: function(value) {
     let result = [];
     for (key in value) {
@@ -986,12 +1007,31 @@ var sarah125444 = {
     }
     return result;
   },
-  toFinite: function() {},
-  toIntegar: function() {},
-  toLength: function() {},
-  toNumber: function() {},
-  assgin: function() {},
-  toSafeIntegar: function() {},
+
+  toFinite: function() {
+    
+  },
+
+  toIntegar: function() {
+    
+  },
+
+  toLength: function() {
+    
+  },
+
+  toNumber: function() {
+    
+  },
+
+  assgin: function() {
+    
+  },
+
+  toSafeIntegar: function() {
+    
+  },
+
 
   add: function(augend, addend) {
     return augend + addend;

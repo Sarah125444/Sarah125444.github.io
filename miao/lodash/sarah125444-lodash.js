@@ -880,13 +880,10 @@ var sarah125444 = {
     return Object.prototype.toString.call(value) == "[object Function]";
   },
 
-  isIntegar: function(value) {
+  isInteger: function(value) {
     if (typeof value === "string") return false;
-    if (!isNaN(value) && value % 1 === 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return !isNaN(value) && value % 1 === 0
+
   },
 
   isLength: function(value) {

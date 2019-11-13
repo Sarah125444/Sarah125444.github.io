@@ -1039,7 +1039,7 @@ var sarah125444 = {
   },
 
   assign: function(object,...args) {
-    return Object.assgin(object,...args);
+    return Object.assign(object,...args);
   },
 
   toSafeInteger: function() {

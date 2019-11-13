@@ -1042,8 +1042,8 @@ var sarah125444 = {
     return Object.assign(object,...args);
   },
 
-  toSafeInteger: function() {
-
+  toSafeInteger: function(value) {
+    return this.isNumber(value)
   },
 
 

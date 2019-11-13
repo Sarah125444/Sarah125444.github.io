@@ -792,8 +792,8 @@ var sarah125444 = {
     return this.sameValueZero(value,other)
   },
 
-  gt: function() {
-
+  gt: function(value,other) {
+   return Number(value) > Number(other) ? true : false;
   },
 
   gte: function() {

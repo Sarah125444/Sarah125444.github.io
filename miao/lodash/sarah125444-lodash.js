@@ -804,23 +804,35 @@ var sarah125444 = {
   isArguments: function(value) {
     return Object.prototype.toString.call(value) === "[object Arguments]";
   },
+
   isArray: function(value) {
     return Object.prototype.toString.call(value) === "[object Array]";
   },
+
   isArrayBuffer: function(value) {
     return Object.prototype.toString.call(value) === "[object ArrayBuffer]";
   },
-  isArrayLike: function(value) {},
-  isArrayLikeObject: function(value) {},
+
+  isArrayLike: function(value) {
+
+  },
+
+  isArrayLikeObject: function(value) {
+
+  },
+
   isBoolean: function(value) {
     return Object.prototype.toString.call(value) === "[object Boolean]";
   },
+
   isDate: function(value) {
     return Object.prototype.toString.call(value) === "[object Date]";
   },
+
   isElement: function(value) {
     return Object.prototype.toString.call(value) === "[object Element]";
   },
+  
   isEmpty: function(value) {
     let count = 0;
     for (key in value) {

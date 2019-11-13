@@ -789,8 +789,8 @@ var sarah125444 = {
     let transSour = Object.entries(source);
     for(let i = 0; i < transObj.length;i++){
       for(let j = 0; j < transObj[0].length;j++){
-        if(transObj[i][j] === transSour[0][i]){
-          return transSour[0][i](transObj[i][j+1]) ? true : false;
+        if(transObj[i][j] === transSour[0][j]){
+          return transSour[0][j+1](transObj[i][j+1]) ? true : false;
         }
       }
     }

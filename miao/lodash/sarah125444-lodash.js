@@ -764,13 +764,12 @@ var sarah125444 = {
     funcs = funcs.map(it => this.iteratee(it));
     const compare = (a,b,funcs) => {
       for(let i = 0; i < funcs.length;i++){
-        let flag = orders[i] === "asc" ? 1 : -1;
-        if(funcs[i](a) > funcs[i](b)) return flag;
-        if(funcs[i](a) < funcs[i](b)) return -flag;
+        if(funcs[i](a) > funcs[i](b)) return 1;
+        if(funcs[i](a) < funcs[i](b)) return -1;
       }
       return 0;
     }
-    return collection.sort((a,b) => compare(a,b,funcs,"asc"))
+    return collection.sort((a,b) => compare(a,b,funcs))
   },
 
   defer: function() {

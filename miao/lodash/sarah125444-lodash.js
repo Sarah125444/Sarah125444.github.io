@@ -1034,8 +1034,8 @@ var sarah125444 = {
     return value > 2**32-1 ? 2**32-1 : value;
   },
 
-  toNumber: function() {
-
+  toNumber: function(value) {
+    return Number(value);
   },
 
   assign: function() {

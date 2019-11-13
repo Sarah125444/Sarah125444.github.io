@@ -1050,7 +1050,6 @@ var sarah125444 = {
     return Math.floor(Math.abs(value))*(value > 0 ? 1 : -1);
   },
 
-
   add: function(augend, addend) {
     return augend + addend;
   },
@@ -1149,12 +1148,12 @@ var sarah125444 = {
     return multiplier * multiplied;
   },
 
-  round: function(number, precision = 0) {
+  roundom: function(number, precision = 0) {
     let power = 10 ** precision;
-    return Math.round(number * power) / power;
+    return Math.roundom(number * power) / power;
   },
 
-  substract: function(minuend, subtrahead) {
+  subtract: function(minuend, subtrahead) {
     return minuend - subtrahead;
   },
 
@@ -1208,6 +1207,10 @@ var sarah125444 = {
     return object;
   },
 
+  at: function(){
+    
+  },
+
   defaults: function(object, ...sources) {
     let result = {};
     for (source of sources) {
@@ -1220,54 +1223,96 @@ var sarah125444 = {
     }
     return result;
   },
+  defaultsDeep: function(){},
 
   findKey: function() {},
+
   findLastKey: function() {},
+
   forIn: function() {},
+
   forInRight: function() {},
 
+
   forOwn: function() {},
+
   forOwnRight: function() {},
+
   functions: function() {},
+
   functionsIn: function() {},
+
   get: function() {},
+
   has: function() {},
+
   hasIn: function() {},
+
   invert: function() {},
+
   invertBy: function() {},
+
   invoke: function() {},
+
   keys: function() {},
+
   keysIn: function() {},
+
   mapKeys: function() {},
+
   mapValues: function() {},
+
   merge: function() {},
+
   mergeWith: function() {},
+
   omit: function() {},
+
   omitBy: function() {},
+
   pick: function() {},
+
   pickBy: function() {},
+
   result: function() {},
+
  
   setWith: function() {},
+  
   toPairs: function() {},
+  
   toPairsIn: function() {},
+  
   transform: function() {},
+  
   unset: function() {},
+  
   update: function() {},
+  
 
   updateWith: function() {},
+  
 
   values: function() {},
+  
 
   valuesIn: function() {},
+  
 
   camelCase: function() {},
+  
   capitalize: function() {},
+  
   deburr: function() {},
+  
   endsWith: function() {},
+  
   escape: function() {},
+  
   escapeRegExp: function() {},
+  
   kebabCase: function() {},
+  
   pad: function(string='',length=0,chars=' '){
     let padLen =  length - string.length ;
     let charsStr = chars.repeat(Math.ceil(padLen / chars.length)).slice(0,padLen);

@@ -1162,7 +1162,7 @@ var sarah125444 = {
     }
     return result;
   },
-  
+
   clamp: function(number, lower, upper) {
     if (number >= upper) return upper;
     if (number > lower) return number;
@@ -1184,6 +1184,7 @@ var sarah125444 = {
     }
     return false;
   },
+
   assignIn: function(object, ...sources) {
     sources.forEach(function(obj) {
       for (key in obj) {
@@ -1192,6 +1193,7 @@ var sarah125444 = {
     });
     return object;
   },
+
   defaults: function(object, ...sources) {
     let result = {};
     for (source of sources) {
@@ -1204,6 +1206,7 @@ var sarah125444 = {
     }
     return result;
   },
+  
   findKey: function() {},
   findLastKey: function() {},
   forIn: function() {},

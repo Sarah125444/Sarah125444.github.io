@@ -816,6 +816,7 @@ var sarah125444 = {
     if(this.isArray(value)) return true;
     if(this.isString(value)) return true;
     if(typeof value !== "function") return true;
+    if(value !== undefined && value !== null && value.length >= 0 && value.length <= Number.MAX_SAFE_INTEGER) return true;
   },
 
   isArrayLikeObject: function(value) {

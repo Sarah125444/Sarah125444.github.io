@@ -1038,8 +1038,8 @@ var sarah125444 = {
     return Number(value);
   },
 
-  assign: function() {
-
+  assign: function(object,source) {
+    return Object.assgin(object,source);
   },
 
   toSafeInteger: function() {

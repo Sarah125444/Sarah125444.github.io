@@ -923,6 +923,10 @@ var sarah125444 = {
     return false;
   },
 
+  isNative: function(value){
+    return value.toString().includes("[native code]")
+  },
+
   isNil: function(value) {
     if (value == undefined || value === null) {
       return true;
@@ -1009,27 +1013,27 @@ var sarah125444 = {
   },
 
   toFinite: function() {
-    
+
   },
 
   toIntegar: function() {
-    
+
   },
 
   toLength: function() {
-    
+
   },
 
   toNumber: function() {
-    
+
   },
 
   assgin: function() {
-    
+
   },
 
   toSafeIntegar: function() {
-    
+
   },
 
 
@@ -1080,10 +1084,12 @@ var sarah125444 = {
     }
     return max;
   },
+
   mean: function(array) {
     if (array.length === 0) return undefined;
     return array.reduce((a, b) => a + b) / array.length;
   },
+
   meanBy: function(array, iteratee) {
     let result = 0,
       temp = 0;
@@ -1098,6 +1104,7 @@ var sarah125444 = {
     }
     return result / array.length;
   },
+
   min: function(array) {
     if (array.length === 0) return undefined;
     let min = array[0];
@@ -1106,6 +1113,7 @@ var sarah125444 = {
     }
     return min;
   },
+
   minBy: function(array, iteratee) {
     let min = array[0],
       temp = 0;
@@ -1122,19 +1130,24 @@ var sarah125444 = {
     }
     return min;
   },
+
   multiply: function(multiplier, multiplied) {
     return multiplier * multiplied;
   },
+
   round: function(number, precision = 0) {
     let power = 10 ** precision;
     return Math.round(number * power) / power;
   },
+
   substract: function(minuend, subtrahead) {
     return minuend - subtrahead;
   },
+
   sum: function(array) {
     return array.reduce((a, b) => a + b);
   },
+
   sumBy: function(array, iteratee) {
     let result = 0,
       temp;
@@ -1149,6 +1162,7 @@ var sarah125444 = {
     }
     return result;
   },
+  
   clamp: function(number, lower, upper) {
     if (number >= upper) return upper;
     if (number > lower) return number;

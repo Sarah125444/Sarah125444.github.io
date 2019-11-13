@@ -1028,8 +1028,10 @@ var sarah125444 = {
     return Math.floor(Math.abs(value))*(value > 0 ? 1 : -1);
   },
 
-  toLength: function() {
-
+  toLength: function(value) {
+    value = this.toInteger(value);
+    if(value < 0) return 0;
+    return value > 2**32-1 ? 2**32-1 : value;
   },
 
   toNumber: function() {

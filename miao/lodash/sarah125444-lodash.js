@@ -965,7 +965,7 @@ var sarah125444 = {
   },
 
   isSafeInteger: function(value) {
-    return Name.isSafeInteger(value);
+    return Number.isSafeInteger(value);
   },
 
   isSet: function(value) {

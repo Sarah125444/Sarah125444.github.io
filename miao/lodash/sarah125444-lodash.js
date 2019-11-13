@@ -1144,9 +1144,9 @@ var sarah125444 = {
     return multiplier * multiplied;
   },
 
-  roundom: function(number, precision = 0) {
+  round: function(number, precision = 0) {
     let power = 10 ** precision;
-    return Math.roundom(number * power) / power;
+    return Math.round(number * power) / power;
   },
 
   subtract: function(minuend, subtrahead) {
@@ -1194,6 +1194,10 @@ var sarah125444 = {
     return false;
   },
 
+  random: function(){
+
+  },
+  
   assignIn: function(object, ...sources) {
     sources.forEach(function(obj) {
       for (key in obj) {

@@ -797,8 +797,7 @@ var sarah125444 = {
   },
 
   gte: function(value,other) {
-    if(Number(value) > Number(other) || Number(value) === Number(other)) return true
-    return false;
+    return this.gt(value,other) || this.eq(value,other)
   },
 
   isArguments: function(value) {
@@ -832,7 +831,7 @@ var sarah125444 = {
   isElement: function(value) {
     return Object.prototype.toString.call(value) === "[object Element]";
   },
-  
+
   isEmpty: function(value) {
     let count = 0;
     for (key in value) {

@@ -1071,11 +1071,7 @@ var sarah125444 = {
   },
 
   max: function(array) {
-    return array.length === 0
-      ? undefined
-      : array.length(function(a, b) {
-          return a > b ? a : b;
-        }, array[0]);
+    return array.length === 0 ? undefined : array.sort((a, b) => a - b)[0];
   },
 
   maxBy: function(array, iteratee) {
@@ -1278,41 +1274,41 @@ var sarah125444 = {
 
  
   setWith: function() {},
-  
+
   toPairs: function() {},
-  
+
   toPairsIn: function() {},
-  
+
   transform: function() {},
-  
+
   unset: function() {},
-  
+
   update: function() {},
-  
+
 
   updateWith: function() {},
-  
+
 
   values: function() {},
-  
+
 
   valuesIn: function() {},
-  
+
 
   camelCase: function() {},
-  
+
   capitalize: function() {},
-  
+
   deburr: function() {},
-  
+
   endsWith: function() {},
-  
+
   escape: function() {},
-  
+
   escapeRegExp: function() {},
-  
+
   kebabCase: function() {},
-  
+
   pad: function(string='',length=0,chars=' '){
     let padLen =  length - string.length ;
     let charsStr = chars.repeat(Math.ceil(padLen / chars.length)).slice(0,padLen);

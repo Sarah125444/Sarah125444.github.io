@@ -772,8 +772,8 @@ var sarah125444 = {
     return collection.sort((a,b) => compare(a,b,funcs))
   },
 
-  defer: function() {
-
+  defer: function(func,args) {
+    return setTimeout(() => func(args),0)
   },
 
   delay: function() {

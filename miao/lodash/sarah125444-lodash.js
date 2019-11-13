@@ -1043,7 +1043,11 @@ var sarah125444 = {
   },
 
   toSafeInteger: function(value) {
-    return this.isNumber(value)
+    value = Number(value);
+    value = Math.min(Number.MAX_SAFE_INTEGER,value);
+    value = Math.max(Number.MIN_SAFE_INTEGER,value)
+    if(this.isNaN(value) || value === 0) return 0;
+    return Math.floor(Math.abs(value))*(value > 0 ? 1 : -1);
   },
 
 

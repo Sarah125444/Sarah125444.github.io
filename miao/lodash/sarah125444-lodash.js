@@ -760,7 +760,7 @@ var sarah125444 = {
     }
   },
 
-  sortBy: function(collection,func=this.identity) {
+  sortBy: function(collection,funcs=this.identity) {
     funcs = funcs.map(it => this.iteratee(it));
     const compare = (a,b,funcs) => {
       for(let i = 0; i < funcs.length;i++){

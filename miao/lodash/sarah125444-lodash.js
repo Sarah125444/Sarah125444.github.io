@@ -813,7 +813,9 @@ var sarah125444 = {
   },
 
   isArrayLike: function(value) {
-
+    if(this.isArray(value)) return true;
+    if(this.isString(value)) return true;
+    if(typeof value !== "function") return true;
   },
 
   isArrayLikeObject: function(value) {

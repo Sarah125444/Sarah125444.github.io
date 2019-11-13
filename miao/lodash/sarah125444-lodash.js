@@ -759,9 +759,28 @@ var sarah125444 = {
       return false;
     }
   },
-  sortBy: function() {},
-  defer: function() {},
-  delay: function() {},
+
+  sortBy: function(collection,func=this.identity) {
+    funcs = funcs.map(it => this.iteratee(it));
+    const compare = (a,b,funcs) => {
+      for(let i = 0; i < funcs.length;i++){
+        let flag = orders[i] === "asc" ? 1 : -1;
+        if(funcs[i](a) > funcs[i](b)) return flag;
+        if(funcs[i](a) < funcs[i](b)) return -flag;
+      }
+      return 0;
+    }
+    return collection.sort((a,b) => compare(a,b,funcs,"asc"))
+  },
+
+  defer: function() {
+
+  },
+
+  delay: function() {
+
+  },
+
   castArray: function() {},
   conformsTo: function() {},
   eq: function() {},

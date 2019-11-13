@@ -997,11 +997,11 @@ var sarah125444 = {
     return Object.prototype.toString.call(value) === "[object WeakSet]";
   },
 
-  It: function(value, other) {
+  lt: function(value, other) {
     return value < other;
   },
 
-  Ite: function(value, other) {
+  lte: function(value, other) {
     return value <= other;
   },
 

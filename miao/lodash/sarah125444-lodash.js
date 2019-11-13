@@ -957,7 +957,7 @@ var sarah125444 = {
   },
 
   isPlainObject: function(value) {
-
+    return Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null;
   },
 
   isRegExp: function(value) {
@@ -1206,7 +1206,7 @@ var sarah125444 = {
     }
     return result;
   },
-  
+
   findKey: function() {},
   findLastKey: function() {},
   forIn: function() {},

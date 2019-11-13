@@ -845,37 +845,41 @@ var sarah125444 = {
 
   isEqual: function(value, other) {
     if (value === other) return true;
-    if (
-      value === null ||
-      other === null ||
-      typeof value !== "object" ||
-      typeof other !== "object"
-    )
-      return false;
-    let keysVal = Object.keys(value),
-      keysOth = Object.keys(other);
+    if ( value === null ||other === null ||typeof value !== "object" ||typeof other !== "object") return false;
+    let keysVal = Object.keys(value),keysOth = Object.keys(other);
     if (keysVal.length !== keysOth.length) return false;
     for (let key of keysVal) {
-      if (
-        !keysOth.includes(key) ||
-        !sarah125444.isEqual(value[key], other[key])
-      )
+      if (!keysOth.includes(key) || !sarah125444.isEqual(value[key], other[key]) )
         return false;
     }
     return true;
   },
 
-  isEqualWith: function() {},
+  isEqualWith: function(value,other,customizer) {
+    if(customizer(value,other) || value === other) return true;
+    if(value === null || other === null || typeof value !== "object" || typeof value !== "object") return false;
+    let keysVal = Object.keys(value),keysOth=Object.keys(other);
+    if(keysVal.length !== keysOth.length) return false;
+    for(let key of keysVal){
+      if(!keysOth.includes(key)) return false;
+      if(!customizer(value[key],other[key],key,value,other) && !this.isEqualWith(value[key],other[key],customizer)) return false;
+    }
+    return true;
+  },
+
   isError: function(value) {
     return value instanceof Error;
   },
+
   isFinite: function(value) {
     if (typeof value === "string") return false;
     return Number(value) !== Infinity;
   },
+
   isFunction: function(value) {
     return Object.prototype.toString.call(value) == "[object Function]";
   },
+
   isIntegar: function(value) {
     if (typeof value === "string") return false;
     if (!isNaN(value) && value % 1 === 0) {
@@ -884,6 +888,7 @@ var sarah125444 = {
       return false;
     }
   },
+
   isLength: function(value) {
     if (typeof value === "string") return false;
     if (value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER) {
@@ -892,9 +897,11 @@ var sarah125444 = {
       return false;
     }
   },
+
   isMap: function(value) {
     return Object.prototype.toString.call(value) == "[object Map]";
   },
+
   isMatch: function(object, source) {
     if (typeof source !== "object" || typeof object !== "object") {
       return source === object;
@@ -906,6 +913,7 @@ var sarah125444 = {
     }
     return true;
   },
+
   isMatchWith: function() {},
   matches: function(source) {
     return object => this.isMatch(object, source);

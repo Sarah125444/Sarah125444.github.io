@@ -1013,8 +1013,11 @@ var sarah125444 = {
     return result;
   },
 
-  toFinite: function() {
-
+  toFinite: function(value) {
+    value = Number(value);
+   if(value === Infinity) return Number.MAX_VALUE;
+   if(value === -Infinity) return Number.MIN_VALUE;
+   return value;
   },
 
   toIntegar: function() {

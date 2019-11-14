@@ -1353,9 +1353,13 @@ var sarah125444 = {
   },
 
   invert: function(object) {
-    let objVals = Object.keys(object);
-    let objKeys = Object.values(object);
-
+    let objVal = [...new Set(Object.values(object).reverse())];
+    let objKey =  (Object.keys(object).reverse());
+    let res = {};
+    for(let i = 0;  i < objVal.length;i++){
+      res[objVal[i]] = objKey[i]
+    }
+    return res;
   },
 
   invertBy: function() {

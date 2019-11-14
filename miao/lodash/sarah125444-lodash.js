@@ -1281,13 +1281,22 @@ var sarah125444 = {
     return object;
   },  
 
-
-  forOwn: function() {
-
+  forOwn: function(object,func=iteratee) {
+    func = this.iteratee(func);
+    let objArr = Object.keys(object);
+    for(let i = 0; i < objArr.length;i++){
+      if(func(object[objArr[i]],objArr[i],object) === false) break;
+    }
+    return object;
   },
 
-  forOwnRight: function() {
-
+  forOwnRight: function(object,func=identity) {
+    func=this.iteratee(func);
+    let objArr = Object.keys(object).reverse();
+    for(let i = 0; i < objArr.length;i++){
+      if(func(object[objArr[i]],objArr[i],object) === false) break;
+    }
+    return object;
   },
 
   functions: function() {

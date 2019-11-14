@@ -1313,8 +1313,8 @@ var sarah125444 = {
   },
 
   get: function(object,path,defaultValue) {
-    let res = this.property(path)(object);
     try{
+      let res = this.property(path)(object);
       res === undefined ? defaultValue : res;
     } catch(error) {
       return defaultValue

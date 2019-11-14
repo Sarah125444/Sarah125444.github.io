@@ -1250,8 +1250,15 @@ var sarah125444 = {
     return undefined;
   },
 
-  findLastKey: function() {
-
+  findLastKey: function(object,func=identity) {
+    func = this.iteratee(func);
+    let objArr = Object.fromEntries(Object.entries(object).reverse());
+    for(let key in objArr){
+      if(func(objArr[key],key,objArr)){
+        return key;
+      }
+    }
+    return undefined;
   },
 
   forIn: function() {

@@ -1228,8 +1228,16 @@ var sarah125444 = {
     return Object.assign(object,res);
   },
 
-  defaultsDeep: function(){
-    
+  defaultsDeep: function(object,...sources){
+    sources.forEach(srcObj => {
+      for(let key in srcObj){
+        if(object[key] === undefined) object[key]=srcObj[key];
+        else if(typeof object[key] === "object" && typeof srcObj[key] === "object" && typeof object[key] !== null && typeof srcObj[key] !== null){
+          this.defaultsDeep(object[key],srcObj[key])
+        }
+      }
+    });
+    return object;
   },
 
   findKey: function() {},

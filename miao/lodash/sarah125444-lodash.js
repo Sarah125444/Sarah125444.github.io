@@ -1197,7 +1197,7 @@ var sarah125444 = {
   random: function(){
 
   },
-  
+
   assignIn: function(object, ...sources) {
     sources.forEach(function(obj) {
       for (key in obj) {
@@ -1207,8 +1207,13 @@ var sarah125444 = {
     return object;
   },
 
-  at: function(){
-    
+  at: function(object, paths){
+    let pathArr = paths.map(it => this.toPath(it));
+    let result = [];
+    for(let i = 0; i < pathArr.length;i++){
+      result.push(pathArr[i].reduce((res,item) => res[item],object));
+    }
+    return result;
   },
 
   defaults: function(object, ...sources) {

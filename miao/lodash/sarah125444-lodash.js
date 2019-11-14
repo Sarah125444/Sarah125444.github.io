@@ -1313,7 +1313,9 @@ var sarah125444 = {
   },
 
   get: function(object,path,defaultValue) {
-   path = this.toPath(path);
+    if(typeof path === "string"){
+      path = this.toPath(path);
+    }
    for(let i = 0; i < path.length;i++){
      if(object[path[i]]=== undefined){
        return defaultValue;

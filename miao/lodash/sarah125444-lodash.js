@@ -1316,7 +1316,7 @@ var sarah125444 = {
     try{
      return this.property(path)(object) === undefined ? defaultValue : this.property(path)(object);
     } catch(e){
-      defaultValue
+      return defaultValue
     }
   },
 
@@ -1347,7 +1347,9 @@ var sarah125444 = {
     return true;
   },
 
-  invert: function() {
+  invert: function(object) {
+    let objVals = Object.keys(object);
+    let objKeys = Object.values(object);
 
   },
 

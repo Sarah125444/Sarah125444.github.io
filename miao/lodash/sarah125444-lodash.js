@@ -1305,10 +1305,16 @@ var sarah125444 = {
   },
 
   functionsIn: function(object) {
-    return Object.getOwnPropertyNames(object).filter(key => typeof object[key] === "function")
+    let temp = [];
+    for(let key in object){
+      temp.push(key);
+    }
+    return temp.filter(key => typeof object[key] === "function")
   },
 
-  get: function() {},
+  get: function(object,path,defaultValue) {
+
+  },
 
   has: function() {},
 

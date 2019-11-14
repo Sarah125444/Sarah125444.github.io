@@ -1217,18 +1217,20 @@ var sarah125444 = {
   },
 
   defaults: function(object, ...sources) {
-    let result = {};
-    for (source of sources) {
-      for (key in source) {
-        result[key] = source[key];
+    let res = {};
+    for(let item of sources){
+      for(let it in item){
+        if(!Object.getOwnPropertyNames(object).includes(it)){
+          res[it] = item[it]
+        } 
       }
     }
-    for (key in object) {
-      result[key] = object[key];
-    }
-    return result;
+    return Object.assign(object,res);
   },
-  defaultsDeep: function(){},
+
+  defaultsDeep: function(){
+    
+  },
 
   findKey: function() {},
 

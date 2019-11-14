@@ -1301,7 +1301,7 @@ var sarah125444 = {
 
   
   functions: function(object) {
-    return Object.keys(object);
+    return Object.keys(object).filter(key => typeof object[key] === "function");
   },
 
   functionsIn: function() {
@@ -1387,11 +1387,6 @@ var sarah125444 = {
     return  `${left}${string}${right}`
   },
 
-
-
-
-
-
   padEnd: function(){
 
   },	 
@@ -1463,31 +1458,27 @@ var sarah125444 = {
   },					
   mixin: function(){
 
-  },					
-  times: function(){
+  },		
 
-  },	 
-  toPath: function(){
+  times: function(n,func=identity){
+    func = this.identity(func);
+    func(index)
 
-  }, 
+  },	
+
+
   uniqueId: function(){
 
   },	 
   cloneDeep: function(){
 
   },	 
-  identity: function(){
-
-  },	 
+ 
   pullAt: function(){
 
   },	 
-  matches: function(){
 
-  }, 
-  property: function(){
-
-  }, 
+ 
   ary: function(){
 
   },	 
@@ -1515,7 +1506,7 @@ var sarah125444 = {
   conforms: function(){
 
   },	 
-  constant: function(){
+  constant: function(value){
 
   },	 
   flow: function(){

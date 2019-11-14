@@ -1330,7 +1330,13 @@ var sarah125444 = {
     return false;
   },
 
-  hasIn: function() {},
+  create: function(prototype,properties){
+    return Object.create(prototype,properties)
+  },
+
+  hasIn: function(object,path) {
+
+  },
 
   invert: function() {},
 

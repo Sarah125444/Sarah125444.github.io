@@ -1313,7 +1313,11 @@ var sarah125444 = {
   },
 
   get: function(object,path,defaultValue) {
-
+    try{
+      this.property(path)(object) === undefined ? defaultValue : this.property(path)(object)
+    } catch(error) {
+      return defaultValue
+    }
   },
 
   has: function() {},

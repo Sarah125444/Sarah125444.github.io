@@ -1299,8 +1299,9 @@ var sarah125444 = {
     return object;
   },
 
-  functions: function() {
-
+  
+  functions: function(object) {
+    return Object.keys(object);
   },
 
   functionsIn: function() {
@@ -1385,6 +1386,177 @@ var sarah125444 = {
     let right = charsStr.slice(Math.floor(padLen/2));
     return  `${left}${string}${right}`
   },
+
+
+
+
+
+
+  padEnd: function(){
+
+  },	 
+  padStart: function(){
+
+  },	 
+  parseInt: function(){
+
+  },					
+  repeat: function(){
+
+  }, 
+  replace: function(){
+
+  },					
+  snakeCase: function(){
+
+  },					
+  split: function(){
+
+  },					
+  startCase: function(){
+
+  },					
+  startsWith: function(){
+
+  },					
+  toLower: function(){
+
+  },					
+  toUpper: function(){
+
+  },					
+  trim: function(){
+
+  },					
+  trimEnd: function(){
+
+  },					
+  trimStart: function(){
+
+  },					
+  truncate: function(){
+
+  },					
+  unescape: function(){
+
+  },	 
+  upperCase: function(){
+
+  },					
+  upperFirst: function(){
+
+  },					
+  words: function(){
+
+  },					
+  bindAll: function(){
+
+  },	 
+  defaultTo: function(){
+
+  },					
+  range: function(){
+
+  },	 
+  rangeRight: function(){
+
+  },					
+  mixin: function(){
+
+  },					
+  times: function(){
+
+  },	 
+  toPath: function(){
+
+  }, 
+  uniqueId: function(){
+
+  },	 
+  cloneDeep: function(){
+
+  },	 
+  identity: function(){
+
+  },	 
+  pullAt: function(){
+
+  },	 
+  matches: function(){
+
+  }, 
+  property: function(){
+
+  }, 
+  ary: function(){
+
+  },	 
+  unary: function(){
+
+  },	 
+  negate: function(){
+
+  },	 
+  once: function(){
+
+  }, 
+  spread: function(){
+
+  },	 
+  curry: function(){
+
+  },	 
+  memoize: function(){
+
+  },	 
+  flip: function(){
+
+  }, 
+  conforms: function(){
+
+  },	 
+  constant: function(){
+
+  },	 
+  flow: function(){
+
+  },					
+  method: function(){
+
+  },					
+  methodOf: function(){
+
+  },					
+  nthArg: function(){
+
+  },					
+  propertyOf: function(){
+
+  }, 
+  parseJson: function(){
+
+  },					
+  stringifyJson: function(){
+
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

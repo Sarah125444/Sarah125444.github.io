@@ -1394,7 +1394,7 @@ var sarah125444 = {
     let res = {};
     for(let key in object){
       funcKey = func(object[key],key,object);
-      res[funcKey] = key;
+      res[funcKey] = object[key];
     }
     return res;
   },

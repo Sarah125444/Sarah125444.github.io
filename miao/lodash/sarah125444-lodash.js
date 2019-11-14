@@ -1304,8 +1304,8 @@ var sarah125444 = {
     return Object.keys(object).filter(key => typeof object[key] === "function");
   },
 
-  functionsIn: function() {
-
+  functionsIn: function(object) {
+    return Object.getOwnPropertyNames(object).filter(key => typeof object[key] === "function")
   },
 
   get: function() {},

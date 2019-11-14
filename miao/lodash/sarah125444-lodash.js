@@ -1378,8 +1378,8 @@ var sarah125444 = {
     return temp.reduce((res,item) => res[item],object)[func](...args);
   },
 
-  keys: function() {
-
+  keys: function(object) {
+    return Object.keys(object);
   },
 
   keysIn: function() {},

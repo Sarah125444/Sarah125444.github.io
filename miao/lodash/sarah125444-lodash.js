@@ -1373,8 +1373,9 @@ var sarah125444 = {
     return res;
   },
 
-  invoke: function() {
-
+  invoke: function(object,path,...args) {
+    let pathTrans = _.toPath(path), temp = pathTrans.slice(0,-1),func=pathTrans[pathTrans.length-1];
+    return temp.reduce((res,item) => res[item],object)[func](...args);
   },
 
   keys: function() {

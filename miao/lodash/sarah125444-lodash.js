@@ -1240,22 +1240,44 @@ var sarah125444 = {
     return object;
   },
 
-  findKey: function() {},
+  findKey: function(object,func=this.identity) {
+    func = this.iteratee(func);
+    for(let key in object){
+      if(func(object[key],key,object)){
+        return key;
+      }
+    }
+    return undefined;
+  },
 
-  findLastKey: function() {},
+  findLastKey: function() {
 
-  forIn: function() {},
+  },
 
-  forInRight: function() {},
+  forIn: function() {
+
+  },
+
+  forInRight: function() {
+
+  },
 
 
-  forOwn: function() {},
+  forOwn: function() {
 
-  forOwnRight: function() {},
+  },
 
-  functions: function() {},
+  forOwnRight: function() {
 
-  functionsIn: function() {},
+  },
+
+  functions: function() {
+
+  },
+
+  functionsIn: function() {
+
+  },
 
   get: function() {},
 

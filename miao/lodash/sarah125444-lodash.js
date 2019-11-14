@@ -1335,7 +1335,16 @@ var sarah125444 = {
   },
 
   hasIn: function(object,path) {
-
+    if(typeof path === "string"){
+      path = this.toPath(path);
+    }
+    for(let i = 0; i < path.length; i++){
+      if(!(path[i] in object)) {
+        return false;
+      }
+      object = object[path[i]];
+    }
+    return true;
   },
 
   invert: function() {
@@ -1351,7 +1360,7 @@ var sarah125444 = {
   },
 
   keys: function() {
-    
+
   },
 
   keysIn: function() {},

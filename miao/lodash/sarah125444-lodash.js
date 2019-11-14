@@ -1320,7 +1320,15 @@ var sarah125444 = {
     }
   },
 
-  has: function() {},
+  has: function(object,path) {
+    if(typeof path === "string"){
+       path = this.toPath(path);
+    }
+    for(let i = 0; i < path.length;i++){
+      if(Object.getOwnPropertyNames(object).includes(path[i])) return true;
+    }
+    return false;
+  },
 
   hasIn: function() {},
 

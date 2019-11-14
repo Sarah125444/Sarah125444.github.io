@@ -1271,7 +1271,14 @@ var sarah125444 = {
 
   forInRight: function(object,func=identity) {
     func = this.iteratee(func);
-    return Object.fromEntries(Object.entries(object).reverse())
+    let temp = [];
+    for(let key in object){
+      temp.unshift(key);
+    }
+    for(let i = 0; i < temp.length;i++){
+      if(func(object[temp[i]],temp[i],object) === false) break; 
+    }
+    return object;
   },  
 
 

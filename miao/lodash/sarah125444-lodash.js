@@ -1313,11 +1313,14 @@ var sarah125444 = {
   },
 
   get: function(object,path,defaultValue) {
-    try{
-     return this.property(path)(object) === undefined ? defaultValue : this.property(path)(object);
-    } catch(e){
-      return defaultValue
-    }
+   path = this.toPath(path);
+   for(let i = 0; i < path.length;i++){
+     if(object[path[i]]=== undefined){
+       return defaultValue;
+     }
+     object = object[path[i]]
+   }
+   return object === undefined ? defaultValue : object;
   },
 
   has: function(object,path) {

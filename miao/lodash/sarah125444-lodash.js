@@ -1362,7 +1362,16 @@ var sarah125444 = {
 
   invertBy: function(object, func=this.identity) {
     func = this.iteratee(func);
-    
+    const res = {};
+    for(const key in object){
+      const funcKey = func(object[key]);
+      if(funcKey in res){
+        res[funcKey].push(key);
+      }else{
+        res[funcKey]=[key];
+      }
+    }
+    return res;
   },
 
   invoke: function() {

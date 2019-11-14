@@ -1382,7 +1382,13 @@ var sarah125444 = {
     return Object.keys(object);
   },
 
-  keysIn: function() {},
+  keysIn: function(object) {
+    let res = [];
+    for(let key in object){
+      res.push(key);
+    }
+    return res;
+  },
 
   mapKeys: function() {},
 

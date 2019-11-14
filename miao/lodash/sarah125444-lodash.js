@@ -1263,7 +1263,10 @@ var sarah125444 = {
 
   forIn: function(object,func=identity) {
     func = this.iteratee(func);
-    return Object.fromEntries(Object.entries(object))
+    for(let key in object){
+      if(func(object[key],key,object) === false) break;
+    }
+    return object;
   },
 
   forInRight: function(object,func=identity) {

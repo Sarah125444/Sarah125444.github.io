@@ -1400,7 +1400,13 @@ var sarah125444 = {
   },
 
   mapValues: function(object, func = identity) {
-
+    func = this.iteratee(func);
+    let res = {};
+    for(let key in object){
+      funcVal = func(object[key],key,object);
+      res[key] = funcVal;
+    }
+    return res;
   },
 
   merge: function() {},

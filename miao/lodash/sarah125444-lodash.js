@@ -1266,9 +1266,10 @@ var sarah125444 = {
     return Object.fromEntries(Object.entries(object))
   },
 
-  forInRight: function() {
-
-  },
+  forInRight: function(object,func=identity) {
+    func = this.iteratee(func);
+    return Object.fromEntries(Object.entries(object).reverse())
+  },  
 
 
   forOwn: function() {

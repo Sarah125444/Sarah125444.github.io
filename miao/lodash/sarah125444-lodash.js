@@ -1390,9 +1390,18 @@ var sarah125444 = {
     return res;
   },
 
-  mapKeys: function() {},
+  mapKeys: function(object,func = identity) {
+    let res = {};
+    for(let key in object){
+      funcKey = func(object[key],key,object);
+      res[funcKey] = key;
+    }
+    return res;
+  },
 
-  mapValues: function() {},
+  mapValues: function(object, func = identity) {
+
+  },
 
   merge: function() {},
 

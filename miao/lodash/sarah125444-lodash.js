@@ -1338,13 +1338,21 @@ var sarah125444 = {
 
   },
 
-  invert: function() {},
+  invert: function() {
 
-  invertBy: function() {},
+  },
 
-  invoke: function() {},
+  invertBy: function() {
 
-  keys: function() {},
+  },
+
+  invoke: function() {
+
+  },
+
+  keys: function() {
+    
+  },
 
   keysIn: function() {},
 

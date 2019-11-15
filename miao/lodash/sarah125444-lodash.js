@@ -1655,7 +1655,11 @@ var sarah125444 = {
   unescape: function() {},
   upperCase: function() {},
   upperFirst: function() {},
-  words: function() {},
+
+  words: function(string='',pattern=/[a-zA-Z]+/g) {
+   return string.match(pattern);
+  },
+
   bindAll: function() {},
   defaultTo: function() {},
   range: function() {},

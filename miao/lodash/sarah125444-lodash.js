@@ -1444,7 +1444,6 @@ var sarah125444 = {
   omit: function(object,paths) {
     let res = {};
     resArr = Object.keys(object).filter(item => !paths.includes(item));
-    console.log(resArr)
     for(let item of resArr){
          res[item] = object[item]
     }

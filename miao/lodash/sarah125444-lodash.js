@@ -1458,9 +1458,22 @@ var sarah125444 = {
     return res;
   },
 
-  pick: function() {},
+  pick: function(object,paths) {
+    let res = {};
+    resArr = Object.keys(object).filter(item => paths.includes(item));
+    for(let item of resArr){
+         res[item] = object[item]
+    }
+    return res;
+  },
 
-  pickBy: function() {},
+  pickBy: function(object,func=identity) {
+    let res = {};
+    for(let key in object){
+      if(func(object[key],key)) res[key] = object[key];
+    }
+    return res;
+  },
 
   result: function() {},
 

@@ -1441,7 +1441,15 @@ var sarah125444 = {
     return object;
   },
 
-  omit: function() {},
+  omit: function(object,paths) {
+    let res = {};
+    resArr = Object.keys(object).filter(item => !paths.includes(item));
+    console.log(resArr)
+    for(let item of resArr){
+         res[item] = object[item]
+    }
+    return res;
+  },
 
   omitBy: function() {},
 

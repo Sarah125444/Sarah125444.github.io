@@ -1451,10 +1451,10 @@ var sarah125444 = {
   },
 
   omitBy: function(object,func=identity) {
-    func=this.iteratee(func);
-    let objKey = Object.keys(object),objVal = Object.values(object);
     let res = {};
-    if(func(objVal,objKey)) res[objKey] = objVal;
+    for(let key in object){
+      if(!func(object[key],key)) res[key] = object[key];
+    }
     return res;
   },
 

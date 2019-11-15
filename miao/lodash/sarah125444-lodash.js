@@ -1424,8 +1424,21 @@ var sarah125444 = {
     return object;
   },
 
-  mergeWith: function() {
-    
+  mergeWith: function(object,...sources) {
+    let customizer = sources.pop();
+    sources.forEach(src => {
+      for(let key in src){
+        if(!(key in object)){
+          object[key] = src[key];
+        }else{
+          if(key in object && typeof object[key] === "object" && typeof src[key] === "object" && object[key] !== null && src[key] !== null){
+            let res = customizer(object[key],src[key],key,object,src);
+            object[key] = res;
+          }
+        }
+      }
+    });
+    return object;
   },
 
   omit: function() {},

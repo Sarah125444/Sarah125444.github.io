@@ -1605,7 +1605,13 @@ var sarah125444 = {
     return Object.values(object);
   },
 
-  valuesIn: function() {},
+  valuesIn: function(object) {
+    let res = [];
+    for(let key in object){
+      res.push(object[key])
+    }
+    return res;
+  },
 
   camelCase: function() {},
 

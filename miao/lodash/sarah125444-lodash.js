@@ -1475,7 +1475,18 @@ var sarah125444 = {
     return res;
   },
 
-  result: function() {},
+  result: function(object,path,defaultValue) {
+    if(typeof path === "string") path = this.toPath(path);
+    let pre = null,res = object;
+    for(let item of path){
+      pre = res;
+      res = res[item];
+      if(res === undefined){
+        return typeof defaultValue === "function" ? defaultValue() : defaultValue;
+      }
+    }
+    return typeof res === "function" ? res.call(pre) : res;
+  },
 
  
   setWith: function() {},

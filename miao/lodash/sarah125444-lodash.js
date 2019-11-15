@@ -1528,7 +1528,16 @@ var sarah125444 = {
     return this.property(path)(object) ? true : false;
   },
 
-  update: function() {},
+  update: function(object,path,updater) {
+    if(typeof path === "string") path = this.toPath(path);
+    for(let p of path){
+      object = object[p]
+      if(object === undefined){
+        return updater(object);
+      }
+    }
+    return updater(object);
+  },
 
 
   updateWith: function() {},

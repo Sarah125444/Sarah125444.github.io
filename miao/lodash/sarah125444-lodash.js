@@ -1521,10 +1521,12 @@ var sarah125444 = {
   },
 
   transform: function() {
-    
+
   },
 
-  unset: function() {},
+  unset: function(object,path) {
+    return this.property(path)(object) ? true : false;
+  },
 
   update: function() {},
 

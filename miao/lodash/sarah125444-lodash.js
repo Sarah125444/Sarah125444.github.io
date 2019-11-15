@@ -1618,11 +1618,11 @@ var sarah125444 = {
     return strArr.map((item,index) => (index ? item[0].toUpperCase() : item[0].toLowerCase()) + item.slice(1).toLowerCase()).join("");
   },
 
- 
 
-
-
-  capitalize: function() {},
+  capitalize: function(string='') {
+    let strArr = string.match(/[a-zA-Z]+/g);
+    return strArr.map(item => item[0].toUpperCase() + item.slice(1).toLowerCase()).join('')
+  },
 
   deburr: function() {},
 

@@ -1450,7 +1450,13 @@ var sarah125444 = {
     return res;
   },
 
-  omitBy: function() {},
+  omitBy: function(object,func=identity) {
+    func=this.iteratee(func);
+    let objKey = Object.keys(object),objVal = Object.values(object);
+    let res = {};
+    if(func(objVal,objKey)) res[objKey] = objVal;
+    return res;
+  },
 
   pick: function() {},
 

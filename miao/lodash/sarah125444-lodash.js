@@ -1489,7 +1489,24 @@ var sarah125444 = {
   },
 
  
-  setWith: function() {},
+  setWith: function(object,path,value,customizer) {
+    if(!customizer) this.set(object,path,value);
+    if(typeof path === "string") path = this.toPath(path);
+    path.reduce((res,item,index) => {
+      if(index === path.length - 1){
+        res[item] = value;
+      }else if(customizer() !== undefined){
+        res[item] = customizer();
+      }else if(!res[item] && typeof path[i+1] === "number"){
+        res[item] = [];
+      }else if(!res[item] && typeof path[i+1] === "string"){
+        res[item] = {};
+      }
+      return res[item];
+    },object)
+    return object;
+  },
+
 
   toPairs: function() {},
 

@@ -1595,7 +1595,11 @@ var sarah125444 = {
     return object;
   },
 
-  updateWith: function() {},
+  updateWith: function(object,path,updater,customizer) {
+    const val = updater(this.get(object,path));
+    this.setWith(object,path,val,customizer);
+    return object;
+  },
 
   values: function() {},
 
@@ -1668,8 +1672,14 @@ var sarah125444 = {
   curry: function() {},
   memoize: function() {},
   flip: function() {},
-  conforms: function() {},
-  constant: function(value) {},
+  conforms: function() {
+
+  },
+
+  constant: function(value) {
+    return () => value;
+  },
+
   flow: function() {},
   method: function() {},
   methodOf: function() {},

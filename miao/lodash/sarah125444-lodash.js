@@ -1601,7 +1601,9 @@ var sarah125444 = {
     return object;
   },
 
-  values: function() {},
+  values: function(object) {
+    return Object.values(object);
+  },
 
   valuesIn: function() {},
 

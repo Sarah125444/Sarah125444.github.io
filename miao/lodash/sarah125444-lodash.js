@@ -467,24 +467,26 @@ var sarah125444 = {
     return Object.fromEntries(this.zip(props, values));
   },
 
-  set: function(object, path, value){
-    path = (typeof path === "string" ? path.match(/\w+/g) : path).map(it => Number(it) >= 0 ? +it : it)
-    path.reduce((res,item,index) => {
-      if(index === path.length - 1){
+  set: function(object, path, value) {
+    path = (typeof path === "string" ? path.match(/\w+/g) : path).map(it =>
+      Number(it) >= 0 ? +it : it
+    );
+    path.reduce((res, item, index) => {
+      if (index === path.length - 1) {
         res[item] = value;
-      }else if(!res[item] && typeof path[index+1]=== "number"){
+      } else if (!res[item] && typeof path[index + 1] === "number") {
         res[item] = [];
-      }else if(!res[item] && typeof path[index+1] === "string"){
+      } else if (!res[item] && typeof path[index + 1] === "string") {
         res[item] = {};
       }
-      return res[item]
-    },object)
+      return res[item];
+    }, object);
     return object;
   },
 
-  zipObjectDeep: function(props=[],values=[]) {
+  zipObjectDeep: function(props = [], values = []) {
     const res = {};
-    props.forEach((item,index) => this.set(res,item,values[index]));
+    props.forEach((item, index) => this.set(res, item, values[index]));
     return res;
   },
 
@@ -493,15 +495,15 @@ var sarah125444 = {
     return args[0].map((_, i) => func(...args.map(arr => arr[i])));
   },
 
-  countBy: function(collection,func=this.identity) {
-   func = this.iteratee(func);
-   let arr = collection.map(it => func(it)).sort((a,b) => a-b);
-   const obj = {};
-   arr.forEach(it => it in obj ? obj[it]++ : obj[it]=1)
-   return obj;
+  countBy: function(collection, func = this.identity) {
+    func = this.iteratee(func);
+    let arr = collection.map(it => func(it)).sort((a, b) => a - b);
+    const obj = {};
+    arr.forEach(it => (it in obj ? obj[it]++ : (obj[it] = 1)));
+    return obj;
   },
 
-  every: function(collection, func=this.identity) {
+  every: function(collection, func = this.identity) {
     func = this.iteratee(func);
     if (Array.isArray(collection)) {
       for (let index = 0; index < collection.length; index++) {
@@ -539,32 +541,36 @@ var sarah125444 = {
     return passed;
   },
 
-  find: function(collection,func=this.identity,fromIndex=0) {
-    func=this.iteratee(func);
+  find: function(collection, func = this.identity, fromIndex = 0) {
+    func = this.iteratee(func);
     return collection.filter(func)[0];
   },
 
-  findLast: function(collection,func=this.identity,fromIndex=collection.length-1) {
+  findLast: function(
+    collection,
+    func = this.identity,
+    fromIndex = collection.length - 1
+  ) {
     func = this.identity(func);
-    for(let i = fromIndex; i > 0;i--){
-      if(func(collection[i])) return collection[i];  
+    for (let i = fromIndex; i > 0; i--) {
+      if (func(collection[i])) return collection[i];
     }
     return undefined;
   },
 
-  flatMap: function(collection,func=identity) {
-    func=this.identity(func);
+  flatMap: function(collection, func = identity) {
+    func = this.identity(func);
     return collection.map(item => func(item)).flat();
   },
 
-  flatMapDeep: function(collection,func=identity) {
+  flatMapDeep: function(collection, func = identity) {
     func = this.identity(func);
     return this.flattenDeep(collection.map(func));
   },
 
-  flatMapDepth: function(collection,func=identity,depth=1) {
+  flatMapDepth: function(collection, func = identity, depth = 1) {
     func = this.identity(func);
-    return this.flattenDepth(collection.map(func) , depth)
+    return this.flattenDepth(collection.map(func), depth);
   },
 
   forEach: function(collection, action) {
@@ -580,60 +586,66 @@ var sarah125444 = {
     return collection;
   },
 
-  forEachRight: function(collection,action) {
-    if(Array.isArray(collection)){
-      for(let i = collection.length - 1; i >= 0; i--){
-        action(collection[i], i, collection)
+  forEachRight: function(collection, action) {
+    if (Array.isArray(collection)) {
+      for (let i = collection.length - 1; i >= 0; i--) {
+        action(collection[i], i, collection);
       }
-    }else{
+    } else {
       let objTransformed = Object.entries(collection);
-      for(let i = collection.length - 1; i >= 0; i--){
-        action(objTransformed[i][1], objTransformed[i][0], collection)
+      for (let i = collection.length - 1; i >= 0; i--) {
+        action(objTransformed[i][1], objTransformed[i][0], collection);
       }
     }
     return collection;
   },
 
-  groupBy: function(collection,func=identity) {
+  groupBy: function(collection, func = identity) {
     func = this.iteratee(func);
     const res = {};
-    const originCol = collection.sort((a,b) => a - b);
-    const transCol = collection.map(func).sort((a,b) => a - b);
-    transCol.forEach((item,index) => item in res ? res[item].push(originCol[index]) : res[item]=[originCol[index]]);
+    const originCol = collection.sort((a, b) => a - b);
+    const transCol = collection.map(func).sort((a, b) => a - b);
+    transCol.forEach((item, index) =>
+      item in res
+        ? res[item].push(originCol[index])
+        : (res[item] = [originCol[index]])
+    );
     return res;
   },
 
-  includes: function(collection,value,fromIndex=0) {
-    if(Array.isArray(collection)){
-      for(let i = fromIndex; i < collection.length;i++){
-        if(collection[i] === value){
+  includes: function(collection, value, fromIndex = 0) {
+    if (Array.isArray(collection)) {
+      for (let i = fromIndex; i < collection.length; i++) {
+        if (collection[i] === value) {
           return true;
         }
       }
       return false;
     }
-    if(this.isString(collection)){
+    if (this.isString(collection)) {
       collection = collection.slice(fromIndex);
       return collection.includes(value);
     }
-    if(this.isObject(collection)){
-     let tans = Object.values(collection);
-     for(let i = fromIndex; i < tans.length;i++){
-       if(tans[i] === value) {
-        return true;
-       }
-     }
-     return false;
+    if (this.isObject(collection)) {
+      let tans = Object.values(collection);
+      for (let i = fromIndex; i < tans.length; i++) {
+        if (tans[i] === value) {
+          return true;
+        }
+      }
+      return false;
     }
   },
 
-  invokeMap: function(collection,path,...args) {
-    if(typeof path === "string"){
-      return collection.map(item => item[path](...args))
-    }else if(typeof path === "function"){
-      return collection.map(item => path.call(item,...args))
-    }else {
-      return collection.map(item => this.iteratee(path)(it).call(item,...args))
+  invokeMap: function(collection, path, ...args) {
+    if (typeof path === "string") {
+      return collection.map(item => item[path](...args));
+    } else if (typeof path === "function") {
+      return collection.map(item => path.call(item, ...args));
+    } else {
+      return collection.map(item =>
+        this.iteratee(path)(it).call(item, ...args)
+      );
     }
   },
 
@@ -652,36 +664,40 @@ var sarah125444 = {
     return transformed;
   },
 
-  orderBy: function(collection,funcs=this.identity,orders) {
+  orderBy: function(collection, funcs = this.identity, orders) {
     funcs = funcs.map(it => this.iteratee(it));
-    const compare = (a,b,func,order = "asc") => {
+    const compare = (a, b, func, order = "asc") => {
       const flag = order === "asc" ? 1 : -1;
-      if(func(a) < func(b)) return -1*flag;
-      if(func(a) > func(b)) return 1*flag;
+      if (func(a) < func(b)) return -1 * flag;
+      if (func(a) > func(b)) return 1 * flag;
       return 0;
-     };
-    if(Array.isArray(collection)){
-      return collection.sort((a,b) => {
-        for(let i = 0; i < funcs.length;i++){
-          const res = compare(a,b,funcs[i],orders[i]);
-          if(res !== 0) return res;
+    };
+    if (Array.isArray(collection)) {
+      return collection.sort((a, b) => {
+        for (let i = 0; i < funcs.length; i++) {
+          const res = compare(a, b, funcs[i], orders[i]);
+          if (res !== 0) return res;
         }
         return 0;
-      })
+      });
     }
   },
 
-  partition: function(collection,func=identity) {
-    func=this.iteratee(func);
-    return collection.reduce((res,item) => {
-      res[func(item) ? 0 : 1].push(item);
-      return res;
-    },[[],[]] );
+  partition: function(collection, func = identity) {
+    func = this.iteratee(func);
+    return collection.reduce(
+      (res, item) => {
+        res[func(item) ? 0 : 1].push(item);
+        return res;
+      },
+      [[], []]
+    );
   },
 
-  reduce: function(collection, func=identity, accumulator) {
+  reduce: function(collection, func = identity, accumulator) {
     func = this.iteratee(func);
-    let current = accumulator, j;
+    let current = accumulator,
+      j;
     if (Array.isArray(collection)) {
       if (accumulator !== undefined) {
         j = 0;
@@ -700,42 +716,42 @@ var sarah125444 = {
     return current;
   },
 
-  reduceRight: function(collection,func=identity,accumulator) {
-    func=this.iteratee(func);
+  reduceRight: function(collection, func = identity, accumulator) {
+    func = this.iteratee(func);
     let current = accumulator;
-    if(Array.isArray(collection)){
-      for(let index = collection.length - 1; index >= 0; index--){
-        current = func(current,collection[index],index,collection)
+    if (Array.isArray(collection)) {
+      for (let index = collection.length - 1; index >= 0; index--) {
+        current = func(current, collection[index], index, collection);
       }
     }
     return current;
   },
 
-  reject: function(collection,func=identity) {
-    func=this.iteratee(func);
-    return collection.filter(item => !func(item))
+  reject: function(collection, func = identity) {
+    func = this.iteratee(func);
+    return collection.filter(item => !func(item));
   },
 
   sample: function(collection) {
-    return collection[Math.floor(Math.random()*collection.length)]
+    return collection[Math.floor(Math.random() * collection.length)];
   },
 
-  sampleSize: function(collection,n=1) {
-    return collection.sort(() => Math.random() - 0.5).slice(0,n); 
+  sampleSize: function(collection, n = 1) {
+    return collection.sort(() => Math.random() - 0.5).slice(0, n);
   },
 
   shuffle: function(collection) {
-    return collection.sort(() => Math.random() - 1)
+    return collection.sort(() => Math.random() - 1);
   },
 
   size: function(collection) {
-    if(Array.isArray(collection)){
+    if (Array.isArray(collection)) {
       return collection.length;
     }
-    if(typeof collection === "string"){
+    if (typeof collection === "string") {
       return collection.length;
     }
-    if(this.isObject(collection)){
+    if (this.isObject(collection)) {
       let transCol = Object.keys(collection);
       return transCol.length;
     }
@@ -760,44 +776,46 @@ var sarah125444 = {
     }
   },
 
-  sortBy: function(collection,funcs=this.identity) {
+  sortBy: function(collection, funcs = this.identity) {
     funcs = funcs.map(it => this.iteratee(it));
-    const compare = (a,b,funcs) => {
-      for(let i = 0; i < funcs.length;i++){
-        if(funcs[i](a) > funcs[i](b)) return 1;
-        if(funcs[i](a) < funcs[i](b)) return -1;
+    const compare = (a, b, funcs) => {
+      for (let i = 0; i < funcs.length; i++) {
+        if (funcs[i](a) > funcs[i](b)) return 1;
+        if (funcs[i](a) < funcs[i](b)) return -1;
       }
       return 0;
-    }
-    return collection.sort((a,b) => compare(a,b,funcs))
+    };
+    return collection.sort((a, b) => compare(a, b, funcs));
   },
 
-  defer: function(func,args) {
-    return setTimeout(() => func(args),0)
+  defer: function(func, args) {
+    return setTimeout(() => func(args), 0);
   },
 
-  delay: function(func,wait,...args) {
-    return setTimeout(() => func(...args),wait)
+  delay: function(func, wait, ...args) {
+    return setTimeout(() => func(...args), wait);
   },
 
   castArray: function(...args) {
     return Array.isArray(...args) ? args[0] : args;
   },
 
-  conformsTo: function(object,source) {
-   return Object.values(source).every((func,index) => func(object[Object.keys(source)[index]]))
+  conformsTo: function(object, source) {
+    return Object.values(source).every((func, index) =>
+      func(object[Object.keys(source)[index]])
+    );
   },
 
-  eq: function(value,other) {
-    return this.sameValueZero(value,other)
+  eq: function(value, other) {
+    return this.sameValueZero(value, other);
   },
 
-  gt: function(value,other) {
-   return Number(value) > Number(other) ? true : false;
+  gt: function(value, other) {
+    return Number(value) > Number(other) ? true : false;
   },
 
-  gte: function(value,other) {
-    return this.gt(value,other) || this.eq(value,other)
+  gte: function(value, other) {
+    return this.gt(value, other) || this.eq(value, other);
   },
 
   isArguments: function(value) {
@@ -813,14 +831,20 @@ var sarah125444 = {
   },
 
   isArrayLike: function(value) {
-    if(this.isArray(value)) return true;
-    if(this.isString(value)) return true;
-    if(typeof value !== "function") return true;
-    if(value !== undefined && value !== null && value.length >= 0 && value.length <= Number.MAX_SAFE_INTEGER) return true;
+    if (this.isArray(value)) return true;
+    if (this.isString(value)) return true;
+    if (typeof value !== "function") return true;
+    if (
+      value !== undefined &&
+      value !== null &&
+      value.length >= 0 &&
+      value.length <= Number.MAX_SAFE_INTEGER
+    )
+      return true;
   },
 
   isArrayLikeObject: function(value) {
-    return this.isArrayLike(value) && this.isObject(value)
+    return this.isArrayLike(value) && this.isObject(value);
   },
 
   isBoolean: function(value) {
@@ -845,24 +869,45 @@ var sarah125444 = {
 
   isEqual: function(value, other) {
     if (value === other) return true;
-    if ( value === null ||other === null ||typeof value !== "object" ||typeof other !== "object") return false;
-    let keysVal = Object.keys(value),keysOth = Object.keys(other);
+    if (
+      value === null ||
+      other === null ||
+      typeof value !== "object" ||
+      typeof other !== "object"
+    )
+      return false;
+    let keysVal = Object.keys(value),
+      keysOth = Object.keys(other);
     if (keysVal.length !== keysOth.length) return false;
     for (let key of keysVal) {
-      if (!keysOth.includes(key) || !sarah125444.isEqual(value[key], other[key]) )
+      if (
+        !keysOth.includes(key) ||
+        !sarah125444.isEqual(value[key], other[key])
+      )
         return false;
     }
     return true;
   },
 
-  isEqualWith: function(value,other,customizer) {
-    if(customizer(value,other) || value === other) return true;
-    if(value === null || other === null || typeof value !== "object" || typeof value !== "object") return false;
-    let keysVal = Object.keys(value),keysOth=Object.keys(other);
-    if(keysVal.length !== keysOth.length) return false;
-    for(let key of keysVal){
-      if(!keysOth.includes(key)) return false;
-      if(!customizer(value[key],other[key],key,value,other) && !this.isEqualWith(value[key],other[key],customizer)) return false;
+  isEqualWith: function(value, other, customizer) {
+    if (customizer(value, other) || value === other) return true;
+    if (
+      value === null ||
+      other === null ||
+      typeof value !== "object" ||
+      typeof value !== "object"
+    )
+      return false;
+    let keysVal = Object.keys(value),
+      keysOth = Object.keys(other);
+    if (keysVal.length !== keysOth.length) return false;
+    for (let key of keysVal) {
+      if (!keysOth.includes(key)) return false;
+      if (
+        !customizer(value[key], other[key], key, value, other) &&
+        !this.isEqualWith(value[key], other[key], customizer)
+      )
+        return false;
     }
     return true;
   },
@@ -882,13 +927,12 @@ var sarah125444 = {
 
   isInteger: function(value) {
     if (typeof value === "string") return false;
-    return !isNaN(value) && value % 1 === 0
-
+    return !isNaN(value) && value % 1 === 0;
   },
 
   isLength: function(value) {
     if (typeof value === "string") return false;
-    return value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER
+    return value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER;
   },
 
   isMap: function(value) {
@@ -907,9 +951,9 @@ var sarah125444 = {
     return true;
   },
 
-  isMatchWith: function(object,source,customizer) {
-    if(this.isMatch(object,source)) return true;
-    if(this.isEqualWith(object,source,customizer)) return true;
+  isMatchWith: function(object, source, customizer) {
+    if (this.isMatch(object, source)) return true;
+    if (this.isEqualWith(object, source, customizer)) return true;
   },
 
   matches: function(source) {
@@ -923,8 +967,8 @@ var sarah125444 = {
     return false;
   },
 
-  isNative: function(value){
-    return value.toString().includes("[native code]")
+  isNative: function(value) {
+    return value.toString().includes("[native code]");
   },
 
   isNil: function(value) {
@@ -957,7 +1001,10 @@ var sarah125444 = {
   },
 
   isPlainObject: function(value) {
-    return Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null;
+    return (
+      Object.getPrototypeOf(value) === Object.prototype ||
+      Object.getPrototypeOf(value) === null
+    );
   },
 
   isRegExp: function(value) {
@@ -982,7 +1029,7 @@ var sarah125444 = {
 
   isTypedArray: function(value) {
     let reg = /^(Int|Uint|Float)(8|16|32|64)(Clamped)?(Array)$/;
-    return reg.test(Object.prototype.toString.call(value).slice(8,-1))
+    return reg.test(Object.prototype.toString.call(value).slice(8, -1));
   },
 
   isUndefined: function(value) {
@@ -1015,39 +1062,39 @@ var sarah125444 = {
 
   toFinite: function(value) {
     value = Number(value);
-   if(value === Infinity) return Number.MAX_VALUE;
-   if(value === -Infinity) return Number.MIN_VALUE;
-   return value;
+    if (value === Infinity) return Number.MAX_VALUE;
+    if (value === -Infinity) return Number.MIN_VALUE;
+    return value;
   },
 
   toInteger: function(value) {
     value = Number(value);
-    if(this.isNaN(value) || value === 0) return 0;
-    if(value === Infinity) return Number.MAX_VALUE;
-    if(value === - Infinity) return -Number.MAX_VALUE;
-    return Math.floor(Math.abs(value))*(value > 0 ? 1 : -1);
+    if (this.isNaN(value) || value === 0) return 0;
+    if (value === Infinity) return Number.MAX_VALUE;
+    if (value === -Infinity) return -Number.MAX_VALUE;
+    return Math.floor(Math.abs(value)) * (value > 0 ? 1 : -1);
   },
 
   toLength: function(value) {
     value = this.toInteger(value);
-    if(value < 0) return 0;
-    return value > 2**32-1 ? 2**32-1 : value;
+    if (value < 0) return 0;
+    return value > 2 ** 32 - 1 ? 2 ** 32 - 1 : value;
   },
 
   toNumber: function(value) {
     return Number(value);
   },
 
-  assign: function(object,...args) {
-    return Object.assign(object,...args);
+  assign: function(object, ...args) {
+    return Object.assign(object, ...args);
   },
 
   toSafeInteger: function(value) {
     value = Number(value);
-    value = Math.min(Number.MAX_SAFE_INTEGER,value);
-    value = Math.max(Number.MIN_SAFE_INTEGER,value)
-    if(this.isNaN(value) || value === 0) return 0;
-    return Math.floor(Math.abs(value))*(value > 0 ? 1 : -1);
+    value = Math.min(Number.MAX_SAFE_INTEGER, value);
+    value = Math.max(Number.MIN_SAFE_INTEGER, value);
+    if (this.isNaN(value) || value === 0) return 0;
+    return Math.floor(Math.abs(value)) * (value > 0 ? 1 : -1);
   },
 
   add: function(augend, addend) {
@@ -1194,9 +1241,7 @@ var sarah125444 = {
     return false;
   },
 
-  random: function(){
-
-  },
+  random: function() {},
 
   assignIn: function(object, ...sources) {
     sources.forEach(function(obj) {
@@ -1207,144 +1252,148 @@ var sarah125444 = {
     return object;
   },
 
-  at: function(object, paths){
+  at: function(object, paths) {
     let pathArr = paths.map(it => this.toPath(it));
     let result = [];
-    for(let i = 0; i < pathArr.length;i++){
-      result.push(pathArr[i].reduce((res,item) => res[item],object));
+    for (let i = 0; i < pathArr.length; i++) {
+      result.push(pathArr[i].reduce((res, item) => res[item], object));
     }
     return result;
   },
 
   defaults: function(object, ...sources) {
     let res = {};
-    for(let item of sources){
-      for(let it in item){
-        if(!Object.getOwnPropertyNames(object).includes(it)){
-          res[it] = item[it]
-        } 
+    for (let item of sources) {
+      for (let it in item) {
+        if (!Object.getOwnPropertyNames(object).includes(it)) {
+          res[it] = item[it];
+        }
       }
     }
-    return Object.assign(object,res);
+    return Object.assign(object, res);
   },
 
-  defaultsDeep: function(object,...sources){
+  defaultsDeep: function(object, ...sources) {
     sources.forEach(srcObj => {
-      for(let key in srcObj){
-        if(object[key] === undefined) object[key]=srcObj[key];
-        else if(typeof object[key] === "object" && typeof srcObj[key] === "object" && typeof object[key] !== null && typeof srcObj[key] !== null){
-          this.defaultsDeep(object[key],srcObj[key])
+      for (let key in srcObj) {
+        if (object[key] === undefined) object[key] = srcObj[key];
+        else if (
+          typeof object[key] === "object" &&
+          typeof srcObj[key] === "object" &&
+          typeof object[key] !== null &&
+          typeof srcObj[key] !== null
+        ) {
+          this.defaultsDeep(object[key], srcObj[key]);
         }
       }
     });
     return object;
   },
 
-  findKey: function(object,func=this.identity) {
+  findKey: function(object, func = this.identity) {
     func = this.iteratee(func);
-    for(let key in object){
-      if(func(object[key],key,object)){
+    for (let key in object) {
+      if (func(object[key], key, object)) {
         return key;
       }
     }
     return undefined;
   },
 
-  findLastKey: function(object,func=identity) {
+  findLastKey: function(object, func = identity) {
     func = this.iteratee(func);
     let objArr = Object.fromEntries(Object.entries(object).reverse());
-    for(let key in objArr){
-      if(func(objArr[key],key,objArr)){
+    for (let key in objArr) {
+      if (func(objArr[key], key, objArr)) {
         return key;
       }
     }
     return undefined;
   },
 
-  forIn: function(object,func=identity) {
+  forIn: function(object, func = identity) {
     func = this.iteratee(func);
-    for(let key in object){
-      if(func(object[key],key,object) === false) break;
+    for (let key in object) {
+      if (func(object[key], key, object) === false) break;
     }
     return object;
   },
 
-  forInRight: function(object,func=identity) {
+  forInRight: function(object, func = identity) {
     func = this.iteratee(func);
     let temp = [];
-    for(let key in object){
+    for (let key in object) {
       temp.unshift(key);
     }
-    for(let i = 0; i < temp.length;i++){
-      if(func(object[temp[i]],temp[i],object) === false) break; 
+    for (let i = 0; i < temp.length; i++) {
+      if (func(object[temp[i]], temp[i], object) === false) break;
     }
     return object;
-  },  
+  },
 
-  forOwn: function(object,func=iteratee) {
+  forOwn: function(object, func = iteratee) {
     func = this.iteratee(func);
     let objArr = Object.keys(object);
-    for(let i = 0; i < objArr.length;i++){
-      if(func(object[objArr[i]],objArr[i],object) === false) break;
+    for (let i = 0; i < objArr.length; i++) {
+      if (func(object[objArr[i]], objArr[i], object) === false) break;
     }
     return object;
   },
 
-  forOwnRight: function(object,func=identity) {
-    func=this.iteratee(func);
+  forOwnRight: function(object, func = identity) {
+    func = this.iteratee(func);
     let objArr = Object.keys(object).reverse();
-    for(let i = 0; i < objArr.length;i++){
-      if(func(object[objArr[i]],objArr[i],object) === false) break;
+    for (let i = 0; i < objArr.length; i++) {
+      if (func(object[objArr[i]], objArr[i], object) === false) break;
     }
     return object;
   },
 
-  
   functions: function(object) {
     return Object.keys(object).filter(key => typeof object[key] === "function");
   },
 
   functionsIn: function(object) {
     let temp = [];
-    for(let key in object){
+    for (let key in object) {
       temp.push(key);
     }
-    return temp.filter(key => typeof object[key] === "function")
+    return temp.filter(key => typeof object[key] === "function");
   },
 
-  get: function(object,path,defaultValue) {
-    if(typeof path === "string"){
+  get: function(object, path, defaultValue) {
+    if (typeof path === "string") {
       path = this.toPath(path);
     }
-    for(let i = 0; i < path.length;i++){
-     if(object[path[i]]=== undefined){
-       return defaultValue;
-     }
-     object = object[path[i]]
-   }
-   return object === undefined ? defaultValue : object;
+    for (let i = 0; i < path.length; i++) {
+      if (object[path[i]] === undefined) {
+        return defaultValue;
+      }
+      object = object[path[i]];
+    }
+    return object === undefined ? defaultValue : object;
   },
 
-  has: function(object,path) {
-    if(typeof path === "string"){
-       path = this.toPath(path);
+  has: function(object, path) {
+    if (typeof path === "string") {
+      path = this.toPath(path);
     }
-    for(let i = 0; i < path.length;i++){
-      if(Object.getOwnPropertyNames(object).includes(path[i])) return true;
+    for (let i = 0; i < path.length; i++) {
+      if (Object.getOwnPropertyNames(object).includes(path[i])) return true;
     }
     return false;
   },
 
-  create: function(prototype,properties){
-    return Object.create(prototype,properties)
+  create: function(prototype, properties) {
+    return Object.create(prototype, properties);
   },
 
-  hasIn: function(object,path) {
-    if(typeof path === "string"){
+  hasIn: function(object, path) {
+    if (typeof path === "string") {
       path = this.toPath(path);
     }
-    for(let i = 0; i < path.length; i++){
-      if(!(path[i] in object)) {
+    for (let i = 0; i < path.length; i++) {
+      if (!(path[i] in object)) {
         return false;
       }
       object = object[path[i]];
@@ -1354,28 +1403,30 @@ var sarah125444 = {
 
   invert: function(object) {
     let res = {};
-    for(let key in object){
+    for (let key in object) {
       res[object[key]] = key;
     }
     return res;
   },
 
-  invertBy: function(object, func=this.identity) {
+  invertBy: function(object, func = this.identity) {
     const res = {};
-    for(const key in object){
+    for (const key in object) {
       const funcKey = func(object[key]);
-      if(funcKey in res){
+      if (funcKey in res) {
         res[funcKey].push(key);
-      }else{
-        res[funcKey]=[key];
+      } else {
+        res[funcKey] = [key];
       }
     }
     return res;
   },
 
-  invoke: function(object,path,...args) {
-    let pathTrans = _.toPath(path), temp = pathTrans.slice(0,-1),func=pathTrans[pathTrans.length-1];
-    return temp.reduce((res,item) => res[item],object)[func](...args);
+  invoke: function(object, path, ...args) {
+    let pathTrans = _.toPath(path),
+      temp = pathTrans.slice(0, -1),
+      func = pathTrans[pathTrans.length - 1];
+    return temp.reduce((res, item) => res[item], object)[func](...args);
   },
 
   keys: function(object) {
@@ -1384,16 +1435,16 @@ var sarah125444 = {
 
   keysIn: function(object) {
     let res = [];
-    for(let key in object){
+    for (let key in object) {
       res.push(key);
     }
     return res;
   },
 
-  mapKeys: function(object,func = identity) {
+  mapKeys: function(object, func = identity) {
     let res = {};
-    for(let key in object){
-      funcKey = func(object[key],key,object);
+    for (let key in object) {
+      funcKey = func(object[key], key, object);
       res[funcKey] = object[key];
     }
     return res;
@@ -1402,21 +1453,26 @@ var sarah125444 = {
   mapValues: function(object, func = identity) {
     func = this.iteratee(func);
     let res = {};
-    for(let key in object){
-      funcVal = func(object[key],key,object);
+    for (let key in object) {
+      funcVal = func(object[key], key, object);
       res[key] = funcVal;
     }
     return res;
   },
 
-  merge: function(object,...sources) {
+  merge: function(object, ...sources) {
     sources.forEach(src => {
-      for(let key in src){
-        if(!(key in object)){
-          object[key]=src[key];
-        }else{
-          if(typeof object[key] === "object" && typeof src[key] === "object" && object[key] !== null && src[key] !== null){
-            this.merge(object[key],src[key]);
+      for (let key in src) {
+        if (!(key in object)) {
+          object[key] = src[key];
+        } else {
+          if (
+            typeof object[key] === "object" &&
+            typeof src[key] === "object" &&
+            object[key] !== null &&
+            src[key] !== null
+          ) {
+            this.merge(object[key], src[key]);
           }
         }
       }
@@ -1424,15 +1480,21 @@ var sarah125444 = {
     return object;
   },
 
-  mergeWith: function(object,...sources) {
+  mergeWith: function(object, ...sources) {
     let customizer = sources.pop();
     sources.forEach(src => {
-      for(let key in src){
-        if(!(key in object)){
+      for (let key in src) {
+        if (!(key in object)) {
           object[key] = src[key];
-        }else{
-          if(key in object && typeof object[key] === "object" && typeof src[key] === "object" && object[key] !== null && src[key] !== null){
-            let res = customizer(object[key],src[key],key,object,src);
+        } else {
+          if (
+            key in object &&
+            typeof object[key] === "object" &&
+            typeof src[key] === "object" &&
+            object[key] !== null &&
+            src[key] !== null
+          ) {
+            let res = customizer(object[key], src[key], key, object, src);
             object[key] = res;
           }
         }
@@ -1441,113 +1503,103 @@ var sarah125444 = {
     return object;
   },
 
-  omit: function(object,paths) {
+  omit: function(object, paths) {
     let res = {};
     resArr = Object.keys(object).filter(item => !paths.includes(item));
-    for(let item of resArr){
-         res[item] = object[item]
+    for (let item of resArr) {
+      res[item] = object[item];
     }
     return res;
   },
 
-  omitBy: function(object,func=identity) {
+  omitBy: function(object, func = identity) {
     let res = {};
-    for(let key in object){
-      if(!func(object[key],key)) res[key] = object[key];
+    for (let key in object) {
+      if (!func(object[key], key)) res[key] = object[key];
     }
     return res;
   },
 
-  pick: function(object,paths) {
+  pick: function(object, paths) {
     let res = {};
     resArr = Object.keys(object).filter(item => paths.includes(item));
-    for(let item of resArr){
-         res[item] = object[item]
+    for (let item of resArr) {
+      res[item] = object[item];
     }
     return res;
   },
 
-  pickBy: function(object,func=identity) {
+  pickBy: function(object, func = identity) {
     let res = {};
-    for(let key in object){
-      if(func(object[key],key)) res[key] = object[key];
+    for (let key in object) {
+      if (func(object[key], key)) res[key] = object[key];
     }
     return res;
   },
 
-  result: function(object,path,defaultValue) {
-    if(typeof path === "string") path = this.toPath(path);
-    let pre = null,res = object;
-    for(let item of path){
+  result: function(object, path, defaultValue) {
+    if (typeof path === "string") path = this.toPath(path);
+    let pre = null,
+      res = object;
+    for (let item of path) {
       pre = res;
       res = res[item];
-      if(res === undefined){
-        return typeof defaultValue === "function" ? defaultValue() : defaultValue;
+      if (res === undefined) {
+        return typeof defaultValue === "function"
+          ? defaultValue()
+          : defaultValue;
       }
     }
     return typeof res === "function" ? res.call(pre) : res;
   },
 
- 
-  setWith: function(object,path,value,customizer) {
-    if(!customizer) this.set(object,path,value);
-    if(typeof path === "string") path = this.toPath(path);
-    path.reduce((res,item,index) => {
-      if(index === path.length - 1){
+  setWith: function(object, path, value, customizer) {
+    if (!customizer) this.set(object, path, value);
+    if (typeof path === "string") path = this.toPath(path);
+    path.reduce((res, item, index) => {
+      if (index === path.length - 1) {
         res[item] = value;
-      }else if(customizer() !== undefined){
+      } else if (customizer() !== undefined) {
         res[item] = customizer();
-      }else if(!res[item] && typeof path[i+1] === "number"){
+      } else if (!res[item] && typeof path[i + 1] === "number") {
         res[item] = [];
-      }else if(!res[item] && typeof path[i+1] === "string"){
+      } else if (!res[item] && typeof path[i + 1] === "string") {
         res[item] = {};
       }
       return res[item];
-    },object)
+    }, object);
     return object;
   },
 
-
   toPairs: function(object) {
-    return Object.entries(object); 
+    return Object.entries(object);
   },
 
   toPairsIn: function(object) {
     let res = {};
-    for(let key in object){
+    for (let key in object) {
       res[key] = object[key];
     }
     return Object.entries(res);
   },
 
-  transform: function() {
+  transform: function() {},
 
-  },
-
-  unset: function(object,path) {
+  unset: function(object, path) {
     return this.property(path)(object) ? true : false;
   },
 
-  update: function(object,path,updater) {
-    if(typeof path === "string") path = this.toPath(path);
-    for(let p of path){
-      object = object[p]
-      if(object === undefined){
-        return updater(object);
-      }
-    }
-    return updater(object);
+  update: function(object, path, updater) {
+    const val = updater(this.get(object, path));
+    this.set(object, path, val);
+    return object;
   },
-
 
   updateWith: function() {},
 
-
   values: function() {},
 
-
   valuesIn: function() {},
-
 
   camelCase: function() {},
 
@@ -1563,180 +1615,66 @@ var sarah125444 = {
 
   kebabCase: function() {},
 
-  pad: function(string='',length=0,chars=' '){
-    let padLen =  length - string.length ;
-    let charsStr = chars.repeat(Math.ceil(padLen / chars.length)).slice(0,padLen);
-    let left = charsStr.slice(0,Math.floor(padLen/2));
-    let right = charsStr.slice(Math.floor(padLen/2));
-    return  `${left}${string}${right}`
+  pad: function(string = "", length = 0, chars = " ") {
+    let padLen = length - string.length;
+    let charsStr = chars
+      .repeat(Math.ceil(padLen / chars.length))
+      .slice(0, padLen);
+    let left = charsStr.slice(0, Math.floor(padLen / 2));
+    let right = charsStr.slice(Math.floor(padLen / 2));
+    return `${left}${string}${right}`;
   },
 
-  padEnd: function(){
+  padEnd: function() {},
+  padStart: function() {},
+  parseInt: function() {},
+  repeat: function() {},
+  replace: function() {},
+  snakeCase: function() {},
+  split: function() {},
+  startCase: function() {},
+  startsWith: function() {},
+  toLower: function() {},
+  toUpper: function() {},
+  trim: function() {},
+  trimEnd: function() {},
+  trimStart: function() {},
+  truncate: function() {},
+  unescape: function() {},
+  upperCase: function() {},
+  upperFirst: function() {},
+  words: function() {},
+  bindAll: function() {},
+  defaultTo: function() {},
+  range: function() {},
+  rangeRight: function() {},
+  mixin: function() {},
 
-  },	 
-  padStart: function(){
-
-  },	 
-  parseInt: function(){
-
-  },					
-  repeat: function(){
-
-  }, 
-  replace: function(){
-
-  },					
-  snakeCase: function(){
-
-  },					
-  split: function(){
-
-  },					
-  startCase: function(){
-
-  },					
-  startsWith: function(){
-
-  },					
-  toLower: function(){
-
-  },					
-  toUpper: function(){
-
-  },					
-  trim: function(){
-
-  },					
-  trimEnd: function(){
-
-  },					
-  trimStart: function(){
-
-  },					
-  truncate: function(){
-
-  },					
-  unescape: function(){
-
-  },	 
-  upperCase: function(){
-
-  },					
-  upperFirst: function(){
-
-  },					
-  words: function(){
-
-  },					
-  bindAll: function(){
-
-  },	 
-  defaultTo: function(){
-
-  },					
-  range: function(){
-
-  },	 
-  rangeRight: function(){
-
-  },					
-  mixin: function(){
-
-  },		
-
-  times: function(n,func=identity){
+  times: function(n, func = identity) {
     func = this.identity(func);
-    func(index)
-
-  },	
-
-
-  uniqueId: function(){
-
-  },	 
-  cloneDeep: function(){
-
-  },	 
- 
-  pullAt: function(){
-
-  },	 
-
- 
-  ary: function(){
-
-  },	 
-  unary: function(){
-
-  },	 
-  negate: function(){
-
-  },	 
-  once: function(){
-
-  }, 
-  spread: function(){
-
-  },	 
-  curry: function(){
-
-  },	 
-  memoize: function(){
-
-  },	 
-  flip: function(){
-
-  }, 
-  conforms: function(){
-
-  },	 
-  constant: function(value){
-
-  },	 
-  flow: function(){
-
-  },					
-  method: function(){
-
-  },					
-  methodOf: function(){
-
-  },					
-  nthArg: function(){
-
-  },					
-  propertyOf: function(){
-
-  }, 
-  parseJson: function(){
-
-  },					
-  stringifyJson: function(){
-
+    func(index);
   },
 
+  uniqueId: function() {},
+  cloneDeep: function() {},
 
+  pullAt: function() {},
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  ary: function() {},
+  unary: function() {},
+  negate: function() {},
+  once: function() {},
+  spread: function() {},
+  curry: function() {},
+  memoize: function() {},
+  flip: function() {},
+  conforms: function() {},
+  constant: function(value) {},
+  flow: function() {},
+  method: function() {},
+  methodOf: function() {},
+  nthArg: function() {},
+  propertyOf: function() {},
+  parseJson: function() {},
+  stringifyJson: function() {}
 };
- 

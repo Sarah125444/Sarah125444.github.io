@@ -1508,7 +1508,9 @@ var sarah125444 = {
   },
 
 
-  toPairs: function() {},
+  toPairs: function(object) {
+    return Object.entries(object); 
+  },
 
   toPairsIn: function() {},
 

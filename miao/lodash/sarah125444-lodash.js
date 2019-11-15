@@ -1512,7 +1512,13 @@ var sarah125444 = {
     return Object.entries(object); 
   },
 
-  toPairsIn: function() {},
+  toPairsIn: function(object) {
+    let res = {};
+    for(let key in object){
+      res[key] = object[key];
+    }
+    return Object.entries(res);
+  },
 
   transform: function() {},
 

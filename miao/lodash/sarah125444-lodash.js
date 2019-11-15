@@ -1613,7 +1613,14 @@ var sarah125444 = {
     return res;
   },
 
-  camelCase: function() {},
+  camelCase: function(string='') {
+    let strArr = string.match(/[a-zA-Z]+/g);
+    return strArr.map((item,index) => (index ? item[0].toUpperCase() : item[0].toLowerCase()) + item.slice(1).toLowerCase()).join("");
+  },
+
+ 
+
+
 
   capitalize: function() {},
 

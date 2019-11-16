@@ -1624,9 +1624,9 @@ var sarah125444 = {
     return strArr.map(item => item[0].toUpperCase() + item.slice(1).toLowerCase()).join('')
   },
 
-  deburr: function() {},
-
-  endsWith: function() {},
+  endsWith: function(string='',target,position=string.length) {
+    return string.endsWith(target,position);
+  },
 
   escape: function() {},
 

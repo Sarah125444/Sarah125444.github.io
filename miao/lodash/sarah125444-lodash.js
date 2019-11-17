@@ -1710,7 +1710,9 @@ var sarah125444 = {
     return strArr.map(it => it[0].toUpperCase()+it.slice(1)).join(' ');
   },
 
-  startsWith: function() {},
+  startsWith: function(string='',target,position=0) {
+    return string.startsWith(target,position)
+  },
 
   toLower: function() {},
 

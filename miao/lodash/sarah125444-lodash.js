@@ -1650,12 +1650,14 @@ var sarah125444 = {
     return strArr.map(it => it.toLowerCase()).join('-');
   },
 
-  lowerCase: function(){
-
+  lowerCase: function(string=''){
+    let regex = /[A-Za-z][a-z]+|[A-Z]+/g;
+    let strArr = string.match(regex);
+    return strArr.map(it => it.toLowerCase()).join(' ');
   },
 
-  lowerFirst: function(){
-
+  lowerFirst: function(string=''){
+    return string[0].toLowerCase()+string.slice(1);
   },
 
   pad: function(string = "", length = 0, chars = " ") {

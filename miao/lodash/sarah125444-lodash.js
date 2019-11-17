@@ -1718,7 +1718,9 @@ var sarah125444 = {
     return string.toLowerCase();
   },
 
-  toUpper: function() {},
+  toUpper: function(string='') {
+    return string.toUpperCase();
+  },
 
 
   trim: function(string="",chars='  ') {

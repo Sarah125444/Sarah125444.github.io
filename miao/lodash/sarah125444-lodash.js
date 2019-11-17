@@ -1704,7 +1704,11 @@ var sarah125444 = {
     return string.split(separator,limit)
   },
 
-  startCase: function() {},
+  startCase: function(string='') {
+    let regex = /[a-zA-Z][a-z]+|[A-Z]+/g;
+    let strArr = string.match(regex);
+    return strArr.map(it => it[0].toUpperCase()+it.slice(1)).join(' ');
+  },
 
   startsWith: function() {},
 

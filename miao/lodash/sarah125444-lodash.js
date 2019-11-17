@@ -1628,9 +1628,33 @@ var sarah125444 = {
     return string.endsWith(target,position);
   },
 
-  escape: function() {},
 
-  escapeRegExp: function() {},
+  escape: function(string='') {
+    const entities = [
+      ["amp","&"],
+      ["lt", "<"],
+      ["gt",">"],
+      ["quot",'"'],
+      ["apos",'"'],
+    ];
+    return entities.reduce((res,[en,c]) => res.replace(c,`&${en}`),string);
+  },
+
+  escapeRegExp: function() {
+
+  },
+ 
+
+
+
+
+
+
+
+
+
+
+
 
   kebabCase: function() {},
 
@@ -1655,9 +1679,25 @@ var sarah125444 = {
   startsWith: function() {},
   toLower: function() {},
   toUpper: function() {},
-  trim: function() {},
-  trimEnd: function() {},
-  trimStart: function() {},
+
+  trim: function(string="",chars='  ') {
+    
+  },
+
+  trimEnd: function(string="",chars='  ') {
+    for(let i = string.length - 1; i >= 0 ;i--){
+      if(!chars.includes(string[i])) return string.slice(0,i+1);
+    }
+    return '';
+  },
+
+  trimStart: function(string='',chars='  ') {
+    for(let i = 0; i < string.length;i++){
+      if(!chars.includes(string[i])) return string.slice(i);
+    }
+    return '';
+  },
+
   truncate: function() {},
   unescape: function() {},
   upperCase: function() {},

@@ -1645,14 +1645,10 @@ var sarah125444 = {
   },
 
   kebabCase: function(string='') {
-    let regex = /[a-zA-Z]{3}/g;
+    let regex = /[A-Za-z][a-z]+|[A-Z]+/g;
     let strArr = string.match(regex);
     return strArr.map(it => it.toLowerCase()).join('-');
   },
-
-
-
-
 
   lowerCase: function(){
 

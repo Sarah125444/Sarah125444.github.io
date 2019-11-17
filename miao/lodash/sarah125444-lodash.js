@@ -1703,7 +1703,7 @@ var sarah125444 = {
   upperCase: function() {},
   upperFirst: function() {},
 
-  words: function(string='',pattern=/[a-zA-Z]+/g) {
+  words: function(string='',pattern=/[A-Za-z][a-z]+|[A-Z]+/g) {
    return string.match(pattern);
   },
 

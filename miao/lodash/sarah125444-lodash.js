@@ -1680,9 +1680,15 @@ var sarah125444 = {
     return `${charsStr}${string}`;
   },
 
-  parseInt: function() {},
+  parseInt: function(string,radix) {
+    if(radix === undefined || radix === 0 || arguments.length > 2) radix = 10;
+    if(string.slice(0,2) === "0x") radix = 16;
+    return parseInt(string,radix);
+  },
 
-  repeat: function() {},
+  repeat: function(string='',n=1) {
+    return string.repeat(n);
+  },
 
   replace: function() {},
 
@@ -1742,7 +1748,10 @@ var sarah125444 = {
 
   pullAt: function() {},
 
-  ary: function() {},
+  ary: function(func,n=func.length) {
+     return (...args) => func(...args.slice(0,n)); 
+  },
+
   unary: function() {},
   negate: function() {},
   once: function() {},

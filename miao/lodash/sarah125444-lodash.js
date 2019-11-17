@@ -1741,7 +1741,20 @@ var sarah125444 = {
     return '';
   },
 
-  truncate: function() {},
+  truncate: function(string='',opt={}) {
+    if(!opt.length) opt.length=30;
+    if(!opt.omission) opt.omission='...';
+    let resLen = opt.length - opt.omission.length, sep = opt.separator;
+    string = string.slice(0,resLen);
+    if(!sep) {
+       return string + opt.omission;
+    }else if(this.isRegExp(sep) && !sep.global){
+      sep = new RegExp(sep , sep.flags+'g');
+    } 
+    let idx = Array.from(string.matchAll(sep)).pop()["index"];
+    return string.slice(0,idx) + opt.omission;
+  },
+
   unescape: function() {},
   upperCase: function() {},
   upperFirst: function() {},

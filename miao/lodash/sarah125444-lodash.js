@@ -1714,7 +1714,9 @@ var sarah125444 = {
     return string.startsWith(target,position)
   },
 
-  toLower: function() {},
+  toLower: function(string='') {
+    return string.toLowerCase();
+  },
 
   toUpper: function() {},
 

@@ -1694,7 +1694,11 @@ var sarah125444 = {
     return string.replace(pattern,replacement)
   },
 
-  snakeCase: function() {},
+  snakeCase: function(string='') {
+    let regex = /[A-Za-z][a-z]+|[A-Z]+/g;
+    let strArr = string.match(regex);
+    return strArr.map(it => it[0].toLowerCase()+it.slice(1).toLowerCase()).join('_');
+  },
 
   split: function() {},
 

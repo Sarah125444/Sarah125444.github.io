@@ -1700,7 +1700,9 @@ var sarah125444 = {
     return strArr.map(it => it[0].toLowerCase()+it.slice(1).toLowerCase()).join('_');
   },
 
-  split: function() {},
+  split: function(string='',separator,limit) {
+    return string.split(separator,limit)
+  },
 
   startCase: function() {},
 

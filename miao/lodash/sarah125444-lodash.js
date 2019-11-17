@@ -1628,7 +1628,6 @@ var sarah125444 = {
     return string.endsWith(target,position);
   },
 
-
   escape: function(string='') {
     const entities = [
       ["amp","&"],
@@ -1644,10 +1643,24 @@ var sarah125444 = {
     const reg = /[\^\$\,\.\*\+\?\(\)\[\]\{\}\|]/g;
     return string.replace(reg,`\\$&`)
   },
- 
+
+  kebabCase: function(string='') {
+    let regex = /[a-zA-Z]{3}/g;
+    let strArr = string.match(regex);
+    return strArr.map(it => it.toLowerCase()).join('-');
+  },
 
 
-  kebabCase: function() {},
+
+
+
+  lowerCase: function(){
+
+  },
+
+  lowerFirst: function(){
+
+  },
 
   pad: function(string = "", length = 0, chars = " ") {
     let padLen = length - string.length;

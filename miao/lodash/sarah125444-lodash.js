@@ -1690,7 +1690,9 @@ var sarah125444 = {
     return string.repeat(n);
   },
 
-  replace: function() {},
+  replace: function(string='',pattern,replacement) {
+    return string.replace(pattern,replacement)
+  },
 
   snakeCase: function() {},
 

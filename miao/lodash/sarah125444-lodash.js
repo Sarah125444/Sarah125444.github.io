@@ -1660,27 +1660,40 @@ var sarah125444 = {
     return string[0].toLowerCase()+string.slice(1);
   },
 
-  pad: function(string = "", length = 0, chars = " ") {
+  pad: function(string="", length = 0, chars=" ") {
     let padLen = length - string.length;
-    let charsStr = chars
-      .repeat(Math.ceil(padLen / chars.length))
-      .slice(0, padLen);
+    let charsStr = chars.repeat(Math.ceil(padLen / chars.length)).slice(0, padLen);
     let left = charsStr.slice(0, Math.floor(padLen / 2));
     let right = charsStr.slice(Math.floor(padLen / 2));
     return `${left}${string}${right}`;
   },
 
-  padEnd: function() {},
+  padEnd: function(string='',length=0,chars=' ') {
+    let padLen = length - string.length;
+    let charsStr = chars.repeat(Math.ceil(padLen / chars.length)).slice(0,padLen);
+    return `${string}${charsStr}`;
+  },
+
   padStart: function() {},
+
   parseInt: function() {},
+
   repeat: function() {},
+
   replace: function() {},
+
   snakeCase: function() {},
+
   split: function() {},
+
   startCase: function() {},
+
   startsWith: function() {},
+
   toLower: function() {},
+
   toUpper: function() {},
+
 
   trim: function(string="",chars='  ') {
 

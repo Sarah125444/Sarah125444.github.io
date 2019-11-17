@@ -1746,12 +1746,8 @@ var sarah125444 = {
     if(!opt.omission) opt.omission='...';
     let resLen = opt.length - opt.omission.length, sep = opt.separator;
     string = string.slice(0,resLen);
-    if(!sep) {
-       return string + opt.omission;
-    }
-    if(this.isRegExp(sep) && !sep.global){
-      sep = new RegExp(sep , sep.flags+'g');
-    } 
+    if(!sep) return string + opt.omission;
+    if(this.isRegExp(sep) && !sep.global) sep = new RegExp(sep , sep.flags+'g');
     let idx = Array.from(string.matchAll(sep)).pop()["index"];
     return string.slice(0,idx) + opt.omission;
   },

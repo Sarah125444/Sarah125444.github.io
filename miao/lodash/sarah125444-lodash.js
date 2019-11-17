@@ -1724,7 +1724,7 @@ var sarah125444 = {
 
 
   trim: function(string="",chars='  ') {
-
+    return  this.trimEnd(this.trimStart(string,chars),chars);
   },
 
   trimEnd: function(string="",chars='  ') {

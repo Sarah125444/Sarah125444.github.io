@@ -1674,7 +1674,11 @@ var sarah125444 = {
     return `${string}${charsStr}`;
   },
 
-  padStart: function() {},
+  padStart: function(string='',length=0,chars=' ') {
+    let padLen = length - string.length;
+    let charsStr = chars.repeat(Math.ceil(padLen / chars.length)).slice(0,padLen);
+    return `${charsStr}${string}`;
+  },
 
   parseInt: function() {},
 

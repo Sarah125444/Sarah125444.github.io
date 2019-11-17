@@ -1748,7 +1748,8 @@ var sarah125444 = {
     string = string.slice(0,resLen);
     if(!sep) {
        return string + opt.omission;
-    }else if(this.isRegExp(sep) && !sep.global){
+    }
+    if(this.isRegExp(sep) && !sep.global){
       sep = new RegExp(sep , sep.flags+'g');
     } 
     let idx = Array.from(string.matchAll(sep)).pop()["index"];

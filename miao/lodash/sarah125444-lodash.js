@@ -1802,8 +1802,20 @@ var sarah125444 = {
     return this.range(start,end,step).reverse();
   },
 
-  mixin: function() {
-
+  mixin: function(object,source) {
+     if(!source){
+       source = object;
+       object = _;
+     }
+     for(let key in source){
+       if(typeof source[key] === "function"){
+        object[key] = source[key];
+        if(typeof object ===  "function"){
+          object.prototype[key] = source[key];
+        }
+       }
+     }
+    return object;
   },
 
 

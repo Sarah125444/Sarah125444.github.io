@@ -1777,11 +1777,35 @@ var sarah125444 = {
    return string.match(pattern);
   },
 
-  bindAll: function() {},
-  defaultTo: function() {},
-  range: function() {},
-  rangeRight: function() {},
-  mixin: function() {},
+  bindAll: function() {
+
+  },
+
+  defaultTo: function() {
+
+  },
+
+  range: function(start=0,end,step) {
+    if(end === undefined){
+      end = start,start = 0;
+    }
+    if(step === undefined) step=start > end ? -1 : 1;
+    if(step === 0) return Array(Math.ceil(end - start)).fill(start);
+    let res = [];
+    for(let i = start;end < start ? i > end : i < end; i += step){
+        res.push(i);
+    }
+    return res;
+  },
+
+  rangeRight: function() {
+
+  },
+
+  mixin: function() {
+
+  },
+
 
   times: function(n, func = identity) {
     func = this.identity(func);

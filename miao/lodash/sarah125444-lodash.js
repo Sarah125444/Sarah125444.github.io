@@ -1861,8 +1861,9 @@ var sarah125444 = {
     }
   },
 
-  method: function() {
-
+  method: function(path,...args) {
+    if(typeof path === "string") path= this.toPath(path);
+    return (object) =>  path.reduce((res,it) => res[it] ,object)(...args);
   },
 
   methodOf: function() {

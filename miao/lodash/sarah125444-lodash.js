@@ -1763,8 +1763,9 @@ var sarah125444 = {
     return entities.reduce((res,[en,c]) => res.replace(`${en}`,c),string )
   }, 
 
-  ion() {
-
+  upperCase(string='') {
+    let regex = /[a-zA-Z][a-z]+|[a-z]+/g;
+    return string.match(regex).map(it => it.toUpperCase()).join(' ');
   },
        
   upperFirst: function() {

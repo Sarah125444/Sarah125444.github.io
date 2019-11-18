@@ -1752,9 +1752,25 @@ var sarah125444 = {
     return string.slice(0,idx) + opt.omission;
   },
 
-  unescape: function() {},
-  upperCase: function() {},
-  upperFirst: function() {},
+  unescape: function(string='') {
+    const entities = [
+      ["&amp;","&"],
+      ["&lt;","<"],
+      ["&gt;",">"],
+      ["&quot;",'"'],
+      ["&apos;",'"'],
+    ];
+    return entities.reduce((res,[en,c]) => res.replace(`${en}`,c),string )
+  }, 
+
+  ion() {
+
+  },
+       
+  upperFirst: function() {
+
+  },
+
 
   words: function(string='',pattern=/[A-Za-z][a-z]+|[A-Z]+/g) {
    return string.match(pattern);

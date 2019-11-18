@@ -1821,8 +1821,11 @@ var sarah125444 = {
 
 
   times: function(n, func = identity) {
-    func = this.identity(func);
-    return func(index);
+    let res = [];
+    for(let i = 0 ; i < n;i++){
+      res.push(func(i))
+    }
+    return res;
   },
 
   uniqueId: function() {
@@ -1866,9 +1869,12 @@ var sarah125444 = {
     return (object) =>  path.reduce((res,it) => res[it] ,object)(...args);
   },
 
-  methodOf: function() {
-
-  },
+  methodOf: function(object,...args) {
+    return (path) =>  {
+      if(typeof path === "string") path= this.toPath(path);
+      path.reduce((res,it) => res[it] ,object)(...args);
+    }  
+  },  
 
   nthArg: function() {
 

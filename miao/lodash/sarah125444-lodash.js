@@ -1768,8 +1768,8 @@ var sarah125444 = {
     return string.match(regex).map(it => it.toUpperCase()).join(' ');
   },
        
-  upperFirst: function() {
-
+  upperFirst: function(string='') {
+    return string[0].toUpperCase()+string.slice(1,string.length+1)
   },
 
 

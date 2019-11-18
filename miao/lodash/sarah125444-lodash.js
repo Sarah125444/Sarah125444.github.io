@@ -1821,7 +1821,7 @@ var sarah125444 = {
 
   times: function(n, func = identity) {
     func = this.identity(func);
-    func(index);
+    return func(index);
   },
 
   uniqueId: function() {
@@ -1855,8 +1855,11 @@ var sarah125444 = {
   methodOf: function() {},
   nthArg: function() {},
   propertyOf: function() {},
-  parseJson: function() {},
-  stringifyJson: function() {
+  parseJson: function(value) {
+    return JSON.parse(value);
+  },
 
+  stringifyJson: function(value) {
+    return JSON.stringify(value);
   }
 };

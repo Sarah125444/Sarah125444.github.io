@@ -1777,12 +1777,13 @@ var sarah125444 = {
    return string.match(pattern);
   },
 
-  bindAll: function() {
-
+  bindAll: function(value,defaultValue) {
+    
+    
   },
 
-  defaultTo: function() {
-
+  defaultTo: function(value,defaultValue) {
+    return value === undefined ? defaultValue : value;
   },
 
   range: function(start=0,end,step) {

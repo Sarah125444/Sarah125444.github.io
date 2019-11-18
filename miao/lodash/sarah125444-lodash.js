@@ -1851,11 +1851,32 @@ var sarah125444 = {
     return () => value;
   },
 
-  flow: function() {},
-  method: function() {},
-  methodOf: function() {},
-  nthArg: function() {},
-  propertyOf: function() {},
+  flow: function(funcs) {
+    return (...args) => {
+      let res = funcs[0](...args);
+      for(let i = 1; i < funcs.length;i++){
+        res = funcs[i](res);
+      }
+      return res;
+    }
+  },
+
+  method: function() {
+
+  },
+
+  methodOf: function() {
+
+  },
+
+  nthArg: function() {
+
+  },
+
+  propertyOf: function() {
+
+  },
+
   parseJson: function(value) {
     return JSON.parse(value);
   },

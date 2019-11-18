@@ -1872,7 +1872,7 @@ var sarah125444 = {
   methodOf: function(object,...args) {
     return (path) =>  {
       if(typeof path === "string") path= this.toPath(path);
-      path.reduce((res,it) => res[it] ,object)(...args);
+      return path.reduce((res,it) => res[it] ,object)(...args);
     }  
   },  
 

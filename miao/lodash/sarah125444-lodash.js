@@ -1798,8 +1798,8 @@ var sarah125444 = {
     return res;
   },
 
-  rangeRight: function() {
-
+  rangeRight: function(start=0,end,step) {
+    return this.range(start,end,step).reverse();
   },
 
   mixin: function() {
@@ -1812,7 +1812,9 @@ var sarah125444 = {
     func(index);
   },
 
-  uniqueId: function() {},
+  uniqueId: function() {
+
+  },
   cloneDeep: function() {},
 
   pullAt: function() {},
@@ -1842,5 +1844,7 @@ var sarah125444 = {
   nthArg: function() {},
   propertyOf: function() {},
   parseJson: function() {},
-  stringifyJson: function() {}
+  stringifyJson: function() {
+
+  }
 };

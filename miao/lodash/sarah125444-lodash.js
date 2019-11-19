@@ -1880,8 +1880,13 @@ var sarah125444 = {
     return (...args) => func(...args.reverse());
   },
 
-  conforms: function() {
-
+  conforms: function(source) {
+   return object => {
+     for(let key in source){
+        if(!source[key](object[key])) return false
+     }
+     return true;
+   }
   },
 
   constant: function(value) {

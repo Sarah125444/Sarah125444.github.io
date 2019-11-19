@@ -1872,8 +1872,17 @@ var sarah125444 = {
 
   },
 
-  memoize: function() {
+  values: function(object){
+    return Object.values(object);
+  },  
 
+  memoize: function(func,resolver) {
+    let cache = new Map();
+    return (...args) => {
+      let key = resolver(...args);
+      if(!cache.has(key)) cache.set(key, func(...args));
+      return cache.get(key);
+    }
   },
 
   flip: function(func) {

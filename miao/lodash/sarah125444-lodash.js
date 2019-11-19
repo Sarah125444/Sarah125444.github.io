@@ -1833,19 +1833,42 @@ var sarah125444 = {
   },
   cloneDeep: function() {},
 
-  pullAt: function() {},
+  pullAt: function() {
+
+  },
 
   ary: function(func,n=func.length) {
      return (...args) => func(...args.slice(0,n)); 
   },
 
-  unary: function() {},
-  negate: function() {},
-  once: function() {},
-  spread: function() {},
-  curry: function() {},
-  memoize: function() {},
-  flip: function() {},
+  unary: function(func) {
+    return (...args) => func(args[0])
+  },
+
+  negate: function() {
+
+  },
+
+  once: function() {
+
+  },
+
+  spread: function() {
+
+  },
+
+  curry: function() {
+
+  },
+
+  memoize: function() {
+
+  },
+
+  flip: function() {
+
+  },
+
   conforms: function() {
 
   },

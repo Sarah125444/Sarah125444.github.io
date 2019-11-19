@@ -1923,11 +1923,7 @@ var sarah125444 = {
 
   propertyOf: function(object) {
     return path => {
-      if(typeof path === "string") {
-        console.log(path,this.toPath);
-        path = this.toPath(path) ;
-        
-      }
+      path =  typeof path === "string" ? this.toPath(path) : path;
       return path.reduce((res,item) => res[item], object);
     }
   },

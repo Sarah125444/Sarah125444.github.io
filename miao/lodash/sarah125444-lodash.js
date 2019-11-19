@@ -1849,8 +1849,8 @@ var sarah125444 = {
     return (...args) =>  !func(...args);
   },
 
-  once: function() {
-
+  once: function(func) {
+     
   },
 
   spread: function() {

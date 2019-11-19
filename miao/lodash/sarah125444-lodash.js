@@ -1876,8 +1876,8 @@ var sarah125444 = {
 
   },
 
-  flip: function() {
-
+  flip: function(func) {
+    return (...args) => func(...args.reverse());
   },
 
   conforms: function() {

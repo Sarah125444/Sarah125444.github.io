@@ -1868,7 +1868,7 @@ var sarah125444 = {
     return args => func(...args);
   },
 
-  curry: function() {
+  curry: function(func,) {
 
   },
 
@@ -1915,8 +1915,11 @@ var sarah125444 = {
     }  
   },  
 
-  nthArg: function() {
-
+  nthArg: function(n) {
+    return (...args) => {
+      n = n>0 ? n : args.length+n
+      return args[n];
+    } 
   },
 
   propertyOf: function() {

@@ -1861,7 +1861,14 @@ var sarah125444 = {
   },
 
   once: function(func) {
-     
+     let res, flag = false;
+     return (...args) => {
+      if(!flag){
+        res = func(...args);
+        flag = true;
+      }
+      return res;
+     }
   },
 
   spread: function(func) {

@@ -1837,8 +1837,15 @@ var sarah125444 = {
   },
   cloneDeep: function() {},
 
-  pullAt: function() {
-
+  pullAt: function(array,index) {
+    let res = [];
+     for(let i = array.length-1; i >= 0 ;i--){
+       console.log(index,i,array)
+        if(index.includes(i)){
+          res.push(...array.splice(i,1))
+        }
+     }
+     return res.reverse();
   },
 
   ary: function(func,n=func.length) {

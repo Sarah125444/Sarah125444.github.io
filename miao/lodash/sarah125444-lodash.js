@@ -1876,7 +1876,7 @@ var sarah125444 = {
     return Object.values(object);
   },  
 
-  memoize: function(func,resolver) {
+  memoize: function(func,resolver=this.identity) {
     let cache = new Map();
     return (...args) => {
       let key = resolver(...args);

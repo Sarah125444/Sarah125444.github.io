@@ -1245,7 +1245,9 @@ var sarah125444 = {
     return false;
   },
 
-  random: function() {},
+  random: function(lower=0,upper=1,floating) {
+
+  },
 
   assignIn: function(object, ...sources) {
     sources.forEach(function(obj) {
@@ -1792,8 +1794,8 @@ var sarah125444 = {
   },
 
   bindAll: function(object,methodNames) {
-   
-
+    methodNames.forEach(methodName => object[methodName] = object[methodName].bind(object))
+    return object;
   },
 
   defaultTo: function(value,defaultValue) {

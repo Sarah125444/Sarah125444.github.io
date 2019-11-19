@@ -17,6 +17,10 @@ var sarah125444 = {
     return args[0];
   },
 
+  concat: function(array,...args){
+    return args.reduce((res,item) => res.concat(item),array)
+  },
+
   toPath: function(value) {
     return value.match(/\w+/g);
   },

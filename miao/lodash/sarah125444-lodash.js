@@ -1587,7 +1587,7 @@ var sarah125444 = {
     return Object.entries(res);
   },
 
-  transform: function(object,func=_.identity,accumulator={}) {
+  transform: function(object,func=_.identity,accumulator=Object.create(Object.getPrototypeOf(object))) {
     func = this.iteratee(func);
     for(let key in object){
       if(func(accumulator,object[key],key,object) === false) break;

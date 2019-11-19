@@ -18,7 +18,7 @@ var sarah125444 = {
   },
 
   concat: function(array,...args){
-    return args.reduce((res,item) => res.concat(item),array)
+    return array.concat(...args)
   },
 
   toPath: function(value) {

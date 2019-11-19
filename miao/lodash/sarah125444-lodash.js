@@ -701,8 +701,7 @@ var sarah125444 = {
 
   reduce: function(collection, func = identity, accumulator) {
     func = this.iteratee(func);
-    let current = accumulator,
-      j;
+    let current = accumulator, j;
     if (Array.isArray(collection)) {
       if (accumulator !== undefined) {
         j = 0;
@@ -1588,7 +1587,13 @@ var sarah125444 = {
     return Object.entries(res);
   },
 
-  transform: function() {},
+  transform: function(object,func=_.identity,accumulator={}) {
+    func = this.iteratee(func);
+    for(let key in object){
+      if(func(accumulator,object[key],key,object) === false) break;
+    }
+    return accumulator
+  },
 
   unset: function(object, path) {
     return this.property(path)(object) ? true : false;

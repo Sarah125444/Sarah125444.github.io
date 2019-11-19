@@ -1838,9 +1838,12 @@ var sarah125444 = {
     return res;
   },
 
-  uniqueId: function() {
-
+  base: 2,
+  uniqueId: function(prefix='') {
+    this.base++;
+    return prefix+this.base;
   },
+  
   cloneDeep: function() {},
 
   pullAt: function(array,index) {

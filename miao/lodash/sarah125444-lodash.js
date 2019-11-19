@@ -1894,8 +1894,10 @@ var sarah125444 = {
     return args => func(...args);
   },
 
-  curry: function(func,) {
-
+  curry: function(func,arity=func.length) {
+    return (...args) => {
+      return args.length >= arity ? func(...args) : this.curry(func.bind(null,...args),arity-args.length)
+    }
   },
 
   values: function(object){

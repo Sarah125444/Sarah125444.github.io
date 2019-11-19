@@ -1845,8 +1845,8 @@ var sarah125444 = {
     return (...args) => func(args[0])
   },
 
-  negate: function() {
-
+  negate: function(func) {
+    return (...args) =>  !func(...args);
   },
 
   once: function() {

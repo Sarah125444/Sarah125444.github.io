@@ -1245,8 +1245,26 @@ var sarah125444 = {
     return false;
   },
 
-  random: function(lower=0,upper=1,floating) {
-
+  random: function(...args) {
+    let start=0,end=1,floating;
+    if(typeof args[args.length - 1] === "boolean") {
+      floating = args.pop();
+    }else {
+      floating = args.some(it => !Number.isInteger(it))
+    }
+    if(args.length === 2){
+      start = args[0];
+      end = args[1];
+    }else {
+      end = args[0];
+    }
+    if(!floating){
+      start = Math.ceil(start);
+      end = Math.floor(end);
+      return end + Math.floor(Math.random() * (end - start + 1))
+    }else{
+      return end + Math.random() + (end - start)
+    }
   },
 
   assignIn: function(object, ...sources) {

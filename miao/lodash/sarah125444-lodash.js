@@ -1922,8 +1922,11 @@ var sarah125444 = {
     } 
   },
 
-  propertyOf: function() {
-
+  propertyOf: function(object) {
+    return (path) => {
+      if(typeof path === "string") path = this.toPath(path);
+      return path.reduce((res,item) => res[item], object);
+    }
   },
 
   parseJson: function(value) {

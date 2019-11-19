@@ -1853,8 +1853,8 @@ var sarah125444 = {
      
   },
 
-  spread: function() {
-
+  spread: function(func) {
+    return args => func(...args);
   },
 
   curry: function() {

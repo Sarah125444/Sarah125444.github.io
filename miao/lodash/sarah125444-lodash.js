@@ -1261,9 +1261,9 @@ var sarah125444 = {
     if(!floating){
       start = Math.ceil(start);
       end = Math.floor(end);
-      return end + Math.floor(Math.random() * (end - start + 1))
+      return start + Math.floor(Math.random() * (end - start + 1))
     }else{
-      return end + Math.random() + (end - start)
+      return start + Math.random() * (end - start)
     }
   },
 

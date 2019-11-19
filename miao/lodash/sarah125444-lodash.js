@@ -22,6 +22,7 @@ var sarah125444 = {
   },
 
   toPath: function(value) {
+    value = String(value);s
     return value.match(/\w+/g);
   },
 
@@ -1923,7 +1924,7 @@ var sarah125444 = {
 
   propertyOf: function(object) {
     return path => {
-      path =  typeof path === "string" ? this.toPath(path) : path;
+      path =  typeof path === "string" || typeof path === "number" ? this.toPath : path;
       return path.reduce((res,item) => res[item], object);
     }
   },

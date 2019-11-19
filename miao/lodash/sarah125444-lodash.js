@@ -1787,9 +1787,13 @@ var sarah125444 = {
    return string.match(pattern);
   },
 
-  bindAll: function(value,defaultValue) {
-    
-    
+  bind: function(func,thisArg,...fixedArgs){
+    return (...args) => func.call(thisArg,...fixedArgs,...args);
+  },
+
+  bindAll: function(object,methodNames) {
+   
+
   },
 
   defaultTo: function(value,defaultValue) {
@@ -1843,8 +1847,15 @@ var sarah125444 = {
     this.base++;
     return prefix+this.base;
   },
-  
-  cloneDeep: function() {},
+
+  cloneDeep: function(value) {
+    if(typeof value !== "object" || typeof value === null || this.isRegExp(value)) return value;
+    let res = Array.isArray(value) ? [] : {};
+    for(let key in value){
+      res[key] = this.cloneDeep(value[key])
+    }
+    return res;
+  },
 
   pullAt: function(array,index) {
     let res = [];
